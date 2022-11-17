@@ -1,0 +1,22 @@
+====>  Teacher UI
+
+-- In assignments
+     - edit details
+     - add assignments
+     - view assignments 
+
+-- In grades 
+     - edit grades
+     - add grades
+     - view grades
+
+-- in timetable
+     - show timetable
+     - edit timetable
+
+-- in students
+     - show students list
+     - FAB to add
+     - students list edit and delete
+     - show full details of student on click
+
