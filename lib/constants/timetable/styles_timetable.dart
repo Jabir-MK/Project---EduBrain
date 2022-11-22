@@ -21,6 +21,18 @@ const jTimeTablePeriodDurationTextStyle = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.bold,
 );
+const jDeleteButtonTextStyle = TextStyle(
+  fontFamily: 'Kalam',
+  color: jErrorBorderColor,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+const jEditButtonTextStyle = TextStyle(
+  fontFamily: 'Kalam',
+  color: jPrimaryColor,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
 const jTimeTableTeacherNameTextStyle = TextStyle(
   fontFamily: 'Kalam',
   color: jBlackTextColor,

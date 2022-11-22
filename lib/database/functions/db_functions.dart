@@ -1,50 +1,35 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
-import 'package:edubrain/database/model/student_data_model.dart';
+import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 ValueNotifier<List<StudentModel>> studentListNotifier = ValueNotifier([]);
 
-abstract class Studentmodel {
-  Future<void> addStudent(StudentModel value);
-  Future<void> getAllStudents();
-  Future<void> deleteStudent(id);
-  Future<void> editStudent(StudentModel value);
+Future<void> addStudent(StudentModel value) async {
+  final studentDB = await Hive.openBox<StudentModel>('student_db');
+  final ids = await studentDB.add(value);
+  value.id = ids;
+  studentListNotifier.value.add(value);
+  studentListNotifier.notifyListeners();
+  getAllStudents();
 }
 
-class Studentmod implements Studentmodel {
-  @override
-  Future<void> addStudent(StudentModel value) async {
-    final studentDataBase =
-        await Hive.openBox<StudentModel>('student_database');
-    await studentDataBase.put(value.id, value);
-    studentListNotifier.notifyListeners();
-    getAllStudents();
-  }
+Future<void> getAllStudents() async {
+  final studentDB = await Hive.openBox<StudentModel>('student_db');
+  studentListNotifier.value.clear();
+  studentListNotifier.value.addAll(studentDB.values);
+  studentListNotifier.notifyListeners();
+}
 
-  @override
-  Future<void> deleteStudent(index) async {
-    final studentDataBase =
-        await Hive.openBox<StudentModel>('student_database');
-    await studentDataBase.deleteAt(index);
-    getAllStudents();
-  }
+Future<void> deleteStudent(index) async {
+  final studentDB = await Hive.openBox<StudentModel>('student_db');
+  await studentDB.deleteAt(index);
+  getAllStudents();
+}
 
-  @override
-  Future<void> editStudent(StudentModel value) async {
-    final dataBaseStudent =
-        await Hive.openBox<StudentModel>('student_database');
-    dataBaseStudent.put(value.id, value);
-    getAllStudents();
-  }
-
-  @override
-  Future<void> getAllStudents() async {
-    final studentDataBase =
-        await Hive.openBox<StudentModel>('student_database');
-    studentListNotifier.value.clear();
-    studentListNotifier.value.addAll(studentDataBase.values);
-    studentListNotifier.notifyListeners();
-  }
+Future<void> editStudent(int id, StudentModel value) async {
+  final dataBaseStudent = await Hive.openBox<StudentModel>('student_db');
+  dataBaseStudent.putAt(id, value);
+  getAllStudents();
 }

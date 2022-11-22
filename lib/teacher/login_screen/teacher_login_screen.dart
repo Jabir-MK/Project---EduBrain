@@ -1,5 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/teacher/home_screen/teacher_home_screen.dart';
+import 'package:edubrain/teacher/login_screen/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class TeacherLoginScreen extends StatefulWidget {
@@ -88,14 +89,19 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TextButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  'Forgot Password ?',
-                                  style: TextStyle(
-                                    color: jPrimaryColor,
-                                  ),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  elevation: MaterialStateProperty.all(10),
+                                  shadowColor: MaterialStateProperty.all(
+                                      jSecondaryColor),
+                                  backgroundColor:
+                                      MaterialStateProperty.all(jPrimaryColor),
                                 ),
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, TeacherSignUpScreen.routeName);
+                                },
+                                child: const Text('Create Account'),
                               ),
                               ElevatedButton.icon(
                                   style: ButtonStyle(
@@ -112,21 +118,8 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                                     }
                                   },
                                   icon: const Icon(Icons.check),
-                                  label: const Text("Login")),
+                                  label: const Text("Sign-In")),
                             ],
-                          ),
-                          jheightBox,
-                          jheightBox,
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(10),
-                              shadowColor:
-                                  MaterialStateProperty.all(jSecondaryColor),
-                              backgroundColor:
-                                  MaterialStateProperty.all(jPrimaryColor),
-                            ),
-                            onPressed: () {},
-                            child: const Text('Sign Up Here !'),
                           ),
                         ],
                       ),

@@ -1,4 +1,3 @@
-import 'package:edubrain/admin/login_screen/admin_login_screen.dart';
 import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
 import 'package:edubrain/student/contents_screens/assignments/student_assignment_screen.dart';
 import 'package:edubrain/student/contents_screens/attendance/student_attendance_screen.dart';
@@ -17,9 +16,10 @@ import 'package:edubrain/teacher/contents_screens/grades/teacher_grades_screen.d
 import 'package:edubrain/teacher/contents_screens/manage_student/add_student/add_student_screen.dart';
 
 import 'package:edubrain/teacher/contents_screens/manage_student/student_manage.dart';
-import 'package:edubrain/teacher/contents_screens/manage_student/student_profile/student_profile_view.dart';
+import 'package:edubrain/teacher/contents_screens/manage_student/view_student/student_profile_view.dart';
 import 'package:edubrain/teacher/contents_screens/time_table/teacher_time_table_screen.dart';
 import 'package:edubrain/teacher/home_screen/teacher_home_screen.dart';
+import 'package:edubrain/teacher/login_screen/signup/signup_screen.dart';
 import 'package:edubrain/teacher/login_screen/teacher_login_screen.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_profile_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -56,8 +56,7 @@ Map<String, WidgetBuilder> routes = {
   TeacherProfileScreen.routeName: (context) => const TeacherProfileScreen(),
   AddAssignmentScreen.routeName: (context) => const AddAssignmentScreen(),
   AddStudentScreen.routeName: (context) => const AddStudentScreen(),
-  // Admin routes
-  AdminLoginScreen.routeName: (context) => const AdminLoginScreen(),
+  TeacherSignUpScreen.routeName: (context) => const TeacherSignUpScreen(),
 
 // sample
   ViewTeacherProfile.routeName: (context) => const ViewTeacherProfile(),
