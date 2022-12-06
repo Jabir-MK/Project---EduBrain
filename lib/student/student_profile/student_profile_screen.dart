@@ -83,6 +83,38 @@ class StudentProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                Row(
+                  children: const [
+                    StudentProfileBasicDetails(
+                      detailTitle: 'Nationality',
+                      detailValue: 'Indian',
+                    ),
+                    StudentProfileBasicDetails(
+                      detailTitle: 'Gender',
+                      detailValue: 'Male',
+                    )
+                  ],
+                ),
+                jheightBox,
+                jTwiceThickDivider,
+                const Text(
+                  'Address Details',
+                  style: jAlegrayaSansSubTextStyle,
+                ),
+                jTwiceThickDivider,
+                jheightBox,
+                const StudentProfileAddressDetails(
+                  detailsHead: 'House Name',
+                  detailsValue: 'Manakkanakath (H)',
+                ),
+                const StudentProfileAddressDetails(
+                  detailsHead: 'Post Office',
+                  detailsValue: 'Punnathala (P/O)',
+                ),
+                const StudentProfileAddressDetails(
+                  detailsHead: 'Place',
+                  detailsValue: 'Puthanathani',
+                ),
                 jheightBox,
                 jTwiceThickDivider,
                 const Text(
@@ -103,6 +135,18 @@ class StudentProfileScreen extends StatelessWidget {
                   detailsTitle: 'Mobile Number',
                   detailsValue: "+91 8589952276",
                 ),
+                jheightBox,
+                jTwiceThickDivider,
+                const Text(
+                  'Login Details',
+                  style: jAlegrayaSansSubTextStyle,
+                ),
+                jTwiceThickDivider,
+                jheightBox,
+                const StudentProfileContactDetails(
+                  detailsTitle: 'Password',
+                  detailsValue: 'Password',
+                )
               ],
             ),
           ),

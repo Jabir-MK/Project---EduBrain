@@ -1,4 +1,3 @@
-import 'package:edubrain/constants/attendance/style_attendance.dart';
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/student/contents_screens/attendance/student_attendance_data.dart';

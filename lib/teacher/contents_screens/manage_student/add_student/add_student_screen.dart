@@ -21,9 +21,15 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
   final TextEditingController _admNoController = TextEditingController();
   final TextEditingController _dOBirthController = TextEditingController();
   final TextEditingController _deptController = TextEditingController();
+  final TextEditingController _nationalityController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _houseNameController = TextEditingController();
+  final TextEditingController _postOfficeController = TextEditingController();
+  final TextEditingController _placeController = TextEditingController();
   final TextEditingController _eMailController = TextEditingController();
   final TextEditingController _parentNameController = TextEditingController();
   final TextEditingController _mobileNumController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
 
   bool imageAlert = false;
   final _formKey = GlobalKey<FormState>();
@@ -91,66 +97,156 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                           }
                         },
                         labelText: 'Enter First Name',
+                        inputType: TextInputType.name,
                       ),
                       jHalfHeightBox,
                       AddStudentRowFormField(
-                          controller: _lastNameController,
-                          detailHead: 'Last Name',
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Last Name not filled';
-                            } else {
-                              return null;
-                            }
-                          },
-                          labelText: 'Enter Last Name'),
+                        controller: _lastNameController,
+                        detailHead: 'Last Name',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Last Name not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Last Name',
+                        inputType: TextInputType.name,
+                      ),
                       jHalfHeightBox,
                       AddStudentRowFormField(
-                          controller: _regNoController,
-                          detailHead: 'Register No.',
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Register No. not filled';
-                            } else {
-                              return null;
-                            }
-                          },
-                          labelText: 'Enter Register Number'),
+                        controller: _regNoController,
+                        detailHead: 'Register No.',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Register No. not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Register Number',
+                        inputType: TextInputType.name,
+                      ),
                       jHalfHeightBox,
                       AddStudentRowFormField(
-                          controller: _admNoController,
-                          detailHead: 'Admission No.',
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Admission No. not filled';
-                            } else {
-                              return null;
-                            }
-                          },
-                          labelText: 'Enter Admission Number'),
+                        controller: _admNoController,
+                        detailHead: 'Admission No.',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Admission No. not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Admission Number',
+                        inputType: TextInputType.number,
+                      ),
                       jHalfHeightBox,
                       AddStudentRowFormField(
-                          controller: _dOBirthController,
-                          detailHead: "Date Of Birth",
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Date of Birth not filled';
-                            } else {
-                              return null;
-                            }
-                          },
-                          labelText: 'Enter Date of Birth'),
+                        controller: _dOBirthController,
+                        detailHead: "Date Of Birth",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Date of Birth not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Date of Birth',
+                        inputType: TextInputType.datetime,
+                      ),
+                      jheightBox,
                       AddStudentRowFormField(
-                          controller: _deptController,
-                          detailHead: 'Department',
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Department not filled';
-                            } else {
-                              return null;
-                            }
-                          },
-                          labelText: 'Enter Department Name'),
+                        controller: _deptController,
+                        detailHead: 'Department',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Department not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Department Name',
+                        inputType: TextInputType.name,
+                      ),
+                      jheightBox,
+                      AddStudentRowFormField(
+                        controller: _nationalityController,
+                        detailHead: 'Nationality',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Department not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Nationality',
+                        inputType: TextInputType.name,
+                      ),
+                      jheightBox,
+                      AddStudentRowFormField(
+                        controller: _genderController,
+                        detailHead: "Gender",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Department not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: "Enter Gender",
+                        inputType: TextInputType.name,
+                      ),
+                      jheightBox,
+                      jTwiceThickDivider,
+                      const Text(
+                        'Address Details',
+                        style: jAlegrayaSansSubTextStyle,
+                      ),
+                      jTwiceThickDivider,
+                      jheightBox,
+                      AddStudentColumnFormField(
+                        controller: _houseNameController,
+                        detailHead: "House Name",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'House Name not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter House Name',
+                        inputType: TextInputType.name,
+                      ),
+                      jheightBox,
+                      AddStudentColumnFormField(
+                        controller: _postOfficeController,
+                        detailHead: "Post Office",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Post Office not specified';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Post Office',
+                        inputType: TextInputType.name,
+                      ),
+                      jheightBox,
+                      AddStudentColumnFormField(
+                        controller: _placeController,
+                        detailHead: "Place",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Place not specified';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: 'Enter Place',
+                        inputType: TextInputType.name,
+                      ),
+                      jheightBox,
                       jheightBox,
                       jTwiceThickDivider,
                       const Text(
@@ -160,40 +256,68 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       jTwiceThickDivider,
                       jheightBox,
                       AddStudentColumnFormField(
-                          controller: _eMailController,
-                          detailHead: 'E-Mail',
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Mobile Number not filled';
-                            } else {
-                              return null;
-                            }
-                          },
-                          labelText: 'Enter E-Mail'),
+                        controller: _eMailController,
+                        detailHead: 'E-Mail',
+                        validator: (value) {
+                          RegExp regExp = RegExp(emailPattern);
+                          if (value == null || value.isEmpty) {
+                            return "Please Enter Your Number/E-mail";
+                          } else if (!regExp.hasMatch(value)) {
+                            return "Please enter valid details";
+                          }
+                          return null;
+                        },
+                        labelText: 'Enter E-Mail',
+                        inputType: TextInputType.emailAddress,
+                      ),
                       jheightBox,
                       AddStudentColumnFormField(
-                          controller: _parentNameController,
-                          detailHead: 'Name of Parent/Guardian',
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Name not filled';
-                            } else {
-                              return null;
-                            }
-                          },
-                          labelText: "Enter Parent's / Guardian's Name"),
+                        controller: _parentNameController,
+                        detailHead: 'Name of Parent/Guardian',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Name not filled';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: "Enter Parent's / Guardian's Name",
+                        inputType: TextInputType.name,
+                      ),
                       jheightBox,
                       AddStudentColumnFormField(
                         controller: _mobileNumController,
                         detailHead: 'Mobile Number',
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Mobile Number not filled';
+                          if (value!.length != 10) {
+                            return 'Password must be atleast 8 characters.';
                           } else {
                             return null;
                           }
                         },
                         labelText: 'Enter Mobile Number',
+                        inputType: TextInputType.phone,
+                      ),
+                      jheightBox,
+                      jTwiceThickDivider,
+                      const Text(
+                        'Login Details',
+                        style: jAlegrayaSansSubTextStyle,
+                      ),
+                      jTwiceThickDivider,
+                      jheightBox,
+                      AddStudentColumnFormField(
+                        controller: _passController,
+                        detailHead: "Password",
+                        validator: (value) {
+                          if (value!.length < 8) {
+                            return 'Password must be atleast 8 characters.';
+                          } else {
+                            return null;
+                          }
+                        },
+                        labelText: "Enter Password",
+                        inputType: TextInputType.visiblePassword,
                       )
                     ],
                   ),
@@ -208,7 +332,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
           if (_formKey.currentState!.validate()) {
             addStudentOnTap();
           } else {
-            imageAlert = true;
+            return;
           }
         },
         backgroundColor: jPrimaryColor,
@@ -230,6 +354,12 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
     final parentName = _parentNameController.text.trim();
     final mobileNumber = _mobileNumController.text.trim();
     final eMailAddress = _eMailController.text.trim();
+    final pword = _passController.text.trim();
+    final nationalilty = _nationalityController.text.trim();
+    final gender = _genderController.text.trim();
+    final houseName = _houseNameController.text.trim();
+    final postOffice = _postOfficeController.text.trim();
+    final place = _placeController.text.trim();
 
     if (firstName.isEmpty ||
         lastName.isEmpty ||
@@ -239,7 +369,13 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
         department.isEmpty ||
         parentName.isEmpty ||
         mobileNumber.isEmpty ||
-        eMailAddress.isEmpty) {
+        eMailAddress.isEmpty ||
+        pword.isEmpty ||
+        nationalilty.isEmpty ||
+        postOffice.isEmpty ||
+        place.isEmpty ||
+        gender.isEmpty ||
+        houseName.isEmpty) {
       return;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -252,15 +388,22 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
       );
     }
     final student = StudentModel(
-        fName: firstName,
-        lName: lastName,
-        regNum: registerNum,
-        admNum: admissionNum,
-        dOBirth: dateOfBirth,
-        dept: department,
-        eMail: eMailAddress,
-        mobNum: mobileNumber,
-        guardianName: parentName);
+      fName: firstName,
+      lName: lastName,
+      regNum: registerNum,
+      admNum: admissionNum,
+      dOBirth: dateOfBirth,
+      dept: department,
+      eMail: eMailAddress,
+      mobNum: mobileNumber,
+      guardianName: parentName,
+      password: pword,
+      gender: gender,
+      houseName: houseName,
+      nationality: nationalilty,
+      place: place,
+      postOffice: postOffice,
+    );
 
     addStudent(student);
     Navigator.of(context).pop();

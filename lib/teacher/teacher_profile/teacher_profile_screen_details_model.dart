@@ -1,9 +1,18 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/teacher/teacher_profile/update_teacher_profile/edit_profile_teacher.dart';
 import 'package:flutter/material.dart';
 
 class TeacherProfileBasicIDInfo extends StatelessWidget {
-  const TeacherProfileBasicIDInfo({super.key});
+  const TeacherProfileBasicIDInfo({
+    super.key,
+    required this.detailNameValue,
+    required this.detailSubjectValue,
+    required this.detailRegIDValue,
+  });
+  final String detailNameValue;
+  final String detailSubjectValue;
+  final String detailRegIDValue;
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +40,95 @@ class TeacherProfileBasicIDInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(children: const [
-                Text(
-                  "Fabina MK",
-                  style: jKalamLargeStyle,
+              Row(
+                children: [
+                  Text(
+                    detailNameValue,
+                    style: jKalamLargeStyle,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    detailSubjectValue,
+                    style: jAcmeMediumStyle,
+                  ),
+                  Text(
+                    detailRegIDValue,
+                    style: jAcmeMediumStyle,
+                  ),
+                ],
+              ),
+              ElevatedButton.icon(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(jSecondaryColor)),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditTeacherProfileScreen(
+                            teacherName: '',
+                            teacherGender: '',
+                            teacherRegID: '',
+                            teacherSubject: '',
+                            teacherQualification: '',
+                            teacherEMail: '',
+                            teacherMobileNum: '',
+                            teacherPassword: ''),
+                      ));
+                },
+                icon: const Icon(Icons.edit),
+                label: const Text(
+                  'Edit Profile',
+                  style: jAlegrayaSansButtonTextStyle,
                 ),
-              ]),
-              const Text(
-                "Mathematics | EBMM0012",
-                style: jAcmeMediumStyle,
               ),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+class TeacherProfileAddressDetails extends StatelessWidget {
+  const TeacherProfileAddressDetails({
+    super.key,
+    required this.detailsHead,
+    required this.detailsValue,
+  });
+
+  final String detailsHead;
+  final String detailsValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              detailsHead,
+              style: jAlegrayaSansHeadTextStyle,
+            ),
+            jheightBox,
+            Text(
+              detailsValue,
+              style: jAlegrayaSansSubTextStyle,
+            ),
+            jHalfHeightBox,
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 1.1,
+              child: jDefaultDivider,
+            )
+          ],
+        ),
+      ],
     );
   }
 }

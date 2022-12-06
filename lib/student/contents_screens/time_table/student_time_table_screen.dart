@@ -1,6 +1,5 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/constants/timetable/styles_timetable.dart';
 import 'package:edubrain/student/contents_screens/time_table/timetable_data/student_timetable_data.dart';
 import 'package:edubrain/student/contents_screens/time_table/timetable_data/student_timetable_details_card.dart';
 import 'package:flutter/material.dart';

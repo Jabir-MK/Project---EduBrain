@@ -59,11 +59,11 @@ class StudentProfileBasicDetails extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(
           right: jDefaultPadding / 2,
-          left: jDefaultPadding / 4,
+          left: jDefaultPadding / 2,
           top: jDefaultPadding / 2),
       width: MediaQuery.of(context).size.width / 2,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Column(
@@ -85,12 +85,48 @@ class StudentProfileBasicDetails extends StatelessWidget {
               )
             ],
           ),
-          const Icon(
-            Icons.lock_outline,
-            size: 25,
-          )
         ],
       ),
+    );
+  }
+}
+
+class StudentProfileAddressDetails extends StatelessWidget {
+  const StudentProfileAddressDetails({
+    super.key,
+    required this.detailsHead,
+    required this.detailsValue,
+  });
+
+  final String detailsHead;
+  final String detailsValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              detailsHead,
+              style: jAlegrayaSansHeadTextStyle,
+            ),
+            jheightBox,
+            Text(
+              detailsValue,
+              style: jAlegrayaSansSubTextStyle,
+            ),
+            jHalfHeightBox,
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 1.1,
+              child: jDefaultDivider,
+            )
+          ],
+        ),
+      ],
     );
   }
 }
@@ -126,10 +162,6 @@ class StudentProfileContactDetails extends StatelessWidget {
             )
           ],
         ),
-        const Icon(
-          Icons.lock_outline,
-          size: 25,
-        )
       ],
     );
   }

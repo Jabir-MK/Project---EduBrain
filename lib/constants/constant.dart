@@ -40,6 +40,11 @@ const jTwiceThickDivider = Divider(
   thickness: 2,
 );
 
+const jThriceThickDivider = Divider(
+  thickness: 3,
+  color: jPrimaryColor,
+);
+
 final jTopBorderRadius = BorderRadius.only(
   topLeft: Radius.circular(SizerUtil.deviceType == DeviceType.tablet ? 40 : 20),
   topRight:

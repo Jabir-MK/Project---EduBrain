@@ -19,7 +19,7 @@ class TeacherHomeScreenCards extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: jDefaultPadding * 1.5),
         width: MediaQuery.of(context).size.width / 2.5,
-        height: MediaQuery.of(context).size.height / 7,
+        height: MediaQuery.of(context).size.height / 6,
         decoration: BoxDecoration(
             color: jPrimaryColor,
             borderRadius: BorderRadius.circular(jDefaultPadding / 1.5),
@@ -45,6 +45,7 @@ class TeacherHomeScreenCards extends StatelessWidget {
                   fontSize: 25,
                   fontWeight: FontWeight.bold),
             ),
+            jHalfHeightBox
           ],
         ),
       ),

@@ -1,6 +1,5 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/constants/timetable/styles_timetable.dart';
 import 'package:edubrain/student/contents_screens/teachers_info/teacher_profile_data/teacher_profile_data.dart';
 import 'package:edubrain/student/contents_screens/teachers_info/teacher_profileview/teacher_profile_view.dart';
 import 'package:flutter/material.dart';

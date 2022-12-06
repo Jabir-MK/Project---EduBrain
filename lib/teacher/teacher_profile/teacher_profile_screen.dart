@@ -1,26 +1,78 @@
+import 'dart:developer';
+
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/database/functions/db_functions.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_profile_screen_details_model.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_signout.dart';
 import 'package:flutter/material.dart';
 
-class TeacherProfileScreen extends StatelessWidget {
-  const TeacherProfileScreen({super.key});
+class TeacherProfileScreen extends StatefulWidget {
+  const TeacherProfileScreen({
+    super.key,
+    required this.teacherFullName,
+    required this.teacherGender,
+    required this.teacherRegID,
+    required this.teacherSubject,
+    required this.teacherQualification,
+    required this.teacherEMail,
+    required this.teacherMobileNum,
+    required this.teacherPassword,
+  });
 
   static String routeName = 'TeacherProfileScreen';
+
+  final String teacherFullName;
+  final String teacherGender;
+  final String teacherRegID;
+  final String teacherSubject;
+  final String teacherQualification;
+  final String teacherEMail;
+  final String teacherMobileNum;
+  final String teacherPassword;
+
+  @override
+  State<TeacherProfileScreen> createState() => _TeacherProfileScreenState();
+}
+
+class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
+  late String teacherProfileName =
+      TextEditingController(text: widget.teacherFullName).text;
+  late String teacherProfileGender =
+      TextEditingController(text: widget.teacherGender).text;
+  late String teacherProfileRegID =
+      TextEditingController(text: widget.teacherRegID).text;
+  late String teacherProfileSubject =
+      TextEditingController(text: widget.teacherSubject).text;
+  late String teacherProfileQualification =
+      TextEditingController(text: widget.teacherQualification).text;
+  late String teacherProfileEMail =
+      TextEditingController(text: widget.teacherEMail).text;
+  late String teacherProfileMobileNum =
+      TextEditingController(text: widget.teacherMobileNum).text;
+  late String teacherProfilePassword =
+      TextEditingController(text: widget.teacherPassword).text;
+
+  @override
+  void initState() {
+    super.initState();
+    getTeacherProfile();
+    log(teacherProfileName);
+    log(teacherProfileEMail);
+    log(teacherProfileGender);
+    log(teacherProfileMobileNum);
+    log(teacherProfilePassword);
+    log(teacherProfileQualification);
+    log(teacherProfileRegID);
+    log(teacherProfileSubject);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
         title: const Text(
-          "My Profile",
+          'My Profile',
           style: jAkayaTelivigalaAppDefaultStyle,
         ),
         actions: [
@@ -38,7 +90,11 @@ class TeacherProfileScreen extends StatelessWidget {
             color: jOtherColor,
             child: Column(
               children: [
-                const TeacherProfileBasicIDInfo(),
+                TeacherProfileBasicIDInfo(
+                  detailNameValue: teacherProfileName,
+                  detailRegIDValue: '',
+                  detailSubjectValue: '',
+                ),
                 jheightBox,
                 jTwiceThickDivider,
                 const Text(
@@ -48,38 +104,34 @@ class TeacherProfileScreen extends StatelessWidget {
                 jTwiceThickDivider,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
+                  children: [
                     TeacherProfileBasicDetails(
-                      detailTitle: "First Name",
-                      detailValue: "Fabina ",
-                    ),
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Last Name",
-                      detailValue: "MK",
-                    ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Register ID",
-                      detailValue: "EBMM0012",
-                    ),
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Subject",
-                      detailValue: "Mathematics",
-                    ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Qualification",
-                      detailValue: "Msc.Mathematics",
+                      detailTitle: "Full Name",
+                      detailValue: teacherProfileName,
                     ),
                     TeacherProfileBasicDetails(
                       detailTitle: "Gender",
-                      detailValue: "Female",
+                      detailValue: teacherProfileGender,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    TeacherProfileBasicDetails(
+                      detailTitle: "Register ID",
+                      detailValue: teacherProfileRegID,
+                    ),
+                    TeacherProfileBasicDetails(
+                      detailTitle: "Subject",
+                      detailValue: teacherProfileSubject,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    TeacherProfileBasicDetails(
+                      detailTitle: "Qualification",
+                      detailValue: teacherProfileQualification,
                     ),
                   ],
                 ),
@@ -91,18 +143,26 @@ class TeacherProfileScreen extends StatelessWidget {
                 ),
                 jTwiceThickDivider,
                 jheightBox,
-                const TeacherProfileContactDetails(
+                TeacherProfileContactDetails(
                   detailsTitle: 'E-mail',
-                  detailsValue: 'fabinamk@gmail.com',
+                  detailsValue: teacherProfileEMail,
                 ),
-                const TeacherProfileContactDetails(
-                  detailsTitle: "Name of Parent/Guardian",
-                  detailsValue: "Zainul Habid",
-                ),
-                const TeacherProfileContactDetails(
+                TeacherProfileContactDetails(
                   detailsTitle: 'Mobile Number',
-                  detailsValue: "+91 9946445464",
+                  detailsValue: teacherProfileMobileNum,
                 ),
+                jheightBox,
+                jTwiceThickDivider,
+                const Text(
+                  'Login Details',
+                  style: jAlegrayaSansSubTextStyle,
+                ),
+                jTwiceThickDivider,
+                jheightBox,
+                TeacherProfileContactDetails(
+                  detailsTitle: 'Password',
+                  detailsValue: teacherProfilePassword,
+                )
               ],
             ),
           ),

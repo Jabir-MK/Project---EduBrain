@@ -1,7 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/student/contents_screens/assignments/student_assignment_screen.dart';
-import 'package:edubrain/student/contents_screens/attendance/student_attendance_screen.dart';
 import 'package:edubrain/student/contents_screens/fee_payments/student_fee_payments_screen.dart';
 import 'package:edubrain/student/contents_screens/grades/grades_screen.dart';
 import 'package:edubrain/student/contents_screens/teachers_info/student_teachers_info_screen.dart';
@@ -72,8 +71,8 @@ class StudentHomeScreen extends StatelessWidget {
                         StudentProgressInfo(
                             progressValue: "94.3 %",
                             onPress: () {
-                              Navigator.pushNamed(
-                                  context, StudentAttendanceScreen.routeName);
+                              // Navigator.pushNamed(
+                              //     context, StudentAttendanceScreen.routeName);
                             },
                             progressTitle: 'Attendance'),
                         StudentProgressInfo(

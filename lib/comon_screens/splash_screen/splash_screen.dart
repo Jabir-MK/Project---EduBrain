@@ -5,6 +5,7 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -63,8 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // Future<void> goToLoginPage() async {
   //   await Future.delayed(const Duration(seconds: 2));
-  //   Navigator.of(context).pushReplacementNamed(StudentLoginScreen.routeName);
-
+  //   // Navigator.of(context).pushReplacementNamed(StudentLoginScreen.routeName);
   // }
 
   // Future<void> checkLogin() async {
@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
   //   if (userLogin == null || userLogin == false) {
   //     goToLoginPage();
   //   } else {
-  //     Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+  //     // Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
   //   }
   // }
 }

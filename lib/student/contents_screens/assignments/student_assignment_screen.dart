@@ -1,14 +1,31 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
 import 'package:edubrain/student/contents_screens/assignments/assignment_data/student_assignment_data.dart';
 import 'package:edubrain/student/contents_screens/assignments/assignment_data/student_assignment_detail_card.dart';
+import 'package:edubrain/student/contents_screens/assignments/view/view_assignment.dart';
 import 'package:flutter/material.dart';
 
-class StudentAssignmentsScreen extends StatelessWidget {
+class StudentAssignmentsScreen extends StatefulWidget {
   const StudentAssignmentsScreen({super.key});
-  static String routeName = 'AssignmentsScreen';
+  static String routeName = 'StudentAssignmentsScreen';
+
+  @override
+  State<StudentAssignmentsScreen> createState() =>
+      _StudentAssignmentsScreenState();
+}
+
+class _StudentAssignmentsScreenState extends State<StudentAssignmentsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getAllAssignments();
+  }
+
   @override
   Widget build(BuildContext context) {
+    getAllAssignments();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -16,23 +33,21 @@ class StudentAssignmentsScreen extends StatelessWidget {
           style: jAkayaTelivigalaAppDefaultStyle,
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: jOtherColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(jDefaultPadding),
-                  topRight: Radius.circular(jDefaultPadding),
-                ),
-              ),
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.all(jDefaultPadding),
-                itemCount: assignment.length,
-                itemBuilder: (context, int index) => Container(
-                  margin: const EdgeInsets.only(bottom: jDefaultPadding),
+      body: ValueListenableBuilder(
+        valueListenable: assignmentListNotifier,
+        builder: (BuildContext context, List<AssignmentModel> listAssignment,
+            Widget? child) {
+          return ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: listAssignment.length,
+            itemBuilder: (context, index) {
+              // final assignmentData = listAssignment[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, StudentViewAssignment.routeName);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(jDefaultPadding / 2),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -61,26 +76,26 @@ class StudentAssignmentsScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  assignment[index].subjectName,
+                                  listAssignment[index].subjectName,
                                   style: jAlegrayaSansSubjectTextStyle,
                                 ),
                               ),
                             ),
                             jHalfHeightBox,
                             Text(
-                              assignment[index].topicName,
+                              listAssignment[index].topicName,
                               style: jAlegrayaSansContentTextStyle,
                             ),
                             jHalfHeightBox,
                             StudentAssignmentCards(
                               detailsTitle: 'Assigned Date',
                               detailsStatusValue:
-                                  assignment[index].assignedDate,
+                                  listAssignment[index].assignDate,
                             ),
                             jHalfHeightBox,
                             StudentAssignmentCards(
                               detailsTitle: 'Last Date',
-                              detailsStatusValue: assignment[index].dueDate,
+                              detailsStatusValue: listAssignment[index].dueDate,
                             ),
                             jHalfHeightBox,
                             StudentAssignmentCards(
@@ -99,10 +114,10 @@ class StudentAssignmentsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            ),
-          )
-        ],
+              );
+            },
+          );
+        },
       ),
     );
   }

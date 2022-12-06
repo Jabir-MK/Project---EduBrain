@@ -1,22 +1,17 @@
-====>  Teacher UI
+====>
+password add by teacher
 
--- In assignments
-     - edit details
-     - add assignments
-     - view assignments 
+====> Must do 
 
--- In grades 
-     - edit grades
-     - add grades
-     - view grades
+--- Login for student
+--- submit assignments for student
+=== add grades for teacher
+--- edit grades for teacher
+--- view grades for student
+--- view attendance for teacher
 
--- in timetable
-     - show timetable
-     - edit timetable
 
--- in students
-     - show students list
-     - FAB to add
-     - students list edit and delete
-     - show full details of student on click
-
+--- access model class
+--- value listenable builder
+--- getx
+--- 

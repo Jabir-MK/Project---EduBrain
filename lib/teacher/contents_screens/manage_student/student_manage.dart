@@ -1,6 +1,5 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/constants/timetable/styles_timetable.dart';
 import 'package:edubrain/database/functions/db_functions.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/teacher/contents_screens/manage_student/add_student/add_student_screen.dart';
@@ -46,7 +45,25 @@ class _TeacherStudentManageState extends State<TeacherStudentManage> {
 
                 return GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, ViewStudentProfile.routeName);
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ViewStudentProfile(
+                        studentFirstName: studentData.fName,
+                        studentLastName: studentData.lName,
+                        studentRegNo: studentData.regNum,
+                        studentAdmNo: studentData.admNum,
+                        studentDOBirth: studentData.dOBirth,
+                        studentDept: studentData.dept,
+                        studentNationality: studentData.nationality,
+                        studentGender: studentData.gender,
+                        studentHouseName: studentData.houseName,
+                        studentPostOffice: studentData.postOffice,
+                        studentPlace: studentData.place,
+                        studentEMail: studentData.eMail,
+                        studentParentName: studentData.guardianName,
+                        studentMobileNum: studentData.mobNum,
+                        studentPassword: studentData.password,
+                      ),
+                    ));
                   },
                   child: Container(
                     padding: const EdgeInsets.all(jDefaultPadding),
@@ -117,6 +134,12 @@ class _TeacherStudentManageState extends State<TeacherStudentManage> {
                                       editParentName: studentData.guardianName,
                                       editMobileNum: studentData.mobNum,
                                       index: index,
+                                      editPassword: studentData.password,
+                                      editGender: studentData.gender,
+                                      editHouseName: studentData.houseName,
+                                      editNationality: studentData.nationality,
+                                      editPlace: studentData.place,
+                                      editPost: studentData.postOffice,
                                     ),
                                   ),
                                 );

@@ -4,11 +4,17 @@ import 'package:edubrain/student/contents_screens/fee_payments/fee_data/student_
 import 'package:edubrain/student/contents_screens/fee_payments/fee_data/student_fee_detail_card.dart';
 import 'package:flutter/material.dart';
 
-class StudentFeePaymentScreen extends StatelessWidget {
+class StudentFeePaymentScreen extends StatefulWidget {
   const StudentFeePaymentScreen({super.key});
 
   static String routeName = "StudentFeePaymentScreen";
 
+  @override
+  State<StudentFeePaymentScreen> createState() =>
+      _StudentFeePaymentScreenState();
+}
+
+class _StudentFeePaymentScreenState extends State<StudentFeePaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +101,13 @@ class StudentFeePaymentScreen extends StatelessWidget {
                           iconData: feePayment[index].paymentStatus == 'Paid'
                               ? Icons.download
                               : Icons.arrow_forward,
-                          onPress: () {},
+                          onPress: () {
+                            if (feePayment[index].paymentStatus == 'Paid') {
+                              paymentDownloadedSnackbar();
+                            } else {
+                              confirmPayment();
+                            }
+                          },
                           paymentTitle: feePayment[index].btnStatus)
                     ],
                   ),
@@ -104,6 +116,96 @@ class StudentFeePaymentScreen extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  void confirmPayment() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: jSecondaryColor,
+          title: const Text(
+            'Confirm Payment',
+            style: jAlertDialogTitleStyle,
+          ),
+          content: const Text(
+            'Do you want to pay now ?',
+            style: jAlertDialogContentStyle,
+          ),
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                paymentConfirmedSnackbar();
+              },
+              child: const Text(
+                'Pay Now',
+                style: jAlertDialogConfirmButtonStyle,
+              ),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Cancel',
+                style: jAlertDialogCancelButtonStyle,
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  void paymentConfirmedSnackbar() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: jSecondaryColor,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(jDefaultPadding),
+        padding: const EdgeInsets.all(jDefaultPadding / 2),
+        elevation: jDefaultPadding,
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text(
+              'Payment Successfull',
+              style: jSnackBarTextStyle,
+            ),
+            Icon(
+              Icons.check_circle_outline_outlined,
+              color: jWhiteTextColor,
+            )
+          ],
+        ),
+      ),
+    );
+    Navigator.pop(context);
+  }
+
+  void paymentDownloadedSnackbar() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: jSecondaryColor,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(jDefaultPadding),
+        padding: const EdgeInsets.all(jDefaultPadding / 2),
+        elevation: jDefaultPadding,
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text(
+              'Payment details downloaded',
+              style: jSnackBarTextStyle,
+            ),
+            Icon(
+              Icons.check_circle_outline_outlined,
+              color: jWhiteTextColor,
+            )
+          ],
+        ),
       ),
     );
   }

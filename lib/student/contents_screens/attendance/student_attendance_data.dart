@@ -1,5 +1,5 @@
-import 'package:edubrain/constants/attendance/style_attendance.dart';
 import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 

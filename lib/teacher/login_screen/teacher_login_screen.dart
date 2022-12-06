@@ -74,11 +74,12 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(jDefaultPadding),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Form(
                       key: _formKey,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           jheightBox,
                           buildEmailField(),
@@ -87,8 +88,47 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                           jheightBox,
                           jheightBox,
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              ElevatedButton.icon(
+                                  style: ButtonStyle(
+                                    elevation: MaterialStateProperty.all(10),
+                                    shadowColor: MaterialStateProperty.all(
+                                        jSecondaryColor),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        jPrimaryColor),
+                                  ),
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const TeacherHomeScreen(
+                                                    subjectName: '',
+                                                    regID: '',
+                                                    signUpTeacherName: '',
+                                                    signUpEMail: '',
+                                                    signUpPassWord: ''),
+                                          ));
+                                    }
+                                  },
+                                  icon: const Icon(Icons.check),
+                                  label: const Text("Sign-In")),
+                            ],
+                          ),
+                          jheightBox,
+                          jheightBox,
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              const Text(
+                                'New here ? Sign-Up to Continue.',
+                                style: TextStyle(
+                                    color: jPrimaryColor,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              jHalfHeightBox,
                               ElevatedButton(
                                 style: ButtonStyle(
                                   elevation: MaterialStateProperty.all(10),
@@ -103,24 +143,8 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                                 },
                                 child: const Text('Create Account'),
                               ),
-                              ElevatedButton.icon(
-                                  style: ButtonStyle(
-                                    elevation: MaterialStateProperty.all(10),
-                                    shadowColor: MaterialStateProperty.all(
-                                        jSecondaryColor),
-                                    backgroundColor: MaterialStateProperty.all(
-                                        jPrimaryColor),
-                                  ),
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      Navigator.pushReplacementNamed(
-                                          context, TeacherHomeScreen.routeName);
-                                    }
-                                  },
-                                  icon: const Icon(Icons.check),
-                                  label: const Text("Sign-In")),
                             ],
-                          ),
+                          )
                         ],
                       ),
                     ),
@@ -155,8 +179,9 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
           return "Please Enter Your Number/E-mail";
         } else if (!regExp.hasMatch(value)) {
           return "Please enter valid details";
+        } else {
+          return null;
         }
-        return null;
       },
     );
   }
@@ -164,7 +189,6 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
   TextFormField buildPasswordField() {
     return TextFormField(
       controller: _loginPassController,
-      maxLength: 8,
       textAlign: TextAlign.start,
       obscureText: true,
       keyboardType: TextInputType.name,
@@ -181,8 +205,9 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
       validator: (value) {
         if (value!.length < 8) {
           return 'Password must be atleast 8 characters.';
-        } else {}
-        return null;
+        } else {
+          return null;
+        }
       },
     );
   }

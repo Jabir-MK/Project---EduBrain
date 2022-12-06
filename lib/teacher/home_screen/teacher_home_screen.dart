@@ -1,7 +1,8 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/database/functions/db_functions.dart';
 import 'package:edubrain/teacher/contents_screens/assignments/teacher_assignment_screen.dart';
-import 'package:edubrain/teacher/contents_screens/grades/teacher_grades_screen.dart';
+import 'package:edubrain/teacher/contents_screens/grades/grades_studentlist_screen.dart';
 import 'package:edubrain/teacher/contents_screens/manage_student/student_manage.dart';
 import 'package:edubrain/teacher/contents_screens/time_table/teacher_time_table_screen.dart';
 import 'package:edubrain/teacher/home_screen/cards_home/teachers_cards_home.dart';
@@ -9,12 +10,49 @@ import 'package:edubrain/teacher/home_screen/teacher_details/teacher_data.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_profile_screen.dart';
 import 'package:flutter/material.dart';
 
-class TeacherHomeScreen extends StatelessWidget {
-  const TeacherHomeScreen({super.key});
+class TeacherHomeScreen extends StatefulWidget {
+  const TeacherHomeScreen({
+    super.key,
+    required this.subjectName,
+    required this.regID,
+    required this.signUpTeacherName,
+    required this.signUpEMail,
+    required this.signUpPassWord,
+  });
   static String routeName = 'TeacherHomeScreen';
+
+  final String signUpTeacherName;
+  final String subjectName;
+  final String regID;
+  final String signUpEMail;
+  final String signUpPassWord;
+  @override
+  State<TeacherHomeScreen> createState() => _TeacherHomeScreenState();
+}
+
+class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
+  late String teacherName;
+  late String teacherSubjectName;
+  late String teacherEMail;
+  late String teacherRegID;
+  late String teacherPassword;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getTeacherProfile();
+
+    teacherName = TextEditingController(text: widget.signUpTeacherName).text;
+    teacherSubjectName = TextEditingController(text: widget.subjectName).text;
+    teacherRegID = TextEditingController(text: widget.regID).text;
+    teacherEMail = TextEditingController(text: widget.signUpEMail).text;
+    teacherPassword = TextEditingController(text: widget.signUpPassWord).text;
+  }
 
   @override
   Widget build(BuildContext context) {
+    getTeacherProfile();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -31,7 +69,20 @@ class TeacherHomeScreen extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed(TeacherProfileScreen.routeName);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return TeacherProfileScreen(
+                      teacherFullName: teacherName,
+                      teacherGender: '',
+                      teacherRegID: '',
+                      teacherSubject: '',
+                      teacherQualification: '',
+                      teacherEMail: teacherEMail,
+                      teacherMobileNum: '',
+                      teacherPassword: teacherPassword,
+                    );
+                  },
+                ));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -45,11 +96,14 @@ class TeacherHomeScreen extends StatelessWidget {
                       children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            TeacherNameInfo(studentName: "Fabina"),
+                          children: [
+                            TeacherNameInfo(
+                              teacherName: teacherName,
+                            ),
                             jHalfHeightBox,
                             TeacherRegisterInfo(
-                                studentRegisterInfos: 'Mathematics | EBMM0012'),
+                                teacherSubject: teacherSubjectName,
+                                teacherID: teacherRegID),
                             jHalfHeightBox,
                           ],
                         ),

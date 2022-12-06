@@ -2,14 +2,14 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:flutter/material.dart';
 
 class TeacherNameInfo extends StatelessWidget {
-  const TeacherNameInfo({super.key, required this.studentName});
-  final String studentName;
+  const TeacherNameInfo({super.key, required this.teacherName});
+  final String teacherName;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         const Text(
-          "Hi ",
+          "Hi , ",
           style: TextStyle(
             fontFamily: 'Satisfy',
             fontSize: 30,
@@ -18,7 +18,7 @@ class TeacherNameInfo extends StatelessWidget {
           ),
         ),
         Text(
-          studentName,
+          teacherName,
           style: const TextStyle(
             fontFamily: 'Satisfy',
             fontSize: 30,
@@ -32,20 +32,38 @@ class TeacherNameInfo extends StatelessWidget {
 }
 
 class TeacherRegisterInfo extends StatelessWidget {
-  const TeacherRegisterInfo({super.key, required this.studentRegisterInfos});
+  const TeacherRegisterInfo({
+    super.key,
+    required this.teacherSubject,
+    required this.teacherID,
+  });
 
-  final String studentRegisterInfos;
+  final String teacherSubject;
+  final String teacherID;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      studentRegisterInfos,
-      style: const TextStyle(
-        color: jOtherColor,
-        fontFamily: 'ShadowsIntoLight',
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-      ),
+    return Row(
+      children: [
+        Text(
+          teacherSubject,
+          style: const TextStyle(
+            color: jOtherColor,
+            fontFamily: 'ShadowsIntoLight',
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        Text(
+          teacherID,
+          style: const TextStyle(
+            color: jOtherColor,
+            fontFamily: 'ShadowsIntoLight',
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        )
+      ],
     );
   }
 }
