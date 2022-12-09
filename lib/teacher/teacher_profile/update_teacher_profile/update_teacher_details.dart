@@ -1,6 +1,5 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/teacher/teacher_profile/update_teacher_profile/edit_profile_teacher.dart';
 import 'package:flutter/material.dart';
 
 class EditTeacherProfileBasicIDInfo extends StatelessWidget {

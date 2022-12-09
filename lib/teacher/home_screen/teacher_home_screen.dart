@@ -26,28 +26,22 @@ class TeacherHomeScreen extends StatefulWidget {
   final String regID;
   final String signUpEMail;
   final String signUpPassWord;
+
   @override
   State<TeacherHomeScreen> createState() => _TeacherHomeScreenState();
 }
 
 class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
-  late String teacherName;
-  late String teacherSubjectName;
-  late String teacherEMail;
-  late String teacherRegID;
-  late String teacherPassword;
+  final String teacherName = '';
+  final String teacherSubjectName = '';
+  final String teacherEMail = '';
+  final String teacherRegID = '';
+  final String teacherPassword = '';
 
   @override
   void initState() {
     super.initState();
-
     getTeacherProfile();
-
-    teacherName = TextEditingController(text: widget.signUpTeacherName).text;
-    teacherSubjectName = TextEditingController(text: widget.subjectName).text;
-    teacherRegID = TextEditingController(text: widget.regID).text;
-    teacherEMail = TextEditingController(text: widget.signUpEMail).text;
-    teacherPassword = TextEditingController(text: widget.signUpPassWord).text;
   }
 
   @override
@@ -72,7 +66,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
                     return TeacherProfileScreen(
-                      teacherFullName: teacherName,
+                      teacherFullName: 'teacherName',
                       teacherGender: '',
                       teacherRegID: '',
                       teacherSubject: '',

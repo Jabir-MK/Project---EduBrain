@@ -42,23 +42,79 @@ class _TeacherGradesScreenState extends State<TeacherGradesScreen> {
             itemCount: studentList.length,
             itemBuilder: (context, index) {
               final studentData = studentList[index];
-              return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    selected: true,
-                    selectedTileColor: jWhiteTextColor,
-                    hoverColor: jWhiteTextColor,
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const ViewIndividualStudentGradesScreen(),
-                          ));
-                    },
-                    title: Text(studentData.fName + studentData.lName),
-                    subtitle: Text(studentData.regNum),
-                  ));
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ViewIndividualStudentGradesScreen(
+                          index: index,
+                        ),
+                      ));
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(jDefaultPadding),
+                  margin: const EdgeInsets.all(jDefaultPadding),
+                  decoration: BoxDecoration(
+                    color: jOtherColor,
+                    borderRadius: BorderRadius.circular(jDefaultPadding),
+                    boxShadow: const [
+                      BoxShadow(
+                        offset: Offset(10, 10),
+                        blurRadius: 10,
+                        blurStyle: BlurStyle.inner,
+                        color: jSecondaryColor,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const CircleAvatar(),
+                          jWidthBox,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              jWidthBox,
+                              Text(
+                                '${studentData.fName}'
+                                '${studentData.lName}',
+                                style: jTimeTableTeacherNameTextStyle,
+                              ),
+                              jHalfHeightBox,
+                              jWidthBox,
+                              Text(
+                                studentData.regNum,
+                                style: jTimeTablePeriodTextStyle,
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )
+                  // ListTile(
+                  //   selected: true,
+                  //   selectedTileColor: jWhiteTextColor,
+                  //   hoverColor: jWhiteTextColor,
+
+                  //   leading: const CircleAvatar(
+                  //     radius: 30,
+                  //     backgroundImage: AssetImage('assets/images/student.png'),
+                  //   ),
+                  //   title: Text(
+                  //     studentData.fName + studentData.lName,
+                  //     style: jTimeTableTeacherNameTextStyle,
+                  //   ),
+                  //   subtitle: Text(
+                  //     studentData.regNum,
+                  //     style: jTimeTablePeriodTextStyle,
+                  //   ),
+                  // )
+                  ;
             },
           );
         },

@@ -1,4 +1,3 @@
-
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
 import 'dart:developer';
@@ -9,10 +8,10 @@ import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 // -------------  Database Teacher  ------------
 
 ValueNotifier<List<TeacherModel>> teacherModelNotifier = ValueNotifier([]);
+
 Future<void> createTeacherProfile(TeacherModel value) async {
   final teacherDatabase = await Hive.openBox<TeacherModel>('teacher_database');
   final ids = await teacherDatabase.add(value);
@@ -21,7 +20,11 @@ Future<void> createTeacherProfile(TeacherModel value) async {
   teacherModelNotifier.notifyListeners();
   log(teacherDatabase.values.toString());
   getTeacherProfile();
-  
+  log(value.teacherName);
+  log(value.teacherEMail);
+  log(value.teacherName);
+  log(value.teacherName);
+  log(value.teacherName);
 }
 
 Future<void> getTeacherProfile() async {
@@ -29,7 +32,7 @@ Future<void> getTeacherProfile() async {
   teacherModelNotifier.value.clear();
   teacherModelNotifier.value.addAll(teacherDatabase.values);
   teacherModelNotifier.notifyListeners();
-
+  log('Test TeacherName ${teacherDatabase.values.first.teacherName}');
 }
 
 Future<void> editTeacherProfile(int id, TeacherModel value) async {
@@ -98,7 +101,8 @@ Future<void> getAllAssignments() async {
 }
 
 Future<void> editAssignment(int id, AssignmentModel value) async {
-  final assignmentDatabase = await Hive.openBox('assignment_database');
+  final assignmentDatabase =
+      await Hive.openBox<AssignmentModel>('assignment_database');
   assignmentDatabase.putAt(id, value);
   getAllAssignments();
 }

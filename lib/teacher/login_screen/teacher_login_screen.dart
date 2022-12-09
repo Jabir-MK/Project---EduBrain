@@ -203,8 +203,10 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
         isDense: true,
       ),
       validator: (value) {
-        if (value!.length < 8) {
-          return 'Password must be atleast 8 characters.';
+        if (value == null || value.isEmpty) {
+          return "Password not filled";
+        } else if (value.length < 8) {
+          return 'Password must be atleast 8 characters';
         } else {
           return null;
         }

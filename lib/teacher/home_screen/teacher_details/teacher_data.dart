@@ -8,24 +8,15 @@ class TeacherNameInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
-          "Hi , ",
-          style: TextStyle(
+        Text(
+          "Hi , $teacherName",
+          style: const TextStyle(
             fontFamily: 'Satisfy',
             fontSize: 30,
             fontWeight: FontWeight.bold,
             color: jOtherColor,
           ),
         ),
-        Text(
-          teacherName,
-          style: const TextStyle(
-            fontFamily: 'Satisfy',
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: jWhiteTextColor,
-          ),
-        )
       ],
     );
   }

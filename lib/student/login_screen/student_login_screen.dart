@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/student/home_screen/student_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -88,17 +90,8 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                           jheightBox,
                           jheightBox,
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              TextButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  'Forgot Password ?',
-                                  style: TextStyle(
-                                    color: jPrimaryColor,
-                                  ),
-                                ),
-                              ),
                               ElevatedButton.icon(
                                   style: ButtonStyle(
                                     elevation: MaterialStateProperty.all(10),
@@ -146,11 +139,24 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
         isDense: true,
       ),
       validator: (value) {
-        RegExp regExp = RegExp(emailPattern);
+        RegExp regExpEmail = RegExp(emailPattern);
+        RegExp regExpMobile = RegExp(mobilePattern);
         if (value == null || value.isEmpty) {
           return "Please Enter Your Number/E-mail";
-        } else if (!regExp.hasMatch(value)) {
-          return "Please enter valid details";
+        }
+        if (!regExpEmail.hasMatch(value)) {
+          return 'Please enter a valid Email';
+        } else if (!regExpMobile.hasMatch(value)) {
+          return 'Please enter a valid Mobile Number';
+        }
+
+        // ignore: dead_code
+        if (regExpMobile.hasMatch(value)) {
+          if (value.length != 10) {
+            return 'Mobile not valid';
+          } else {
+            log('MOBILE NUMBER');
+          }
         }
         return null;
       },
@@ -160,7 +166,6 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
   TextFormField buildPasswordField() {
     return TextFormField(
       controller: _studentLoginPassController,
-      maxLength: 8,
       textAlign: TextAlign.start,
       obscureText: true,
       keyboardType: TextInputType.name,
@@ -175,10 +180,13 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
         isDense: true,
       ),
       validator: (value) {
-        if (value!.length < 8) {
-          return 'Password must be atleast 8 characters.';
-        } else {}
-        return null;
+        if (value == null || value.isEmpty) {
+          return "Password not filled";
+        } else if (value.length < 8) {
+          return 'Password must be atleast 8 characters';
+        } else {
+          return null;
+        }
       },
     );
   }

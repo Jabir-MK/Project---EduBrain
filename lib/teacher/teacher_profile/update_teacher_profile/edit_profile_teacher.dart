@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/teacher/teacher_profile/teacher_profile_screen_details_model.dart';
 import 'package:edubrain/teacher/teacher_profile/update_teacher_profile/update_teacher_details.dart';
 import 'package:flutter/material.dart';
 

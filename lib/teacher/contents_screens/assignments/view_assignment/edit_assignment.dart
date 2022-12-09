@@ -216,14 +216,19 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
   }
 
   Future<void> editAssignmentOnTap(context) async {
+    final edittedSubjectName = _editSubjectNameController.text.trim();
+    final edittedTopicName = _editTopicNameController.text.trim();
+    final edittedAssignDate = _editAssignDateController.text.trim();
+    final edittedDueDate = _editDueDateController.text.trim();
+    final edittedContents = _editContentDetailsController.text.trim();
+
     final assignmentEdit = AssignmentModel(
-      assignmentContent: _editContentDetailsController.text,
-      subjectName: _editSubjectNameController.text,
-      topicName: _editTopicNameController.text,
-      assignDate: _editAssignDateController.text,
-      dueDate: _editDueDateController.text,
+      assignmentContent: edittedContents,
+      subjectName: edittedSubjectName,
+      topicName: edittedTopicName,
+      assignDate: edittedAssignDate,
+      dueDate: edittedDueDate,
     );
-    editAssignment(widget.index, assignmentEdit);
     if (_editSubjectNameController.text.isEmpty ||
         _editTopicNameController.text.isEmpty ||
         _editAssignDateController.text.isEmpty ||
@@ -231,6 +236,8 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
         _editContentDetailsController.text.isEmpty) {
       return;
     } else {
+      editAssignment(widget.index, assignmentEdit);
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: jSecondaryColor,

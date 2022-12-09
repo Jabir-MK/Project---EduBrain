@@ -148,6 +148,8 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Password not filled";
+                        } else if (value.length < 8) {
+                          return 'Password must be atleast 8 characters';
                         } else {
                           return null;
                         }
