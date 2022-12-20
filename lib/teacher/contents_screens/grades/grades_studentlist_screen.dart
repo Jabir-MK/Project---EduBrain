@@ -76,16 +76,13 @@ class _TeacherGradesScreenState extends State<TeacherGradesScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              jWidthBox,
                               Text(
-                                '${studentData.fName}'
-                                '${studentData.lName}',
+                                '${studentData.fName.toUpperCase()} '
+                                '${studentData.lName.toUpperCase()}',
                                 style: jTimeTableTeacherNameTextStyle,
                               ),
-                              jHalfHeightBox,
-                              jWidthBox,
                               Text(
-                                studentData.regNum,
+                                studentData.regNum.toUpperCase(),
                                 style: jTimeTablePeriodTextStyle,
                               ),
                             ],

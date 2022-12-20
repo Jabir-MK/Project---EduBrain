@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/teacher/teacher_profile/update_teacher_profile/update_teacher_details.dart';
+import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:flutter/material.dart';
 
 class EditTeacherProfileScreen extends StatefulWidget {
@@ -34,12 +33,37 @@ class EditTeacherProfileScreen extends StatefulWidget {
 }
 
 class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
-  late String updateTeacherName =
-      TextEditingController(text: widget.teacherName).text;
+  TextEditingController _teacherNameEditController = TextEditingController();
+  TextEditingController _teacherRegIDEditController = TextEditingController();
+  TextEditingController _teacherGenderEditController = TextEditingController();
+  TextEditingController _teacherQaulEditController = TextEditingController();
+  TextEditingController _teacherSubjectEditController = TextEditingController();
+  TextEditingController _teacherEmailEditController = TextEditingController();
+  TextEditingController _teacherMobileEditController = TextEditingController();
+  TextEditingController _teacherPasswordEditController =
+      TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
-    log(updateTeacherName);
+    _teacherNameEditController =
+        TextEditingController(text: widget.teacherName);
+
+    _teacherGenderEditController =
+        TextEditingController(text: widget.teacherGender);
+    _teacherRegIDEditController =
+        TextEditingController(text: widget.teacherRegID);
+    _teacherQaulEditController =
+        TextEditingController(text: widget.teacherQualification);
+    _teacherSubjectEditController =
+        TextEditingController(text: widget.teacherSubject);
+    _teacherEmailEditController =
+        TextEditingController(text: widget.teacherEMail);
+    _teacherMobileEditController =
+        TextEditingController(text: widget.teacherMobileNum);
+    _teacherPasswordEditController =
+        TextEditingController(text: widget.teacherPassword);
   }
 
   @override
@@ -52,99 +76,392 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
         ),
       ),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           Container(
             color: jOtherColor,
-            child: Column(
-              children: [
-                const EditTeacherProfileBasicIDInfo(
-                  detailNameValue: 'jabir',
-                  detailRegIDValue: 'ebmm012',
-                  detailSubjectValue: 'physics',
-                ),
-                jheightBox,
-                jTwiceThickDivider,
-                const Text(
-                  'Basic Details',
-                  style: jAlegrayaSansSubTextStyle,
-                ),
-                jTwiceThickDivider,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    EditTeacherProfileBasicDetails(
-                      detailTitle: "Full Name",
-                      detailValue: '',
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 180,
+                    decoration: const BoxDecoration(
+                      color: jPrimaryColor,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(jDefaultPadding * 3.5),
+                        bottomRight: Radius.circular(jDefaultPadding * 3.5),
+                      ),
                     ),
-                    EditTeacherProfileBasicDetails(
-                      detailTitle: "Gender",
-                      detailValue: '',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CircleAvatar(
+                          minRadius: 50,
+                          maxRadius: 50,
+                          backgroundColor: jSecondaryColor,
+                          backgroundImage:
+                              AssetImage('assets/images/student.png'),
+                        ),
+                        jWidthBox,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  _teacherNameEditController.text.toUpperCase(),
+                                  style: jKalamLargeStyle,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _teacherRegIDEditController.text
+                                      .toUpperCase(),
+                                  style: jAcmeMediumStyle,
+                                ),
+                                Text(
+                                  _teacherSubjectEditController.text
+                                      .toUpperCase(),
+                                  style: jAcmeMediumStyle,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    EditTeacherProfileBasicDetails(
-                      detailTitle: "Register ID",
-                      detailValue: '',
+                  ),
+                  jheightBox,
+                  jTwiceThickDivider,
+                  const Text(
+                    'Basic Details',
+                    style: jAlegrayaSansSubTextStyle,
+                  ),
+                  jTwiceThickDivider,
+                  Padding(
+                    padding: const EdgeInsets.all(jDefaultPadding),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Full Name',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: TextFormField(
+                                controller: _teacherNameEditController,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Enter Full Name',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Full Name not filled';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Register ID',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: TextFormField(
+                                controller: _teacherRegIDEditController,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Enter Register ID',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Register ID not filled';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        jHalfHeightBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Gender',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: TextFormField(
+                                controller: _teacherGenderEditController,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Enter Your Gender',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Gender not filled';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        jHalfHeightBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Qaulification',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: TextFormField(
+                                controller: _teacherQaulEditController,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Enter Your Qualification',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Qaulification has not filled';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        jHalfHeightBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Subject',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              width: 200,
+                              child: TextFormField(
+                                controller: _teacherSubjectEditController,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Enter Your Subject',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Subject not filled';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        jheightBox,
+                        jTwiceThickDivider,
+                        const Text(
+                          'Contact Details',
+                          style: jAlegrayaSansSubTextStyle,
+                        ),
+                        jTwiceThickDivider,
+                        jheightBox,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'E-Mail',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              child: TextFormField(
+                                controller: _teacherEmailEditController,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Enter E-Mail',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  RegExp regExp = RegExp(emailPattern);
+                                  if (value == null || value.isEmpty) {
+                                    return "Please Enter Your E-mail";
+                                  } else if (!regExp.hasMatch(value)) {
+                                    return "Please enter valid details";
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        jheightBox,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Mobile Number',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              child: TextFormField(
+                                controller: _teacherMobileEditController,
+                                keyboardType: TextInputType.phone,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Enter Mobile Number',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  if (value == null ||
+                                      value.isEmpty ||
+                                      value.length != 10) {
+                                    return 'Mobile Number not filled';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        jheightBox,
+                        jTwiceThickDivider,
+                        const Text(
+                          'Login Details',
+                          style: jAlegrayaSansSubTextStyle,
+                        ),
+                        jTwiceThickDivider,
+                        jheightBox,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Password',
+                              style: jAlegrayaSansSubTextStyle,
+                            ),
+                            SizedBox(
+                              child: TextFormField(
+                                controller: _teacherPasswordEditController,
+                                obscureText: true,
+                                keyboardType: TextInputType.name,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    label: Text(
+                                      'Edit Password',
+                                      style: jAlegrayaSansHeadTextStyle,
+                                    )),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Password not filled';
+                                  } else if (value.length < 8) {
+                                    return 'Password Must be atleast 8 characters';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
-                    EditTeacherProfileBasicDetails(
-                      detailTitle: "Subject",
-                      detailValue: '',
-                    ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    EditTeacherProfileBasicDetails(
-                      detailTitle: "Qualification",
-                      detailValue: '',
-                    ),
-                  ],
-                ),
-                jheightBox,
-                jTwiceThickDivider,
-                const Text(
-                  'Contact Details',
-                  style: jAlegrayaSansSubTextStyle,
-                ),
-                jTwiceThickDivider,
-                jheightBox,
-                const EditTeacherProfileContactDetails(
-                  detailsTitle: 'E-mail',
-                  detailsValue: '',
-                ),
-                const EditTeacherProfileContactDetails(
-                  detailsTitle: 'Mobile Number',
-                  detailsValue: '',
-                ),
-                jheightBox,
-                jTwiceThickDivider,
-                const Text(
-                  'Login Details',
-                  style: jAlegrayaSansSubTextStyle,
-                ),
-                jTwiceThickDivider,
-                jheightBox,
-                const EditTeacherProfileContactDetails(
-                  detailsTitle: 'Password',
-                  detailsValue: '',
-                )
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pop(context);
+          if (_formKey.currentState!.validate()) {
+            editTeacherProfileOnTap(context);
+            Navigator.of(context).pop();
+          } else {}
         },
         backgroundColor: jPrimaryColor,
         child: const Icon(
           Icons.check,
-          size: 40,
+          size: 35,
         ),
       ),
     );
+  }
+
+  Future<void> editTeacherProfileOnTap(context) async {
+    final teacherProfile = TeacherModel(
+      teacherRegID: _teacherRegIDEditController.text.trim(),
+      teacherSubject: _teacherSubjectEditController.text.trim(),
+      teacherQualification: _teacherQaulEditController.text.trim(),
+      teacherGender: _teacherGenderEditController.text.trim(),
+      teacherMobileNum: _teacherMobileEditController.text.trim(),
+      teacherName: _teacherNameEditController.text.trim(),
+      teacherEMail: _teacherEmailEditController.text.trim(),
+      teacherPassword: _teacherPasswordEditController.text.trim(),
+    );
+    createTeacherProfile(teacherProfile);
+    if (_teacherNameEditController.text.isEmpty ||
+        _teacherGenderEditController.text.isEmpty ||
+        _teacherSubjectEditController.text.isEmpty ||
+        _teacherQaulEditController.text.isEmpty ||
+        _teacherRegIDEditController.text.isEmpty ||
+        _teacherEmailEditController.text.isEmpty ||
+        _teacherMobileEditController.text.isEmpty ||
+        _teacherPasswordEditController.text.isEmpty) {
+      return;
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: jSecondaryColor,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(jDefaultPadding),
+          content: Text("Updated Profile Successfully"),
+        ),
+      );
+    }
   }
 }

@@ -32,6 +32,7 @@ const jHalfWidthBox = SizedBox(
 );
 
 const jDefaultDivider = Divider(
+  height: 5,
   thickness: 1,
 );
 

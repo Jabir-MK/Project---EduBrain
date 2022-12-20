@@ -13,31 +13,14 @@ import 'package:flutter/material.dart';
 class TeacherHomeScreen extends StatefulWidget {
   const TeacherHomeScreen({
     super.key,
-    required this.subjectName,
-    required this.regID,
-    required this.signUpTeacherName,
-    required this.signUpEMail,
-    required this.signUpPassWord,
   });
   static String routeName = 'TeacherHomeScreen';
-
-  final String signUpTeacherName;
-  final String subjectName;
-  final String regID;
-  final String signUpEMail;
-  final String signUpPassWord;
 
   @override
   State<TeacherHomeScreen> createState() => _TeacherHomeScreenState();
 }
 
 class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
-  final String teacherName = '';
-  final String teacherSubjectName = '';
-  final String teacherEMail = '';
-  final String teacherRegID = '';
-  final String teacherPassword = '';
-
   @override
   void initState() {
     super.initState();
@@ -63,52 +46,61 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return TeacherProfileScreen(
-                      teacherFullName: 'teacherName',
-                      teacherGender: '',
-                      teacherRegID: '',
-                      teacherSubject: '',
-                      teacherQualification: '',
-                      teacherEMail: teacherEMail,
-                      teacherMobileNum: '',
-                      teacherPassword: teacherPassword,
-                    );
-                  },
-                ));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const TeacherProfileScreen(
+                        teacherFullName: '',
+                        teacherGender: '',
+                        teacherRegID: '',
+                        teacherSubject: '',
+                        teacherQualification: '',
+                        teacherEMail: '',
+                        teacherMobileNum: '',
+                        teacherPassword: '',
+                      );
+                    },
+                  ),
+                );
               },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 3,
-                padding: const EdgeInsets.all(jDefaultPadding),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: ValueListenableBuilder(
+                valueListenable: teacherModelNotifier,
+                builder: (context, teacherProfile, child) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 3,
+                    padding: const EdgeInsets.all(jDefaultPadding),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            TeacherNameInfo(
-                              teacherName: teacherName,
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TeacherNameInfo(
+                                  teacherName: teacherProfile.last.teacherName,
+                                ),
+                                jHalfHeightBox,
+                                const TeacherRegisterInfo(
+                                  teacherSubject: '',
+                                  teacherID: '',
+                                ),
+                                jHalfHeightBox,
+                              ],
                             ),
                             jHalfHeightBox,
-                            TeacherRegisterInfo(
-                                teacherSubject: teacherSubjectName,
-                                teacherID: teacherRegID),
-                            jHalfHeightBox,
+                            TeacherImageInfo(
+                                onPress: () {},
+                                studentImageAddress:
+                                    "assets/images/teacher.png")
                           ],
                         ),
-                        jHalfHeightBox,
-                        TeacherImageInfo(
-                            onPress: () {},
-                            studentImageAddress: "assets/images/teacher.png")
                       ],
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
             Expanded(

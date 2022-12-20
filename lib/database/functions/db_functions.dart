@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
+import 'package:edubrain/database/model/grades/grades_model.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,28 +12,24 @@ import 'package:hive_flutter/hive_flutter.dart';
 // -------------  Database Teacher  ------------
 
 ValueNotifier<List<TeacherModel>> teacherModelNotifier = ValueNotifier([]);
+List<TeacherModel> teacherProfileList = [];
 
 Future<void> createTeacherProfile(TeacherModel value) async {
-  final teacherDatabase = await Hive.openBox<TeacherModel>('teacher_database');
+  final teacherDatabase = await Hive.openBox<TeacherModel>('teacherDatabase');
   final ids = await teacherDatabase.add(value);
   value.id = ids;
   teacherModelNotifier.value.add(value);
-  teacherModelNotifier.notifyListeners();
   log(teacherDatabase.values.toString());
   getTeacherProfile();
-  log(value.teacherName);
-  log(value.teacherEMail);
-  log(value.teacherName);
-  log(value.teacherName);
-  log(value.teacherName);
+  teacherModelNotifier.notifyListeners();
 }
 
 Future<void> getTeacherProfile() async {
   final teacherDatabase = await Hive.openBox<TeacherModel>('teacherDatabase');
   teacherModelNotifier.value.clear();
   teacherModelNotifier.value.addAll(teacherDatabase.values);
+  teacherProfileList.addAll(teacherDatabase.values);
   teacherModelNotifier.notifyListeners();
-  log('Test TeacherName ${teacherDatabase.values.first.teacherName}');
 }
 
 Future<void> editTeacherProfile(int id, TeacherModel value) async {
@@ -56,7 +53,8 @@ Future<void> addStudent(StudentModel value) async {
 Future<void> getAllStudents() async {
   final studentDB = await Hive.openBox<StudentModel>('student_db');
   studentListNotifier.value.clear();
-  studentListNotifier.value.addAll(studentDB.values);
+  studentListNotifier.value.addAll(studentDB.values.toList());
+  log(studentListNotifier.value[0].id.toString());
   studentListNotifier.notifyListeners();
 }
 
@@ -105,4 +103,10 @@ Future<void> editAssignment(int id, AssignmentModel value) async {
       await Hive.openBox<AssignmentModel>('assignment_database');
   assignmentDatabase.putAt(id, value);
   getAllAssignments();
+}
+
+//    Grades
+
+Future<void> addGrades() async {
+  await Hive.openBox<GradesModel>('gradesDB');
 }

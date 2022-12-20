@@ -19,7 +19,7 @@ class StudentHomeScreenCards extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: jDefaultPadding * 1.5),
         width: MediaQuery.of(context).size.width / 2.5,
-        height: MediaQuery.of(context).size.height / 7,
+        height: MediaQuery.of(context).size.height / 6,
         decoration: BoxDecoration(
             color: jPrimaryColor,
             borderRadius: BorderRadius.circular(jDefaultPadding / 1.5),
@@ -30,11 +30,11 @@ class StudentHomeScreenCards extends StatelessWidget {
               )
             ]),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image.asset(
               iconImage,
-              height: 80,
+              height: 40,
               width: 80,
             ),
             Text(
@@ -42,7 +42,7 @@ class StudentHomeScreenCards extends StatelessWidget {
               style: const TextStyle(
                   color: jWhiteTextColor,
                   fontFamily: 'AkayaTelivigala',
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
           ],

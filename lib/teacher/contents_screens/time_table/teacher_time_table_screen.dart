@@ -47,10 +47,10 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                 controller: tabController,
                 isScrollable: true,
                 labelPadding: const EdgeInsets.symmetric(
-                    horizontal: jDefaultPadding * 1.2),
+                    horizontal: jDefaultPadding / 1.1),
                 tabs: const [
-                  Tab(child: Text('Tue', style: jTimeTableDaysTextStyle)),
                   Tab(child: Text('Mon', style: jTimeTableDaysTextStyle)),
+                  Tab(child: Text('Tue', style: jTimeTableDaysTextStyle)),
                   Tab(child: Text('Wed', style: jTimeTableDaysTextStyle)),
                   Tab(child: Text('Thu', style: jTimeTableDaysTextStyle)),
                   Tab(child: Text('Fri', style: jTimeTableDaysTextStyle)),
@@ -67,7 +67,7 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                   padding: const EdgeInsets.all(jDefaultPadding),
                   itemCount: mondayTimeTable.length,
                   itemBuilder: (context, index) => Container(
-                    margin: const EdgeInsets.only(bottom: jDefaultPadding),
+                    margin: const EdgeInsets.only(bottom: jDefaultPadding / 2),
                     padding: const EdgeInsets.only(
                         top: jDefaultPadding / 2,
                         left: jDefaultPadding,
@@ -91,19 +91,11 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                           mondayTimeTable[index].subjectName,
                           style: jTimeTableSubjectTextStyle,
                         ),
-                        jHalfHeightBox,
                         StudentTimeTableCards(
                           content: mondayTimeTable[index].periodDuration,
                           contentStyle: jTimeTablePeriodDurationTextStyle,
                         ),
-                        jHalfHeightBox,
-                        const Divider(
-                          thickness: 2,
-                          color: jLightTextColor,
-                          indent: 2,
-                          endIndent: 2,
-                        ),
-                        jHalfHeightBox,
+                        jTwiceThickDivider,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -127,7 +119,7 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                   padding: const EdgeInsets.all(jDefaultPadding),
                   itemCount: tuesdayTimeTable.length,
                   itemBuilder: (context, index) => Container(
-                    margin: const EdgeInsets.only(bottom: jDefaultPadding),
+                    margin: const EdgeInsets.only(bottom: jDefaultPadding / 2),
                     padding: const EdgeInsets.only(
                       top: jDefaultPadding / 2,
                       left: jDefaultPadding,
@@ -152,19 +144,11 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                           tuesdayTimeTable[index].subjectName,
                           style: jTimeTableSubjectTextStyle,
                         ),
-                        jHalfHeightBox,
                         StudentTimeTableCards(
                           content: tuesdayTimeTable[index].periodDuration,
                           contentStyle: jTimeTablePeriodDurationTextStyle,
                         ),
-                        jHalfHeightBox,
-                        const Divider(
-                          thickness: 2,
-                          color: jLightTextColor,
-                          indent: 2,
-                          endIndent: 2,
-                        ),
-                        jHalfHeightBox,
+                        jTwiceThickDivider,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -189,7 +173,7 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                   itemCount: wednesdayTimeTable.length,
                   padding: const EdgeInsets.all(jDefaultPadding),
                   itemBuilder: (context, index) => Container(
-                    margin: const EdgeInsets.only(bottom: jDefaultPadding),
+                    margin: const EdgeInsets.only(bottom: jDefaultPadding / 2),
                     padding: const EdgeInsets.only(
                       top: jDefaultPadding / 2,
                       left: jDefaultPadding,
@@ -214,19 +198,11 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                           wednesdayTimeTable[index].subjectName,
                           style: jTimeTableSubjectTextStyle,
                         ),
-                        jHalfHeightBox,
                         StudentTimeTableCards(
                           content: wednesdayTimeTable[index].periodDuration,
                           contentStyle: jTimeTablePeriodDurationTextStyle,
                         ),
-                        jHalfHeightBox,
-                        const Divider(
-                          thickness: 2,
-                          color: jLightTextColor,
-                          indent: 2,
-                          endIndent: 2,
-                        ),
-                        jHalfHeightBox,
+                        jTwiceThickDivider,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -250,7 +226,7 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                   itemCount: thursdayTimeTable.length,
                   padding: const EdgeInsets.all(jDefaultPadding),
                   itemBuilder: (context, index) => Container(
-                    margin: const EdgeInsets.only(bottom: jDefaultPadding),
+                    margin: const EdgeInsets.only(bottom: jDefaultPadding / 2),
                     padding: const EdgeInsets.only(
                       top: jDefaultPadding / 2,
                       left: jDefaultPadding,
@@ -275,19 +251,11 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                           thursdayTimeTable[index].subjectName,
                           style: jTimeTableSubjectTextStyle,
                         ),
-                        jHalfHeightBox,
                         StudentTimeTableCards(
                           content: thursdayTimeTable[index].periodDuration,
                           contentStyle: jTimeTablePeriodDurationTextStyle,
                         ),
-                        jHalfHeightBox,
-                        const Divider(
-                          thickness: 2,
-                          color: jLightTextColor,
-                          indent: 2,
-                          endIndent: 2,
-                        ),
-                        jHalfHeightBox,
+                        jTwiceThickDivider,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -311,7 +279,7 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                   padding: const EdgeInsets.all(jDefaultPadding),
                   itemCount: fridayTimeTable.length,
                   itemBuilder: (context, index) => Container(
-                    margin: const EdgeInsets.only(bottom: jDefaultPadding),
+                    margin: const EdgeInsets.only(bottom: jDefaultPadding / 2),
                     padding: const EdgeInsets.only(
                       top: jDefaultPadding / 2,
                       left: jDefaultPadding,
@@ -336,19 +304,11 @@ class _TeacherTimeTableScreenScreenState extends State<TeacherTimeTableScreen>
                           fridayTimeTable[index].subjectName,
                           style: jTimeTableSubjectTextStyle,
                         ),
-                        jHalfHeightBox,
                         StudentTimeTableCards(
                           content: fridayTimeTable[index].periodDuration,
                           contentStyle: jTimeTablePeriodDurationTextStyle,
                         ),
-                        jHalfHeightBox,
-                        const Divider(
-                          thickness: 2,
-                          color: jLightTextColor,
-                          indent: 2,
-                          endIndent: 2,
-                        ),
-                        jHalfHeightBox,
+                        jTwiceThickDivider,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

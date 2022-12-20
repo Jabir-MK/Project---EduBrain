@@ -17,6 +17,7 @@ class GradesModel {
   final String physicsMark;
   @HiveField(6)
   final String computerMark;
+  // student id required
 
   GradesModel({
     required this.englishMark,

@@ -1,5 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/database/functions/db_functions.dart';
 import 'package:edubrain/teacher/teacher_profile/update_teacher_profile/edit_profile_teacher.dart';
 import 'package:flutter/material.dart';
 
@@ -48,7 +49,8 @@ class TeacherProfileBasicIDInfo extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     detailSubjectValue,
@@ -65,19 +67,23 @@ class TeacherProfileBasicIDInfo extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all(jSecondaryColor)),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const EditTeacherProfileScreen(
-                            teacherName: '',
-                            teacherGender: '',
-                            teacherRegID: '',
-                            teacherSubject: '',
-                            teacherQualification: '',
-                            teacherEMail: '',
-                            teacherMobileNum: '',
-                            teacherPassword: ''),
-                      ));
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => EditTeacherProfileScreen(
+                        teacherName: teacherProfileList.last.teacherName,
+                        teacherGender: teacherProfileList.last.teacherGender,
+                        teacherRegID: teacherProfileList.last.teacherRegID,
+                        teacherSubject: teacherProfileList.last.teacherSubject,
+                        teacherQualification:
+                            teacherProfileList.last.teacherQualification,
+                        teacherEMail: teacherProfileList.last.teacherEMail,
+                        teacherMobileNum:
+                            teacherProfileList.last.teacherMobileNum,
+                        teacherPassword:
+                            teacherProfileList.last.teacherPassword,
+                      ),
+                    ),
+                  );
                 },
                 icon: const Icon(Icons.edit),
                 label: const Text(

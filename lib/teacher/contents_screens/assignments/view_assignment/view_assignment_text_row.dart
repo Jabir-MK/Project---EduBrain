@@ -16,7 +16,7 @@ class ViewAssignmentTextRow extends StatelessWidget {
       children: [
         Text(
           detailHead,
-          style: jTimeTableSubjectTextStyle,
+          style: jAssignmentTextStyle,
         ),
         Text(detailValue)
       ],

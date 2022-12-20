@@ -36,7 +36,8 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
         child: Padding(
           padding: const EdgeInsets.all(jDefaultPadding / 2),
           child: Container(
-            padding: const EdgeInsets.all(jDefaultPadding / 2),
+            padding:
+                const EdgeInsets.symmetric(horizontal: jDefaultPadding / 2),
             width: double.infinity,
             decoration: BoxDecoration(
               color: jSecondaryColor,
@@ -58,10 +59,10 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                     children: [
                       const Text(
                         'Subject',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 180,
+                        width: 150,
                         child: TextFormField(
                           controller: _subjectNameController,
                           keyboardType: TextInputType.name,
@@ -81,16 +82,16 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                     children: [
                       const Text(
                         'Topic',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 180,
+                        width: 150,
                         child: TextFormField(
                           controller: _topicNameController,
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Enter topic for the assignment';
+                              return 'Enter topic name';
                             } else {
                               return null;
                             }
@@ -104,10 +105,10 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                     children: [
                       const Text(
                         'Assigned Date',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 180,
+                        width: 150,
                         child: TextFormField(
                           controller: _assignedDateController,
                           keyboardType: TextInputType.datetime,
@@ -127,16 +128,16 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                     children: [
                       const Text(
                         'Last Date',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 180,
+                        width: 150,
                         child: TextFormField(
                           controller: _lastDateController,
                           keyboardType: TextInputType.datetime,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Enter the last date to submit";
+                              return "Enter due date to submit";
                             } else {
                               return null;
                             }
@@ -145,14 +146,13 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                       ),
                     ],
                   ),
-                  jheightBox,
                   jThriceThickDivider,
                   const Text(
                     'Content Details',
-                    style: jTimeTableSubjectTextStyle,
+                    style: jAssignmentTextStyle,
                   ),
                   TextFormField(
-                    maxLines: 16,
+                    maxLines: 11,
                     controller: _contentDetailsController,
                     keyboardType: TextInputType.multiline,
                     validator: (value) {
@@ -163,7 +163,6 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                       }
                     },
                   ),
-                  jheightBox,
                   jThriceThickDivider
                 ],
               ),

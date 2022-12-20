@@ -1,17 +1,6 @@
-====>
-password add by teacher
 
-====> Must do 
-
---- Login for student
---- submit assignments for student
-=== add grades for teacher
---- edit grades for teacher
---- view grades for student
---- view attendance for teacher
-
-
---- access model class
---- value listenable builder
---- getx
---- 
+--  Login for student and teacher
+--  Find a way to detect previously signed in teacher
+--  grades not completed . Find a way
+--  Ceertain UI s to complete
+--  

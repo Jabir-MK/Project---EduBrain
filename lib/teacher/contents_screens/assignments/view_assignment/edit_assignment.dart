@@ -86,20 +86,13 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                     children: [
                       const Text(
                         'Subject',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 200,
+                        width: 150,
                         child: TextFormField(
                           controller: _editSubjectNameController,
                           keyboardType: TextInputType.name,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Enter subject name';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                       ),
                     ],
@@ -109,20 +102,13 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                     children: [
                       const Text(
                         'Topic',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 200,
+                        width: 150,
                         child: TextFormField(
                           controller: _editTopicNameController,
                           keyboardType: TextInputType.name,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Enter a Topic for assignment';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                       ),
                     ],
@@ -132,20 +118,13 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                     children: [
                       const Text(
                         'Assigned Date',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 200,
+                        width: 150,
                         child: TextFormField(
                           controller: _editAssignDateController,
                           keyboardType: TextInputType.datetime,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Enter assigned date for the assignment';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                       ),
                     ],
@@ -155,20 +134,13 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                     children: [
                       const Text(
                         'Last Date',
-                        style: jTimeTableSubjectTextStyle,
+                        style: jAssignmentTextStyle,
                       ),
                       SizedBox(
-                        width: 200,
+                        width: 150,
                         child: TextFormField(
                           controller: _editDueDateController,
                           keyboardType: TextInputType.datetime,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Enter Due date for assignment';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                       ),
                     ],
@@ -183,13 +155,6 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                     controller: _editContentDetailsController,
                     keyboardType: TextInputType.multiline,
                     maxLines: 15,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Add some contents';
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                   jheightBox,
                   jThriceThickDivider

@@ -21,7 +21,7 @@ class LoginDirect extends StatelessWidget {
                   Navigator.pushNamed(context, TeacherSignUpScreen.routeName);
                 },
                 child: Container(
-                  height: 300,
+                  height: MediaQuery.of(context).size.height / 2.5,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [jSecondaryColor, jPrimaryColor],
@@ -49,12 +49,13 @@ class LoginDirect extends StatelessWidget {
               ),
               jheightBox,
               jheightBox,
+              jHalfHeightBox,
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, StudentLoginScreen.routeName);
                 },
                 child: Container(
-                  height: 300,
+                  height: MediaQuery.of(context).size.height / 2.5,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [jPrimaryColor, jSecondaryColor],

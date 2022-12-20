@@ -135,15 +135,27 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(children: const [
-                              Text(
-                                "Jabir MK",
-                                style: jKalamLargeStyle,
-                              ),
-                            ]),
-                            const Text(
-                              "Class XII CS | Roll No. 24",
-                              style: jAcmeMediumStyle,
+                            Row(
+                              children: [
+                                Text(
+                                  '${_firstNameEditController.text.toUpperCase()} '
+                                  '${_lastNameEditController.text.toUpperCase()}',
+                                  style: jKalamLargeStyle,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _regNoEditController.text.toUpperCase(),
+                                  style: jAcmeMediumStyle,
+                                ),
+                                Text(
+                                  _deptEditController.text.toUpperCase(),
+                                  style: jAcmeMediumStyle,
+                                )
+                              ],
                             ),
                           ],
                         ),

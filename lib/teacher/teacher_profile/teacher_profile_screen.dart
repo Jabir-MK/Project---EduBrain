@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/db_functions.dart';
@@ -57,14 +55,6 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
   void initState() {
     super.initState();
     getTeacherProfile();
-    log(teacherProfileName);
-    log(teacherProfileEMail);
-    log(teacherProfileGender);
-    log(teacherProfileMobileNum);
-    log(teacherProfilePassword);
-    log(teacherProfileQualification);
-    log(teacherProfileRegID);
-    log(teacherProfileSubject);
   }
 
   @override
@@ -84,89 +74,94 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          Container(
-            color: jOtherColor,
-            child: Column(
-              children: [
-                TeacherProfileBasicIDInfo(
-                  detailNameValue: teacherProfileName,
-                  detailRegIDValue: '',
-                  detailSubjectValue: '',
-                ),
-                jheightBox,
-                jTwiceThickDivider,
-                const Text(
-                  'Basic Details',
-                  style: jAlegrayaSansSubTextStyle,
-                ),
-                jTwiceThickDivider,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: ValueListenableBuilder(
+        valueListenable: teacherModelNotifier,
+        builder: (context, teacherProfile, child) {
+          return ListView(
+            children: [
+              Container(
+                color: jOtherColor,
+                child: Column(
                   children: [
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Full Name",
-                      detailValue: teacherProfileName,
+                    TeacherProfileBasicIDInfo(
+                      detailNameValue: teacherProfile.last.teacherName,
+                      detailRegIDValue: teacherProfile.last.teacherRegID,
+                      detailSubjectValue: teacherProfile.last.teacherSubject,
                     ),
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Gender",
-                      detailValue: teacherProfileGender,
+                    jheightBox,
+                    jTwiceThickDivider,
+                    const Text(
+                      'Basic Details',
+                      style: jAlegrayaSansSubTextStyle,
                     ),
+                    jTwiceThickDivider,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TeacherProfileBasicDetails(
+                          detailTitle: "Full Name",
+                          detailValue: teacherProfile.last.teacherName,
+                        ),
+                        TeacherProfileBasicDetails(
+                          detailTitle: "Gender",
+                          detailValue: teacherProfile.last.teacherGender,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        TeacherProfileBasicDetails(
+                          detailTitle: "Register ID",
+                          detailValue: teacherProfile.last.teacherRegID,
+                        ),
+                        TeacherProfileBasicDetails(
+                          detailTitle: "Subject",
+                          detailValue: teacherProfile.last.teacherSubject,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        TeacherProfileBasicDetails(
+                          detailTitle: "Qualification",
+                          detailValue: teacherProfile.last.teacherQualification,
+                        ),
+                      ],
+                    ),
+                    jheightBox,
+                    jTwiceThickDivider,
+                    const Text(
+                      'Contact Details',
+                      style: jAlegrayaSansSubTextStyle,
+                    ),
+                    jTwiceThickDivider,
+                    jheightBox,
+                    TeacherProfileContactDetails(
+                      detailsTitle: 'E-mail',
+                      detailsValue: teacherProfile.last.teacherEMail,
+                    ),
+                    TeacherProfileContactDetails(
+                      detailsTitle: 'Mobile Number',
+                      detailsValue: teacherProfile.last.teacherMobileNum,
+                    ),
+                    jheightBox,
+                    jTwiceThickDivider,
+                    const Text(
+                      'Login Details',
+                      style: jAlegrayaSansSubTextStyle,
+                    ),
+                    jTwiceThickDivider,
+                    jheightBox,
+                    TeacherProfileContactDetails(
+                      detailsTitle: 'Password',
+                      detailsValue: teacherProfile.last.teacherPassword,
+                    )
                   ],
                 ),
-                Row(
-                  children: [
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Register ID",
-                      detailValue: teacherProfileRegID,
-                    ),
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Subject",
-                      detailValue: teacherProfileSubject,
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    TeacherProfileBasicDetails(
-                      detailTitle: "Qualification",
-                      detailValue: teacherProfileQualification,
-                    ),
-                  ],
-                ),
-                jheightBox,
-                jTwiceThickDivider,
-                const Text(
-                  'Contact Details',
-                  style: jAlegrayaSansSubTextStyle,
-                ),
-                jTwiceThickDivider,
-                jheightBox,
-                TeacherProfileContactDetails(
-                  detailsTitle: 'E-mail',
-                  detailsValue: teacherProfileEMail,
-                ),
-                TeacherProfileContactDetails(
-                  detailsTitle: 'Mobile Number',
-                  detailsValue: teacherProfileMobileNum,
-                ),
-                jheightBox,
-                jTwiceThickDivider,
-                const Text(
-                  'Login Details',
-                  style: jAlegrayaSansSubTextStyle,
-                ),
-                jTwiceThickDivider,
-                jheightBox,
-                TeacherProfileContactDetails(
-                  detailsTitle: 'Password',
-                  detailsValue: teacherProfilePassword,
-                )
-              ],
-            ),
-          ),
-        ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -1,7 +1,5 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
-import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/teacher/contents_screens/grades/view_grades/view_individual_grades_details.dart';
 import 'package:flutter/material.dart';
 
@@ -26,57 +24,46 @@ class _ViewIndividualStudentGradesScreenState
           style: jAkayaTelivigalaAppDefaultStyle,
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
-          ValueListenableBuilder(
-            valueListenable: studentListNotifier,
-            builder: (context, List<StudentModel> studentInfo, child) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.all(jDefaultPadding),
-                      margin: const EdgeInsets.all(jDefaultPadding),
-                      decoration: BoxDecoration(
-                        color: jOtherColor,
-                        borderRadius: BorderRadius.circular(jDefaultPadding),
-                        boxShadow: const [
-                          BoxShadow(
-                            offset: Offset(10, 10),
-                            blurRadius: 10,
-                            blurStyle: BlurStyle.inner,
-                            color: jSecondaryColor,
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text('Name'),
-                              Text('Register No.'),
-                            ],
-                          ),
-                          jheightBox,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text('Admission No'),
-                              Text('Department'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              padding: const EdgeInsets.all(jDefaultPadding),
+              margin: const EdgeInsets.all(jDefaultPadding),
+              decoration: BoxDecoration(
+                color: jOtherColor,
+                borderRadius: BorderRadius.circular(jDefaultPadding),
+                boxShadow: const [
+                  BoxShadow(
+                    offset: Offset(10, 10),
+                    blurRadius: 10,
+                    blurStyle: BlurStyle.inner,
+                    color: jSecondaryColor,
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text('Name'),
+                      Text('Register No.'),
+                    ],
+                  ),
+                  jheightBox,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text('Admission No'),
+                      Text('Department'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
-          jheightBox,
-          jheightBox,
           Column(
             children: [
               const IndividualGradesProgressIndicator(

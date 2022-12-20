@@ -30,11 +30,11 @@ class TeacherHomeScreenCards extends StatelessWidget {
               )
             ]),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image.asset(
               iconImage,
-              height: 80,
+              height: 40,
               width: 80,
             ),
             Text(
@@ -42,10 +42,9 @@ class TeacherHomeScreenCards extends StatelessWidget {
               style: const TextStyle(
                   color: jWhiteTextColor,
                   fontFamily: 'AkayaTelivigala',
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            jHalfHeightBox
           ],
         ),
       ),

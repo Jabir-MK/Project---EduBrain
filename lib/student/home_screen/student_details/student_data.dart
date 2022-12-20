@@ -72,8 +72,7 @@ class StudentImageInfo extends StatelessWidget {
           ],
         ),
         child: CircleAvatar(
-          minRadius: 50,
-          maxRadius: 50,
+          radius: 40,
           backgroundColor: jWhiteTextColor,
           backgroundImage: AssetImage(studentImageAddress),
         ),
@@ -98,7 +97,7 @@ class StudentProgressInfo extends StatelessWidget {
       onTap: onPress,
       child: Container(
         width: MediaQuery.of(context).size.width / 2.5,
-        height: MediaQuery.of(context).size.height / 9,
+        height: MediaQuery.of(context).size.height / 8.5,
         decoration: BoxDecoration(
             color: jOtherColor,
             borderRadius: BorderRadius.circular(jDefaultPadding),

@@ -66,7 +66,7 @@ class _TeacherStudentManageState extends State<TeacherStudentManage> {
                     ));
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(jDefaultPadding),
+                    padding: const EdgeInsets.all(jDefaultPadding / 2),
                     margin: const EdgeInsets.all(jDefaultPadding),
                     decoration: BoxDecoration(
                       color: jOtherColor,
@@ -85,23 +85,24 @@ class _TeacherStudentManageState extends State<TeacherStudentManage> {
                         Row(
                           children: [
                             const CircleAvatar(
-                              radius: 50,
+                              radius: 30,
                               backgroundImage:
                                   AssetImage('assets/images/student.png'),
                             ),
+                            jWidthBox,
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 jWidthBox,
                                 Text(
                                   '${studentList[index].fName} '
                                   '${studentList[index].lName}',
-                                  style: jTimeTableTeacherNameTextStyle,
+                                  style: jStudentMangeNameTextStyle,
                                 ),
                                 jHalfHeightBox,
                                 Text(
                                   studentList[index].regNum,
-                                  style: jTimeTablePeriodTextStyle,
+                                  style: jStudentManageSubjectTextStyle,
                                 ),
                               ],
                             )

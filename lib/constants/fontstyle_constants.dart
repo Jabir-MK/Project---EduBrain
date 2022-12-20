@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 const jAlegrayaSansHeadTextStyle = TextStyle(
   color: jLightTextColor,
   fontFamily: 'AlegreyaSans',
-  fontSize: 20,
+  fontSize: 15,
   fontWeight: FontWeight.w100,
 );
 
 const jAlegrayaSansSubjectTextStyle = TextStyle(
   color: jPrimaryColor,
   fontFamily: 'AlegreyaSans',
-  fontSize: 18,
+  fontSize: 20,
   fontWeight: FontWeight.w100,
 );
 
 const jAlegrayaSansContentTextStyle = TextStyle(
   color: jBlackTextColor,
   fontFamily: 'AlegreyaSans',
-  fontSize: 25,
+  fontSize: 20,
   fontWeight: FontWeight.w100,
 );
 
@@ -32,14 +32,14 @@ const jAlegrayaSansTitleTextStyle = TextStyle(
 const jAlegrayaSansSubTextStyle = TextStyle(
   color: jBlackTextColor,
   fontFamily: 'AlegreyaSans',
-  fontSize: 20,
+  fontSize: 15,
   fontWeight: FontWeight.w900,
 );
 
 const jAlegrayaSansButtonTextStyle = TextStyle(
   color: jWhiteTextColor,
   fontFamily: 'AlegreyaSans',
-  fontSize: 28,
+  fontSize: 20,
   fontWeight: FontWeight.w500,
 );
 
@@ -77,7 +77,7 @@ const jKalamXLargeStyle = TextStyle(
 );
 const jAkayaTelivigalaAppDefaultStyle = TextStyle(
   fontFamily: 'AkayaTelivigala',
-  fontSize: 30,
+  fontSize: 25,
 );
 
 const jPercentLargeTextStyle = TextStyle(
@@ -111,7 +111,7 @@ const jFeePaymentDetailsTextStyle = TextStyle(
 const jTimeTableDaysTextStyle = TextStyle(
   fontFamily: 'Kalam',
   color: jWhiteTextColor,
-  fontSize: 16,
+  fontSize: 15,
   fontWeight: FontWeight.bold,
 );
 
@@ -122,10 +122,16 @@ const jTimeTableSubjectTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const jAssignmentTextStyle = TextStyle(
+  fontFamily: 'Kalam',
+  color: jBlackTextColor,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
 const jTimeTablePeriodDurationTextStyle = TextStyle(
   fontFamily: 'Kalam',
   color: jLightTextColor,
-  fontSize: 20,
+  fontSize: 15,
   fontWeight: FontWeight.bold,
 );
 const jDeleteButtonTextStyle = TextStyle(
@@ -146,17 +152,29 @@ const jTimeTableTeacherNameTextStyle = TextStyle(
   fontSize: 25,
   fontWeight: FontWeight.bold,
 );
+const jStudentMangeNameTextStyle = TextStyle(
+  fontFamily: 'Kalam',
+  color: jBlackTextColor,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+const jStudentManageSubjectTextStyle = TextStyle(
+  fontFamily: 'Kalam',
+  color: jLightTextColor,
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+);
 const jTimeTablePeriodTextStyle = TextStyle(
   fontFamily: 'Kalam',
   color: jLightTextColor,
-  fontSize: 20,
+  fontSize: 15,
   fontWeight: FontWeight.bold,
 );
 
 const jEditButtonWhiteTextStyle = TextStyle(
   fontFamily: 'Kalam',
   color: jWhiteTextColor,
-  fontSize: 25,
+  fontSize: 20,
   fontWeight: FontWeight.bold,
 );
 

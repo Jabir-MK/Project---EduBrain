@@ -3,7 +3,6 @@ import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/student/contents_screens/assignments/student_assignment_screen.dart';
 import 'package:edubrain/student/contents_screens/fee_payments/student_fee_payments_screen.dart';
 import 'package:edubrain/student/contents_screens/grades/grades_screen.dart';
-import 'package:edubrain/student/contents_screens/teachers_info/student_teachers_info_screen.dart';
 import 'package:edubrain/student/contents_screens/time_table/student_time_table_screen.dart';
 import 'package:edubrain/student/home_screen/cards_home/cards_home_screen.dart';
 import 'package:edubrain/student/home_screen/student_details/student_data.dart';
@@ -36,7 +35,7 @@ class StudentHomeScreen extends StatelessWidget {
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 2.6,
                 padding: const EdgeInsets.all(jDefaultPadding),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -134,15 +133,6 @@ class StudentHomeScreen extends StatelessWidget {
                           iconImage: "assets/images/time-table.png",
                           cardTitle: "Time Table",
                         ),
-                        //    TeachersInfo
-                        StudentHomeScreenCards(
-                          onPress: () {
-                            Navigator.pushNamed(
-                                context, InStudentTeachersInfoScreen.routeName);
-                          },
-                          iconImage: "assets/images/teacher-info.png",
-                          cardTitle: "Teachers",
-                        )
                       ],
                     ),
                   ],

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/student/home_screen/student_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +30,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
             Container(
               color: const Color(0xFF345FB4),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2.8,
+              height: MediaQuery.of(context).size.height / 2.5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -134,29 +132,17 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
         fontSize: 17,
       ),
       decoration: const InputDecoration(
-        labelText: "Mobile Number/E-mail",
+        labelText: "E-mail",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         isDense: true,
       ),
       validator: (value) {
         RegExp regExpEmail = RegExp(emailPattern);
-        RegExp regExpMobile = RegExp(mobilePattern);
         if (value == null || value.isEmpty) {
-          return "Please Enter Your Number/E-mail";
+          return "Please Enter Your E-mail";
         }
         if (!regExpEmail.hasMatch(value)) {
           return 'Please enter a valid Email';
-        } else if (!regExpMobile.hasMatch(value)) {
-          return 'Please enter a valid Mobile Number';
-        }
-
-        // ignore: dead_code
-        if (regExpMobile.hasMatch(value)) {
-          if (value.length != 10) {
-            return 'Mobile not valid';
-          } else {
-            log('MOBILE NUMBER');
-          }
         }
         return null;
       },

@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/teacher/login_screen/teacher_login_screen.dart';
@@ -10,6 +8,7 @@ void signOutTeacher(BuildContext context) async {
   final sharedpref = await SharedPreferences.getInstance();
   await sharedpref.clear();
 
+  // ignore: use_build_context_synchronously
   Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const TeacherLoginScreen()),
       (route) => false);

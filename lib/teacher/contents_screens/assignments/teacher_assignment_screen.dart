@@ -59,7 +59,7 @@ class _TeacherAssignmentsScreenState extends State<TeacherAssignmentsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(jDefaultPadding / 2),
                   child: Container(
-                    padding: const EdgeInsets.all(jDefaultPadding),
+                    padding: const EdgeInsets.all(jDefaultPadding / 1.5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(jDefaultPadding),
                       color: jOtherColor,
@@ -89,7 +89,7 @@ class _TeacherAssignmentsScreenState extends State<TeacherAssignmentsScreen> {
                             ),
                           ),
                         ),
-                        jHalfHeightBox,
+                        jDefaultDivider,
                         Text(
                           assignmentList[index].topicName,
                           style: jAlegrayaSansContentTextStyle,
@@ -104,9 +104,7 @@ class _TeacherAssignmentsScreenState extends State<TeacherAssignmentsScreen> {
                           detailsTitle: 'Last Date',
                           detailsStatusValue: assignmentList[index].dueDate,
                         ),
-                        jHalfHeightBox,
-                        jHalfHeightBox,
-                        // const TeacherAssignmentSubmitButton(),
+                        jDefaultDivider,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -127,7 +125,7 @@ class _TeacherAssignmentsScreenState extends State<TeacherAssignmentsScreen> {
                               },
                               icon: const Icon(
                                 Icons.edit,
-                                size: 30,
+                                size: 15,
                               ),
                               label: const Text('Edit'),
                               style: ButtonStyle(
@@ -144,7 +142,7 @@ class _TeacherAssignmentsScreenState extends State<TeacherAssignmentsScreen> {
                               },
                               icon: const Icon(
                                 Icons.delete,
-                                size: 30,
+                                size: 15,
                               ),
                               label: const Text('Delete'),
                               style: ButtonStyle(

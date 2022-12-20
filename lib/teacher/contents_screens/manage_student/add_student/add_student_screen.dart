@@ -404,7 +404,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
       place: place,
       postOffice: postOffice,
     );
-
     addStudent(student);
     Navigator.of(context).pop();
   }

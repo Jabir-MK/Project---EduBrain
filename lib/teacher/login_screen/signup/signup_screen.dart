@@ -26,191 +26,185 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Container(
-            color: jPrimaryColor,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 2.8,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/images/teacher.png",
-                  height: 150,
-                  width: 150,
-                ),
-                jHalfHeightBox,
-                const Text(
-                  "Hi Teacher",
-                  style: TextStyle(
-                    color: jWhiteTextColor,
-                    fontFamily: 'Kalam',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Container(
+              color: jPrimaryColor,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 3.5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/teacher.png",
+                    height: 100,
+                    width: 150,
                   ),
-                ),
-                const Text(
-                  "Create an Account.",
-                  style: TextStyle(
-                    color: jWhiteTextColor,
-                    fontFamily: 'AkayaTelivigala',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                  jHalfHeightBox,
+                  const Text(
+                    "Hi Teacher",
+                    style: TextStyle(
+                      color: jWhiteTextColor,
+                      fontFamily: 'Kalam',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                )
-              ],
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(jDefaultPadding * 3),
-                topRight: Radius.circular(jDefaultPadding * 3),
+                  const Text(
+                    "Create an Account.",
+                    style: TextStyle(
+                      color: jWhiteTextColor,
+                      fontFamily: 'AkayaTelivigala',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
               ),
-              color: jOtherColor,
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(jDefaultPadding),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    jheightBox,
-                    jHalfHeightBox,
-                    TextFormField(
-                      controller: _signUpUserNameController,
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.name,
-                      style: const TextStyle(
-                        color: jBlackTextColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17,
-                      ),
-                      decoration: const InputDecoration(
-                        labelText: "Username",
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please Enter Username";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    jheightBox,
-                    TextFormField(
-                      controller: _signUpEmailController,
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.emailAddress,
-                      style: const TextStyle(
-                        color: jBlackTextColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17,
-                      ),
-                      decoration: const InputDecoration(
-                        labelText: "Mobile Number/Email",
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                      ),
-                      validator: (value) {
-                        RegExp regExp = RegExp(emailPattern);
-                        if (value == null || value.isEmpty) {
-                          return "Please Enter Your Number/E-mail";
-                        } else if (!regExp.hasMatch(value)) {
-                          return "Please enter valid details";
-                        }
-                        return null;
-                      },
-                    ),
-                    jheightBox,
-                    TextFormField(
-                      controller: _signUpPasswordController,
-                      obscureText: true,
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.name,
-                      style: const TextStyle(
-                        color: jBlackTextColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17,
-                      ),
-                      decoration: const InputDecoration(
-                        labelText: "Password",
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Password not filled";
-                        } else if (value.length < 8) {
-                          return 'Password must be atleast 8 characters';
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    jheightBox,
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          signUpteacherOnTap();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => TeacherHomeScreen(
-                                  regID: '',
-                                  subjectName: '',
-                                  signUpTeacherName:
-                                      _signUpUserNameController.text,
-                                  signUpEMail: _signUpEmailController.text,
-                                  signUpPassWord:
-                                      _signUpPasswordController.text,
-                                ),
-                              ));
-                        } else {}
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(jPrimaryColor)),
-                      child: const Text('Create Account'),
-                    ),
-                    jheightBox,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(jDefaultPadding * 3),
+                    topRight: Radius.circular(jDefaultPadding * 3),
+                  ),
+                  color: jOtherColor,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(jDefaultPadding),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        const Text(
-                          'Already a member ?',
-                          style: TextStyle(
-                              color: jPrimaryColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 17),
+                        TextFormField(
+                          controller: _signUpUserNameController,
+                          textAlign: TextAlign.start,
+                          keyboardType: TextInputType.name,
+                          style: const TextStyle(
+                            color: jBlackTextColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                          decoration: const InputDecoration(
+                            labelText: "Username",
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            isDense: true,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please Enter Username";
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
+                        jheightBox,
+                        TextFormField(
+                          controller: _signUpEmailController,
+                          textAlign: TextAlign.start,
+                          keyboardType: TextInputType.emailAddress,
+                          style: const TextStyle(
+                            color: jBlackTextColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17,
+                          ),
+                          decoration: const InputDecoration(
+                            labelText: "Mobile Number/Email",
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            isDense: true,
+                          ),
+                          validator: (value) {
+                            RegExp regExp = RegExp(emailPattern);
+                            if (value == null || value.isEmpty) {
+                              return "Please Enter Your Number/E-mail";
+                            } else if (!regExp.hasMatch(value)) {
+                              return "Please enter valid details";
+                            }
+                            return null;
+                          },
+                        ),
+                        jheightBox,
+                        TextFormField(
+                          controller: _signUpPasswordController,
+                          obscureText: true,
+                          textAlign: TextAlign.start,
+                          keyboardType: TextInputType.name,
+                          style: const TextStyle(
+                            color: jBlackTextColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17,
+                          ),
+                          decoration: const InputDecoration(
+                            labelText: "Password",
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            isDense: true,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Password not filled";
+                            } else if (value.length < 8) {
+                              return 'Password must be atleast 8 characters';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        jheightBox,
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, TeacherLoginScreen.routeName);
+                            if (_formKey.currentState!.validate()) {
+                              signUpteacherOnTap();
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TeacherHomeScreen(),
+                                  ));
+                            } else {}
                           },
                           style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(jPrimaryColor)),
-                          child: const Text(
-                            'Login',
-                          ),
+                          child: const Text('Create Account'),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Already a member ?',
+                              style: TextStyle(
+                                  color: jPrimaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, TeacherLoginScreen.routeName);
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(jPrimaryColor)),
+                              child: const Text(
+                                'Login',
+                              ),
+                            )
+                          ],
                         )
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -236,6 +230,11 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
         teacherSubject: '',
       );
       createTeacherProfile(teacher);
+      log(teacher.teacherEMail);
+      log(teacher.teacherName);
+      log(teacher.teacherPassword);
+      log(teacher.teacherMobileNum);
+
       // -------------------------------
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

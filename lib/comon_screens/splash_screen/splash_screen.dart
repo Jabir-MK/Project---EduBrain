@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
+import 'package:edubrain/constants/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -27,22 +27,30 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        Navigator.pushNamedAndRemoveUntil(
-            context, LoginDirect.routeName, (route) => false);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginDirect(),
+          ),
+        );
       },
     );
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(
                 "assets/images/app-logo.png",
-                height: 450,
+                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width,
               ),
               TextLiquidFill(
+                boxHeight: 150,
                 text: "EduBrain",
                 waveColor: jWhiteTextColor,
                 waveDuration: const Duration(seconds: 3),
@@ -50,9 +58,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 boxBackgroundColor: jPrimaryColor,
                 textStyle: GoogleFonts.akayaTelivigala(
                   color: jPrimaryColor,
-                  fontSize: 80,
+                  fontSize: 75,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 12,
+                  // letterSpacing: 12,
                 ),
               ),
             ],

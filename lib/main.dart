@@ -1,4 +1,5 @@
 import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/constants/routes.dart';
 import 'package:edubrain/comon_screens/splash_screen/splash_screen.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           primaryColor: jPrimaryColor,
           appBarTheme: const AppBarTheme(
             backgroundColor: jAppBarBackgroundColor,
+            titleTextStyle: jAkayaTelivigalaAppDefaultStyle,
             centerTitle: true,
             elevation: 15,
           ),

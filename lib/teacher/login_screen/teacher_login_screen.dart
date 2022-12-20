@@ -39,7 +39,6 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                     height: 150,
                     width: 150,
                   ),
-                  jHalfHeightBox,
                   const Text(
                     "Hi Teacher",
                     style: TextStyle(
@@ -104,12 +103,7 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const TeacherHomeScreen(
-                                                    subjectName: '',
-                                                    regID: '',
-                                                    signUpTeacherName: '',
-                                                    signUpEMail: '',
-                                                    signUpPassWord: ''),
+                                                const TeacherHomeScreen(),
                                           ));
                                     }
                                   },
@@ -118,8 +112,7 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                             ],
                           ),
                           jheightBox,
-                          jheightBox,
-                          Row(
+                          Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
@@ -138,7 +131,7 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                                       MaterialStateProperty.all(jPrimaryColor),
                                 ),
                                 onPressed: () {
-                                  Navigator.pushNamed(
+                                  Navigator.pushReplacementNamed(
                                       context, TeacherSignUpScreen.routeName);
                                 },
                                 child: const Text('Create Account'),
