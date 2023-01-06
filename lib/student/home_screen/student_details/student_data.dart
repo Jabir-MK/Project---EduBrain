@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:edubrain/constants/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -6,27 +7,19 @@ class StudentNameInfo extends StatelessWidget {
   final String studentName;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text(
-          "Hi , ",
-          style: TextStyle(
-            fontFamily: 'Satisfy',
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: jOtherColor,
-          ),
-        ),
-        Text(
-          studentName,
-          style: const TextStyle(
-            fontFamily: 'Satisfy',
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: jWhiteTextColor,
-          ),
-        )
-      ],
+    return DefaultTextStyle(
+      style: const TextStyle(
+        fontFamily: 'Satisfy',
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+        color: jWhiteTextColor,
+      ),
+      child: AnimatedTextKit(
+        animatedTexts: [
+          WavyAnimatedText("Hi , $studentName"),
+        ],
+        totalRepeatCount: 3,
+      ),
     );
   }
 }
@@ -39,15 +32,25 @@ class StudentClassRegisterInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      studentRegisterInfos,
-      style: const TextStyle(
-        color: jOtherColor,
-        fontFamily: 'ShadowsIntoLight',
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-      ),
+    return AnimatedTextKit(
+      animatedTexts: [
+        TypewriterAnimatedText(
+          studentRegisterInfos,
+          speed: const Duration(milliseconds: 150),
+          textStyle: const TextStyle(
+            color: jOtherColor,
+            fontFamily: 'ShadowsIntoLight',
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+      totalRepeatCount: 3,
     );
+    //  Text(
+    //   studentRegisterInfos,
+    // style:
+    // );
   }
 }
 

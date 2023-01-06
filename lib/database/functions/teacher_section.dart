@@ -38,13 +38,19 @@ Future<void> getTeacherProfile() async {
 Future<void> editTeacherProfile(int id, TeacherModel value) async {
   log('Checking at the databaseFunction for values are coming or not');
   log(value.teacherMobileNum, name: 'mobilenum in Edit function');
-  log(value.teacherQualification, name: 'Qual in Edit function');
-  log(value.teacherName, name: 'Name in Edit function');
   final teacherDatabase =
       await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
   teacherDatabase.putAt(id, value);
   teacherProfileList.addAll(teacherDatabase.values);
   currentLoggedTeacher.clear();
-  currentLoggedTeacher.addAll(teacherDatabase.values);
+  log(currentLoggedTeacher.toList().toString());
+  // currentLoggedTeacher.add(value);
+  // log('Checking after adding to database and the list');
+  // log(currentLoggedTeacher[0].teacherMobileNum,
+  //     name: 'mobile after adding by Edit function');
+  // log(currentLoggedTeacher[0].teacherQualification,
+  //     name: 'qaul after adding by Edit function');
+  // log(currentLoggedTeacher[0].teacherName,
+  //     name: 'Name after adding by Edit function');
   getTeacherProfile();
 }

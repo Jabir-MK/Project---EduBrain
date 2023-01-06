@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:edubrain/constants/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -6,18 +7,19 @@ class TeacherNameInfo extends StatelessWidget {
   final String teacherName;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          "Hi , $teacherName",
-          style: const TextStyle(
-            fontFamily: 'Satisfy',
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: jOtherColor,
-          ),
-        ),
-      ],
+    return DefaultTextStyle(
+      style: const TextStyle(
+        fontFamily: 'Satisfy',
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+        color: jOtherColor,
+      ),
+      child: AnimatedTextKit(
+        animatedTexts: [
+          WavyAnimatedText("Hi , $teacherName"),
+        ],
+        totalRepeatCount: 3,
+      ),
     );
   }
 }

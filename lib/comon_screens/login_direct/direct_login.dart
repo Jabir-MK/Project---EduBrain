@@ -15,7 +15,7 @@ class LoginDirect extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(jDefaultPadding),
           child: SingleChildScrollView(
-            child: Column(
+            child: ListView(
               children: [
                 const Text(
                   "Who's logging in ?",

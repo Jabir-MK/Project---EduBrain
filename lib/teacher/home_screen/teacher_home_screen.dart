@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/teacher/contents_screens/assignments/teacher_assignment_screen.dart';
@@ -22,6 +24,8 @@ class TeacherHomeScreen extends StatefulWidget {
 class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
   @override
   void initState() {
+    log(currentLoggedTeacher.isEmpty.toString());
+
     super.initState();
   }
 

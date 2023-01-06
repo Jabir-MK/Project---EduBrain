@@ -483,7 +483,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
       log(teacherEdit.teacherMobileNum, name: 'Mobile');
 
       log('Adding the editted values to database');
-      editTeacherProfile(widget.index, teacherEdit);
+      editTeacherProfile(teacherEdit.id, teacherEdit);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: jSecondaryColor,

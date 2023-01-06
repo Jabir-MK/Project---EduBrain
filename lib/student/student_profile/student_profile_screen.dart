@@ -1,5 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/student/login_screen/student_login_screen.dart';
 import 'package:edubrain/student/student_profile/student_profile_screen_details_model.dart';
 import 'package:edubrain/student/student_profile/student_signout.dart';
 import 'package:flutter/material.dart';
@@ -38,15 +39,11 @@ class StudentProfileScreen extends StatelessWidget {
             color: jOtherColor,
             child: Column(
               children: [
-                const StudentProfileBasicIDInfo(
-                  headDept: '',
-                  // studentLoginList[0].dept,
-                  headRegID: '',
-                  //  studentLoginList[0].regNum,
-                  headFirstName: '',
-                  // studentLoginList[0].fName,
-                  headLastName: '',
-                  //  studentLoginList[0].lName,
+                StudentProfileBasicIDInfo(
+                  headDept: studentLoginList[0].dept,
+                  headRegID: studentLoginList[0].regNum,
+                  headFirstName: studentLoginList[0].fName,
+                  headLastName: studentLoginList[0].lName,
                 ),
                 jheightBox,
                 jTwiceThickDivider,
@@ -57,58 +54,50 @@ class StudentProfileScreen extends StatelessWidget {
                 jTwiceThickDivider,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
+                  children: [
                     StudentProfileBasicDetails(
                       detailTitle: "First Name",
-                      detailValue: '',
-                      // studentLoginList[0].fName,
+                      detailValue: studentLoginList[0].fName,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: "Last Name",
-                      detailValue: '',
-                      // studentLoginList[0].lName,
+                      detailValue: studentLoginList[0].lName,
                     ),
                   ],
                 ),
                 Row(
-                  children: const [
+                  children: [
                     StudentProfileBasicDetails(
                       detailTitle: "Register Number",
-                      detailValue: '',
-                      // studentLoginList[0].regNum,
+                      detailValue: studentLoginList[0].regNum,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: "Admission Number",
-                      detailValue: '',
-                      // studentLoginList[0].admNum,
+                      detailValue: studentLoginList[0].admNum,
                     ),
                   ],
                 ),
                 Row(
-                  children: const [
+                  children: [
                     StudentProfileBasicDetails(
                       detailTitle: "Date Of Birth",
-                      detailValue: '',
-                      //  studentLoginList[0].dOBirth,
+                      detailValue: studentLoginList[0].dOBirth,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: "Department",
-                      detailValue: '',
-                      // studentLoginList[0].dept,
+                      detailValue: studentLoginList[0].dept,
                     ),
                   ],
                 ),
                 Row(
-                  children: const [
+                  children: [
                     StudentProfileBasicDetails(
                       detailTitle: 'Nationality',
-                      detailValue: '',
-                      //  studentLoginList[0].nationality,
+                      detailValue: studentLoginList[0].nationality,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: 'Gender',
-                      detailValue: '',
-                      //  studentLoginList[0].gender,
+                      detailValue: studentLoginList[0].gender,
                     )
                   ],
                 ),
@@ -120,20 +109,17 @@ class StudentProfileScreen extends StatelessWidget {
                 ),
                 jTwiceThickDivider,
                 jheightBox,
-                const StudentProfileAddressDetails(
+                StudentProfileAddressDetails(
                   detailsHead: 'House Name',
-                  detailsValue: '',
-                  // studentLoginList[0].houseName,
+                  detailsValue: studentLoginList[0].houseName,
                 ),
-                const StudentProfileAddressDetails(
+                StudentProfileAddressDetails(
                   detailsHead: 'Post Office',
-                  detailsValue: '',
-                  //  studentLoginList[0].postOffice,
+                  detailsValue: studentLoginList[0].postOffice,
                 ),
-                const StudentProfileAddressDetails(
+                StudentProfileAddressDetails(
                   detailsHead: 'Place',
-                  detailsValue: '',
-                  //  studentLoginList[0].place,
+                  detailsValue: studentLoginList[0].place,
                 ),
                 jheightBox,
                 jTwiceThickDivider,
@@ -143,20 +129,17 @@ class StudentProfileScreen extends StatelessWidget {
                 ),
                 jTwiceThickDivider,
                 jheightBox,
-                const StudentProfileContactDetails(
+                StudentProfileContactDetails(
                   detailsTitle: 'E-mail',
-                  detailsValue: '',
-                  // studentLoginList[0].eMail,
+                  detailsValue: studentLoginList[0].eMail,
                 ),
-                const StudentProfileContactDetails(
+                StudentProfileContactDetails(
                   detailsTitle: "Name of Parent/Guardian",
-                  detailsValue: '',
-                  //  studentLoginList[0].guardianName,
+                  detailsValue: studentLoginList[0].guardianName,
                 ),
-                const StudentProfileContactDetails(
+                StudentProfileContactDetails(
                   detailsTitle: 'Mobile Number',
-                  detailsValue: '',
-                  //  studentLoginList[0].mobNum,
+                  detailsValue: studentLoginList[0].mobNum,
                 ),
                 jheightBox,
                 jTwiceThickDivider,
@@ -166,10 +149,9 @@ class StudentProfileScreen extends StatelessWidget {
                 ),
                 jTwiceThickDivider,
                 jheightBox,
-                const StudentProfileContactDetails(
+                StudentProfileContactDetails(
                   detailsTitle: 'Password',
-                  detailsValue: '',
-                  //  studentLoginList[0].password,
+                  detailsValue: studentLoginList[0].password,
                 )
               ],
             ),
