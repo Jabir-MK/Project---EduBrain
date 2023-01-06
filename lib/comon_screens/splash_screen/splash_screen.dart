@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
 import 'package:edubrain/constants/constant.dart';
@@ -16,11 +14,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // @override
-  // void initState() {
-  //   checkLogin();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,19 +66,31 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+// ------------------- MY  STYLE OF CHECKING PREVIOUS LOGIN --------------------
 
-  // Future<void> goToLoginPage() async {
+  // Future<void> goToLoginDirectPage() async {
   //   await Future.delayed(const Duration(seconds: 2));
-  //   // Navigator.of(context).pushReplacementNamed(StudentLoginScreen.routeName);
+  //   // ignore: use_build_context_synchronously
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(
+  //       builder: (context) => const LoginDirect(),
+  //     ),
+  //   );
   // }
 
   // Future<void> checkLogin() async {
   //   final sharedPrefence = await SharedPreferences.getInstance();
-  //   final userLogin = sharedPrefence.getBool(saveKeyName);
+  //   final userLogin = sharedPrefence.getBool(saveKeyNameTeacher);
+  //   // log(userLogin.toString());
   //   if (userLogin == null || userLogin == false) {
-  //     goToLoginPage();
+  //     goToLoginDirectPage();
   //   } else {
-  //     // Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+  //     // Navigate to previous section logged in
+  //     // ignore: use_build_context_synchronously
+  //     // Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //     //   builder: (context) => const TeacherHomeScreen(),
+  //     // ));
+  //     log('Went to HomeScreen');
   //   }
   // }
 }

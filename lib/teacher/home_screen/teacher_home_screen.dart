@@ -1,19 +1,18 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
 import 'package:edubrain/teacher/contents_screens/assignments/teacher_assignment_screen.dart';
 import 'package:edubrain/teacher/contents_screens/grades/grades_studentlist_screen.dart';
 import 'package:edubrain/teacher/contents_screens/manage_student/student_manage.dart';
 import 'package:edubrain/teacher/contents_screens/time_table/teacher_time_table_screen.dart';
 import 'package:edubrain/teacher/home_screen/cards_home/teachers_cards_home.dart';
 import 'package:edubrain/teacher/home_screen/teacher_details/teacher_data.dart';
+import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_profile_screen.dart';
 import 'package:flutter/material.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherHomeScreen extends StatefulWidget {
-  const TeacherHomeScreen({
-    super.key,
-  });
+  const TeacherHomeScreen({super.key});
   static String routeName = 'TeacherHomeScreen';
 
   @override
@@ -24,12 +23,10 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
   @override
   void initState() {
     super.initState();
-    getTeacherProfile();
   }
 
   @override
   Widget build(BuildContext context) {
-    getTeacherProfile();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -49,58 +46,57 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return const TeacherProfileScreen(
-                        teacherFullName: '',
-                        teacherGender: '',
-                        teacherRegID: '',
-                        teacherSubject: '',
-                        teacherQualification: '',
-                        teacherEMail: '',
-                        teacherMobileNum: '',
-                        teacherPassword: '',
+                      return TeacherProfileScreen(
+                        teacherFullName: currentLoggedTeacher[0].teacherName,
+                        teacherRegID: currentLoggedTeacher[0].teacherRegID,
+                        teacherGender: currentLoggedTeacher[0].teacherGender,
+                        teacherSubject: currentLoggedTeacher[0].teacherSubject,
+                        teacherQualification:
+                            currentLoggedTeacher[0].teacherQualification,
+                        teacherEMail: currentLoggedTeacher[0].teacherEMail,
+                        teacherMobileNum:
+                            currentLoggedTeacher[0].teacherMobileNum,
+                        teacherPassword:
+                            currentLoggedTeacher[0].teacherPassword,
                       );
                     },
                   ),
                 );
               },
-              child: ValueListenableBuilder(
-                valueListenable: teacherModelNotifier,
-                builder: (context, teacherProfile, child) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 3,
-                    padding: const EdgeInsets.all(jDefaultPadding),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 3,
+                padding: const EdgeInsets.all(jDefaultPadding),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                TeacherNameInfo(
-                                  teacherName: teacherProfile.last.teacherName,
-                                ),
-                                jHalfHeightBox,
-                                const TeacherRegisterInfo(
-                                  teacherSubject: '',
-                                  teacherID: '',
-                                ),
-                                jHalfHeightBox,
-                              ],
+                            TeacherNameInfo(
+                              teacherName: currentLoggedTeacher[0].teacherName,
                             ),
                             jHalfHeightBox,
-                            TeacherImageInfo(
-                                onPress: () {},
-                                studentImageAddress:
-                                    "assets/images/teacher.png")
+                            TeacherRegisterInfo(
+                              teacherSubject:
+                                  currentLoggedTeacher[0].teacherSubject,
+                              teacherID: currentLoggedTeacher[0].teacherRegID,
+                            ),
+                            jHalfHeightBox,
                           ],
                         ),
+                        jHalfHeightBox,
+                        TeacherImageInfo(
+                          onPress: () {},
+                          studentImageAddress: "assets/images/teacher.png",
+                        )
                       ],
                     ),
-                  );
-                },
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -169,4 +165,12 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
       ),
     );
   }
+
+  // Future<void> getSavedData(BuildContext context) async {
+  //   final sharedprefs = await SharedPreferences.getInstance();
+  //   //getter method - get the saved name by key
+  //   savedName = sharedprefs.getString('saved_name');
+  //   // log('newcheck $savedName');
+  //   setState(() {});
+  // }
 }

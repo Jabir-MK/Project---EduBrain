@@ -17,15 +17,16 @@ class TeacherModelAdapter extends TypeAdapter<TeacherModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TeacherModel(
-      teacherRegID: fields[1] as String,
-      teacherSubject: fields[2] as String,
-      teacherQualification: fields[3] as String,
-      teacherGender: fields[4] as String,
-      teacherMobileNum: fields[6] as String,
-      teacherName: fields[8] as String,
-      teacherEMail: fields[5] as String,
-      teacherPassword: fields[7] as String,
-    )..id = fields[0] as int?;
+      fields[0] as int,
+      teacherRegID: fields[2] as String,
+      teacherSubject: fields[3] as String,
+      teacherQualification: fields[4] as String,
+      teacherGender: fields[5] as String,
+      teacherMobileNum: fields[7] as String,
+      teacherName: fields[1] as String,
+      teacherEMail: fields[6] as String,
+      teacherPassword: fields[8] as String,
+    );
   }
 
   @override
@@ -34,21 +35,21 @@ class TeacherModelAdapter extends TypeAdapter<TeacherModel> {
       ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
-      ..writeByte(8)
-      ..write(obj.teacherName)
       ..writeByte(1)
-      ..write(obj.teacherRegID)
+      ..write(obj.teacherName)
       ..writeByte(2)
-      ..write(obj.teacherSubject)
+      ..write(obj.teacherRegID)
       ..writeByte(3)
-      ..write(obj.teacherQualification)
+      ..write(obj.teacherSubject)
       ..writeByte(4)
-      ..write(obj.teacherGender)
+      ..write(obj.teacherQualification)
       ..writeByte(5)
-      ..write(obj.teacherEMail)
+      ..write(obj.teacherGender)
       ..writeByte(6)
-      ..write(obj.teacherMobileNum)
+      ..write(obj.teacherEMail)
       ..writeByte(7)
+      ..write(obj.teacherMobileNum)
+      ..writeByte(8)
       ..write(obj.teacherPassword);
   }
 

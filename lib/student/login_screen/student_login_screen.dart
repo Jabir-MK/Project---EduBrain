@@ -1,6 +1,14 @@
+import 'dart:developer';
+
 import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/database/functions/student_section.dart';
+import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/student/home_screen/student_home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+
+List<StudentModel> studentLoginList = [];
 
 class StudentLoginScreen extends StatefulWidget {
   const StudentLoginScreen({super.key});
@@ -19,6 +27,11 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
       TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    studentLoginList = [];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +113,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                                   ),
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
-                                      Navigator.pushReplacementNamed(
-                                          context, StudentHomeScreen.routeName);
+                                      checkLoginStudent();
                                     }
                                   },
                                   icon: const Icon(Icons.check),
@@ -176,23 +188,30 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
       },
     );
   }
+
+  Future<void> checkLoginStudent() async {
+    final userStudentEmail = _studentLoginDataController.text.trim();
+    final userStudentPass = _studentLoginPassController.text.trim();
+    Box<StudentModel> studentLoginCheck =
+        await Hive.openBox<StudentModel>(studentModelDatabaseName);
+    studentLoginCheck.values
+        .toList()
+        .where((element) =>
+            element.eMail == userStudentEmail &&
+            element.password == userStudentPass)
+        .forEach(
+      (element) {
+        log('Checking current user Email , Password and Name');
+        log(element.eMail);
+        log(element.password);
+        log(element.fName);
+        studentLoginList.add(element);
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const StudentHomeScreen(),
+          ),
+        );
+      },
+    );
+  }
 }
-// import 'package:flutter/material.dart';
-
-// class StudentScreen extends StatefulWidget {
-//   const StudentScreen({super.key});
-
-//   static String routeName = 'TDRute';
-
-//   @override
-//   State<StudentScreen> createState() => _StudentScreenState();
-// }
-
-// class _StudentScreenState extends State<StudentScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Scaffold(
-//       body: SafeArea(child: Text('hellooooo')),
-//     );
-//   }
-// }

@@ -1,6 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/functions/assignment_section.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
 import 'package:edubrain/teacher/contents_screens/assignments/assignment_data/teacher_assignment_details.dart';
 import 'package:edubrain/teacher/contents_screens/assignments/new_assignment/new_assignment.dart';

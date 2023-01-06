@@ -1,6 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_profile_screen_details_model.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_signout.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,6 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
       TextEditingController(text: widget.teacherMobileNum).text;
   late String teacherProfilePassword =
       TextEditingController(text: widget.teacherPassword).text;
-
   @override
   void initState() {
     super.initState();
@@ -77,16 +76,17 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
       body: ValueListenableBuilder(
         valueListenable: teacherModelNotifier,
         builder: (context, teacherProfile, child) {
-          return ListView(
-            children: [
-              Container(
+          return ListView.builder(
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              return Container(
                 color: jOtherColor,
                 child: Column(
                   children: [
                     TeacherProfileBasicIDInfo(
-                      detailNameValue: teacherProfile.last.teacherName,
-                      detailRegIDValue: teacherProfile.last.teacherRegID,
-                      detailSubjectValue: teacherProfile.last.teacherSubject,
+                      detailNameValue: teacherProfileName,
+                      detailRegIDValue: teacherProfileRegID,
+                      detailSubjectValue: teacherProfileSubject,
                     ),
                     jheightBox,
                     jTwiceThickDivider,
@@ -100,11 +100,11 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                       children: [
                         TeacherProfileBasicDetails(
                           detailTitle: "Full Name",
-                          detailValue: teacherProfile.last.teacherName,
+                          detailValue: teacherProfileName,
                         ),
                         TeacherProfileBasicDetails(
                           detailTitle: "Gender",
-                          detailValue: teacherProfile.last.teacherGender,
+                          detailValue: teacherProfileGender,
                         ),
                       ],
                     ),
@@ -112,11 +112,11 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                       children: [
                         TeacherProfileBasicDetails(
                           detailTitle: "Register ID",
-                          detailValue: teacherProfile.last.teacherRegID,
+                          detailValue: teacherProfileRegID,
                         ),
                         TeacherProfileBasicDetails(
                           detailTitle: "Subject",
-                          detailValue: teacherProfile.last.teacherSubject,
+                          detailValue: teacherProfileSubject,
                         ),
                       ],
                     ),
@@ -124,7 +124,7 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                       children: [
                         TeacherProfileBasicDetails(
                           detailTitle: "Qualification",
-                          detailValue: teacherProfile.last.teacherQualification,
+                          detailValue: teacherProfileQualification,
                         ),
                       ],
                     ),
@@ -138,11 +138,11 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                     jheightBox,
                     TeacherProfileContactDetails(
                       detailsTitle: 'E-mail',
-                      detailsValue: teacherProfile.last.teacherEMail,
+                      detailsValue: teacherProfileEMail,
                     ),
                     TeacherProfileContactDetails(
                       detailsTitle: 'Mobile Number',
-                      detailsValue: teacherProfile.last.teacherMobileNum,
+                      detailsValue: teacherProfileMobileNum,
                     ),
                     jheightBox,
                     jTwiceThickDivider,
@@ -154,12 +154,12 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                     jheightBox,
                     TeacherProfileContactDetails(
                       detailsTitle: 'Password',
-                      detailsValue: teacherProfile.last.teacherPassword,
+                      detailsValue: teacherProfilePassword,
                     )
                   ],
                 ),
-              ),
-            ],
+              );
+            },
           );
         },
       ),

@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
-import 'package:edubrain/teacher/home_screen/teacher_home_screen.dart';
-import 'package:edubrain/teacher/login_screen/teacher_login_screen.dart';
+import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
+import 'package:edubrain/teacher/login_screen/signup/signup_success.dart';
 import 'package:flutter/material.dart';
 
 class TeacherSignUpScreen extends StatefulWidget {
@@ -23,6 +23,11 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
   final TextEditingController _signUpPasswordController =
       TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,141 +69,133 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(jDefaultPadding * 3),
-                    topRight: Radius.circular(jDefaultPadding * 3),
-                  ),
-                  color: jOtherColor,
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(jDefaultPadding * 3),
+                  topRight: Radius.circular(jDefaultPadding * 3),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(jDefaultPadding),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        TextFormField(
-                          controller: _signUpUserNameController,
-                          textAlign: TextAlign.start,
-                          keyboardType: TextInputType.name,
-                          style: const TextStyle(
-                            color: jBlackTextColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
-                          decoration: const InputDecoration(
-                            labelText: "Username",
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            isDense: true,
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please Enter Username";
-                            } else {
-                              return null;
-                            }
-                          },
+                color: jOtherColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(jDefaultPadding),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      TextFormField(
+                        controller: _signUpUserNameController,
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.name,
+                        style: const TextStyle(
+                          color: jBlackTextColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
                         ),
-                        jheightBox,
-                        TextFormField(
-                          controller: _signUpEmailController,
-                          textAlign: TextAlign.start,
-                          keyboardType: TextInputType.emailAddress,
-                          style: const TextStyle(
-                            color: jBlackTextColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17,
-                          ),
-                          decoration: const InputDecoration(
-                            labelText: "Mobile Number/Email",
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            isDense: true,
-                          ),
-                          validator: (value) {
-                            RegExp regExp = RegExp(emailPattern);
-                            if (value == null || value.isEmpty) {
-                              return "Please Enter Your Number/E-mail";
-                            } else if (!regExp.hasMatch(value)) {
-                              return "Please enter valid details";
-                            }
+                        decoration: const InputDecoration(
+                          labelText: "Username",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please Enter Username";
+                          } else {
                             return null;
-                          },
+                          }
+                        },
+                      ),
+                      jheightBox,
+                      TextFormField(
+                        controller: _signUpEmailController,
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.emailAddress,
+                        style: const TextStyle(
+                          color: jBlackTextColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17,
                         ),
-                        jheightBox,
-                        TextFormField(
-                          controller: _signUpPasswordController,
-                          obscureText: true,
-                          textAlign: TextAlign.start,
-                          keyboardType: TextInputType.name,
-                          style: const TextStyle(
-                            color: jBlackTextColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17,
+                        decoration: const InputDecoration(
+                          labelText: "Email",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                        ),
+                        validator: (value) {
+                          RegExp regExp = RegExp(emailPattern);
+                          if (value == null || value.isEmpty) {
+                            return "Please Enter Your E-mail";
+                          } else if (!regExp.hasMatch(value)) {
+                            return "Please enter valid details";
+                          }
+                          return null;
+                        },
+                      ),
+                      jheightBox,
+                      TextFormField(
+                        controller: _signUpPasswordController,
+                        obscureText: true,
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.name,
+                        style: const TextStyle(
+                          color: jBlackTextColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17,
+                        ),
+                        decoration: const InputDecoration(
+                          labelText: "Password",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Password not filled";
+                          } else if (value.length < 8) {
+                            return 'Password must be atleast 8 characters';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      jheightBox,
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            signUpTeacherOnTap();
+                          } else {}
+                        },
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(jPrimaryColor)),
+                        child: const Text('Create Account'),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Already a member ?',
+                            style: TextStyle(
+                                color: jPrimaryColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
                           ),
-                          decoration: const InputDecoration(
-                            labelText: "Password",
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            isDense: true,
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Password not filled";
-                            } else if (value.length < 8) {
-                              return 'Password must be atleast 8 characters';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
-                        jheightBox,
-                        ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              signUpteacherOnTap();
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const TeacherHomeScreen(),
-                                  ));
-                            } else {}
-                          },
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(jPrimaryColor)),
-                          child: const Text('Create Account'),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Already a member ?',
-                              style: TextStyle(
-                                  color: jPrimaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, TeacherLoginScreen.routeName);
+                            },
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(jPrimaryColor)),
+                            child: const Text(
+                              'Login',
                             ),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, TeacherLoginScreen.routeName);
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(jPrimaryColor)),
-                              child: const Text(
-                                'Login',
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -209,7 +206,7 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
     );
   }
 
-  Future<void> signUpteacherOnTap() async {
+  Future<void> signUpTeacherOnTap() async {
     final signUpUserNameTeacher = _signUpUserNameController.text.trim();
     final signUpEMailTeacher = _signUpEmailController.text.trim();
     final signUpPasswordTeacher = _signUpPasswordController.text.trim();
@@ -220,22 +217,22 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
     } else {
       // --------------------------------
       final teacher = TeacherModel(
+        DateTime.now().millisecond,
+        teacherRegID: '',
+        teacherSubject: '',
+        teacherQualification: '',
+        teacherGender: '',
+        teacherMobileNum: '',
         teacherName: signUpUserNameTeacher,
         teacherEMail: signUpEMailTeacher,
         teacherPassword: signUpPasswordTeacher,
-        teacherGender: '',
-        teacherMobileNum: '',
-        teacherQualification: '',
-        teacherRegID: '',
-        teacherSubject: '',
       );
+      log('Checking Teacher ID');
+      log(teacher.id.toString());
       createTeacherProfile(teacher);
-      log(teacher.teacherEMail);
-      log(teacher.teacherName);
-      log(teacher.teacherPassword);
-      log(teacher.teacherMobileNum);
 
       // -------------------------------
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: jSecondaryColor,
@@ -244,14 +241,12 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
           content: Text('Account has been created'),
         ),
       );
-      log(teacher.teacherName);
-      log(teacher.teacherEMail);
-      log(teacher.teacherPassword);
-      log(teacher.teacherGender);
-      log(teacher.teacherMobileNum);
-      log(teacher.teacherRegID);
-      log(teacher.teacherSubject);
-      log(teacher.teacherQualification);
     }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignUpSuccess(),
+      ),
+    );
   }
 }

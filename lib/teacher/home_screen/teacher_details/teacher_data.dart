@@ -45,6 +45,14 @@ class TeacherRegisterInfo extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
+        const Text(
+          ' | ',
+          style: TextStyle(
+            color: jOtherColor,
+            fontSize: 40,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         Text(
           teacherID,
           style: const TextStyle(

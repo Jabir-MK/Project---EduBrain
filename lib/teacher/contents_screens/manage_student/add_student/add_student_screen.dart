@@ -1,6 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/functions/student_section.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/teacher/contents_screens/manage_student/add_student/student_details_formfield/details_formfield.dart';
 import 'package:flutter/material.dart';

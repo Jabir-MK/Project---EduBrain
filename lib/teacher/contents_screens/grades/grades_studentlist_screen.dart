@@ -1,6 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/functions/student_section.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/teacher/contents_screens/grades/view_grades/view_individual_grades.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +49,10 @@ class _TeacherGradesScreenState extends State<TeacherGradesScreen> {
                       MaterialPageRoute(
                         builder: (context) => ViewIndividualStudentGradesScreen(
                           index: index,
+                          admNo: studentData.admNum,
+                          dept: studentData.dept,
+                          name: studentData.fName,
+                          regID: studentData.regNum,
                         ),
                       ));
                 },
@@ -92,26 +96,7 @@ class _TeacherGradesScreenState extends State<TeacherGradesScreen> {
                     ],
                   ),
                 ),
-              )
-                  // ListTile(
-                  //   selected: true,
-                  //   selectedTileColor: jWhiteTextColor,
-                  //   hoverColor: jWhiteTextColor,
-
-                  //   leading: const CircleAvatar(
-                  //     radius: 30,
-                  //     backgroundImage: AssetImage('assets/images/student.png'),
-                  //   ),
-                  //   title: Text(
-                  //     studentData.fName + studentData.lName,
-                  //     style: jTimeTableTeacherNameTextStyle,
-                  //   ),
-                  //   subtitle: Text(
-                  //     studentData.regNum,
-                  //     style: jTimeTablePeriodTextStyle,
-                  //   ),
-                  // )
-                  ;
+              );
             },
           );
         },

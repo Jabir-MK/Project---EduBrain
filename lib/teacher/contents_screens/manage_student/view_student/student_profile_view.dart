@@ -54,7 +54,12 @@ class ViewStudentProfile extends StatelessWidget {
             color: jOtherColor,
             child: Column(
               children: [
-                const StudentProfileBasicIDInfo(),
+                StudentProfileBasicIDInfo(
+                  headDept: studentDept,
+                  headRegID: studentRegNo,
+                  headFirstName: studentFirstName,
+                  headLastName: studentLastName,
+                ),
                 jheightBox,
                 jTwiceThickDivider,
                 const Text(

@@ -4,11 +4,10 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/student/login_screen/student_login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void signOutStudent(BuildContext context) async {
-  final sharedpref = await SharedPreferences.getInstance();
-  await sharedpref.clear();
+  // final sharedpref = await SharedPreferences.getInstance();
+  // await sharedpref.clear();
 
   Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const StudentLoginScreen()),

@@ -8,6 +8,9 @@ import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+// const saveKeyNameTeacher = 'USER_TEACHER_LOGIN';
+// const saveKeyNameStudent = 'USER_STUDENT_LOGIN';
+
 Future main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -33,61 +36,61 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "EduBrain",
       theme: ThemeData.light().copyWith(
-          scaffoldBackgroundColor: jPrimaryColor,
-          primaryColor: jPrimaryColor,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: jAppBarBackgroundColor,
-            titleTextStyle: jAkayaTelivigalaAppDefaultStyle,
-            centerTitle: true,
-            elevation: 15,
+        scaffoldBackgroundColor: jPrimaryColor,
+        primaryColor: jPrimaryColor,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: jAppBarBackgroundColor,
+          titleTextStyle: jAkayaTelivigalaAppDefaultStyle,
+          centerTitle: true,
+          elevation: 15,
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          labelStyle: TextStyle(
+            fontSize: 20,
+            color: jPrimaryColor,
+            height: 0.5,
           ),
-          inputDecorationTheme: const InputDecorationTheme(
-            labelStyle: TextStyle(
-              fontSize: 20,
+          hintStyle: TextStyle(
+            fontSize: 16,
+            color: jBlackTextColor,
+            height: 0.5,
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: jLightTextColor,
+              width: 0.7,
+            ),
+          ),
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: jLightTextColor,
+            ),
+          ),
+          disabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: jLightTextColor,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
               color: jPrimaryColor,
-              height: 0.5,
             ),
-
-            hintStyle: TextStyle(
-              fontSize: 16,
-              color: jBlackTextColor,
-              height: 0.5,
+          ),
+          // Use validator for the Process
+          errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: jErrorBorderColor,
+              width: 1.2,
             ),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: jLightTextColor,
-                width: 0.7,
-              ),
+          ),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: jErrorBorderColor,
+              width: 1.2,
             ),
-            border: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: jLightTextColor,
-              ),
-            ),
-            disabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: jLightTextColor,
-              ),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: jPrimaryColor,
-              ),
-            ),
-            // Use validator for the Process
-            errorBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: jErrorBorderColor,
-                width: 1.2,
-              ),
-            ),
-            focusedErrorBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: jErrorBorderColor,
-                width: 1.2,
-              ),
-            ),
-          )),
+          ),
+        ),
+      ),
       initialRoute: SplashScreen.routeName,
       routes: routes,
     );

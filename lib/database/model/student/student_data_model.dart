@@ -1,3 +1,4 @@
+import 'package:edubrain/database/model/grades/grades_model.dart';
 import 'package:hive/hive.dart';
 part 'student_data_model.g.dart';
 
@@ -51,6 +52,9 @@ class StudentModel {
   @HiveField(15)
   final String password;
 
+  @HiveField(16)
+  final GradesModel? grades;
+
   StudentModel({
     required this.nationality,
     required this.gender,
@@ -67,5 +71,6 @@ class StudentModel {
     required this.eMail,
     required this.mobNum,
     required this.guardianName,
+    this.grades,
   });
 }

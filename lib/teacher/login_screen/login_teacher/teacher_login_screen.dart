@@ -1,7 +1,16 @@
+import 'dart:developer';
+
 import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/database/functions/teacher_section.dart';
+import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:edubrain/teacher/home_screen/teacher_home_screen.dart';
 import 'package:edubrain/teacher/login_screen/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+
+List<TeacherModel> currentLoggedTeacher = [];
 
 class TeacherLoginScreen extends StatefulWidget {
   const TeacherLoginScreen({super.key});
@@ -13,11 +22,18 @@ class TeacherLoginScreen extends StatefulWidget {
 }
 
 class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
-  final TextEditingController _loginDataController = TextEditingController();
+  final TextEditingController _teacherLoginDataController =
+      TextEditingController();
 
-  final TextEditingController _loginPassController = TextEditingController();
+  final TextEditingController _teacherLoginPassController =
+      TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    currentLoggedTeacher = [];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,14 +113,9 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                                     backgroundColor: MaterialStateProperty.all(
                                         jPrimaryColor),
                                   ),
-                                  onPressed: () {
+                                  onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const TeacherHomeScreen(),
-                                          ));
+                                      checkTeacherLogin();
                                     }
                                   },
                                   icon: const Icon(Icons.check),
@@ -153,7 +164,7 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
 
   TextFormField buildEmailField() {
     return TextFormField(
-      controller: _loginDataController,
+      controller: _teacherLoginDataController,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.emailAddress,
       style: const TextStyle(
@@ -162,16 +173,16 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
         fontSize: 17,
       ),
       decoration: const InputDecoration(
-        labelText: "Mobile Number/E-mail",
+        labelText: "E-mail ",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         isDense: true,
       ),
       validator: (value) {
         RegExp regExp = RegExp(emailPattern);
         if (value == null || value.isEmpty) {
-          return "Please Enter Your Number/E-mail";
+          return "Please Enter Your E-mail";
         } else if (!regExp.hasMatch(value)) {
-          return "Please enter valid details";
+          return "Please enter valid Email";
         } else {
           return null;
         }
@@ -181,7 +192,7 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
 
   TextFormField buildPasswordField() {
     return TextFormField(
-      controller: _loginPassController,
+      controller: _teacherLoginPassController,
       textAlign: TextAlign.start,
       obscureText: true,
       keyboardType: TextInputType.name,
@@ -206,4 +217,73 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
       },
     );
   }
+
+  Future<void> checkTeacherLogin() async {
+    final teacherLoginDataCheck = _teacherLoginDataController.text.trim();
+    final teacherLoginPasswordCheck = _teacherLoginPassController.text.trim();
+
+    Box<TeacherModel> profileCheckLoginTeacher =
+        await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
+    profileCheckLoginTeacher.values
+        .where((element) =>
+            element.teacherEMail == teacherLoginDataCheck &&
+            element.teacherPassword == teacherLoginPasswordCheck)
+        .forEach(
+      (element) {
+        // ---------  Checking if filtering and adding works -------------------
+
+        log('Currently logging Teacher Info Name , Email & Password');
+        log(element.teacherName);
+        log(element.teacherEMail);
+        log(element.teacherPassword);
+        log("Adding to the 'currentLoggedTeacher' list ");
+        currentLoggedTeacher.add(element);
+        // ------------------------- IF the values dont match then show snack ==
+        if (currentLoggedTeacher.isEmpty) {
+          log('The list is Empty');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: jSecondaryColor,
+              behavior: SnackBarBehavior.floating,
+              margin: const EdgeInsets.all(jDefaultPadding),
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Login Failed',
+                    style: jSnackBarTextStyle,
+                  ),
+                  Icon(
+                    Icons.error,
+                    color: jErrorBorderColor,
+                  ),
+                ],
+              ),
+            ),
+          );
+        } else {
+          log('List has values');
+          log(currentLoggedTeacher[0].teacherName);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TeacherHomeScreen(),
+            ),
+          );
+        }
+        // ---------------------------------------------------------------------
+      },
+    );
+  }
+
+  // void loginCheck(BuildContext context) async {
+  //   final sharedPrefTeacher = await SharedPreferences.getInstance();
+  //   await sharedPrefTeacher.setBool(saveKeyName, true);
+  //   log(saveKeyName.toString());
+  //   // ignore: use_build_context_synchronously
+  //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //     builder: (context) => const TeacherHomeScreen(),
+  //   ));
+  // }
+
 }

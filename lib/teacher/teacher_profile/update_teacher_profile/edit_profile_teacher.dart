@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,7 @@ class EditTeacherProfileScreen extends StatefulWidget {
     required this.teacherEMail,
     required this.teacherMobileNum,
     required this.teacherPassword,
+    required this.index,
   });
   static String routeName = 'EditTeacherProfileScreen';
 
@@ -26,6 +29,8 @@ class EditTeacherProfileScreen extends StatefulWidget {
   final String teacherEMail;
   final String teacherMobileNum;
   final String teacherPassword;
+
+  final int index;
 
   @override
   State<EditTeacherProfileScreen> createState() =>
@@ -386,7 +391,6 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             SizedBox(
                               child: TextFormField(
                                 controller: _teacherPasswordEditController,
-                                obscureText: true,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -433,27 +437,53 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
   }
 
   Future<void> editTeacherProfileOnTap(context) async {
-    final teacherProfile = TeacherModel(
-      teacherRegID: _teacherRegIDEditController.text.trim(),
-      teacherSubject: _teacherSubjectEditController.text.trim(),
-      teacherQualification: _teacherQaulEditController.text.trim(),
-      teacherGender: _teacherGenderEditController.text.trim(),
-      teacherMobileNum: _teacherMobileEditController.text.trim(),
-      teacherName: _teacherNameEditController.text.trim(),
-      teacherEMail: _teacherEmailEditController.text.trim(),
-      teacherPassword: _teacherPasswordEditController.text.trim(),
-    );
-    createTeacherProfile(teacherProfile);
-    if (_teacherNameEditController.text.isEmpty ||
-        _teacherGenderEditController.text.isEmpty ||
-        _teacherSubjectEditController.text.isEmpty ||
-        _teacherQaulEditController.text.isEmpty ||
-        _teacherRegIDEditController.text.isEmpty ||
-        _teacherEmailEditController.text.isEmpty ||
-        _teacherMobileEditController.text.isEmpty ||
-        _teacherPasswordEditController.text.isEmpty) {
+    final teacherNameEdit = _teacherNameEditController.text.trim();
+    final teacherRegIDEdit = _teacherRegIDEditController.text.trim();
+    final teacherGenderEdit = _teacherGenderEditController.text.trim();
+    final teacherQualificationEdit = _teacherQaulEditController.text.trim();
+    final teacherSubjectEdit = _teacherSubjectEditController.text.trim();
+    final teacherEmailEdit = _teacherEmailEditController.text.trim();
+    final teacherMobileNumEdit = _teacherMobileEditController.text.trim();
+    final teacherPasswordEdit = _teacherPasswordEditController.text.trim();
+
+    if (teacherMobileNumEdit.isEmpty ||
+        teacherPasswordEdit.isEmpty ||
+        teacherEmailEdit.isEmpty ||
+        teacherNameEdit.isEmpty ||
+        teacherRegIDEdit.isEmpty ||
+        teacherGenderEdit.isEmpty ||
+        teacherQualificationEdit.isEmpty ||
+        teacherSubjectEdit.isEmpty) {
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     backgroundColor: jSecondaryColor,
+      //     behavior: SnackBarBehavior.floating,
+      //     margin: EdgeInsets.all(jDefaultPadding),
+      //     content: Text("Field is empty"),
+      //   ),
+      // );
       return;
     } else {
+      final teacherEdit = TeacherModel(
+        DateTime.now().millisecond,
+        teacherRegID: teacherRegIDEdit,
+        teacherSubject: teacherSubjectEdit,
+        teacherQualification: teacherQualificationEdit,
+        teacherGender: teacherGenderEdit,
+        teacherMobileNum: teacherMobileNumEdit,
+        teacherName: teacherNameEdit,
+        teacherEMail: teacherEmailEdit,
+        teacherPassword: teacherPasswordEdit,
+      );
+      log('Checking Teacher Edit object before editing');
+      log(teacherEdit.teacherName, name: 'Name');
+
+      log(teacherEdit.teacherQualification, name: 'Qual');
+      log(teacherEdit.teacherGender, name: 'Gender');
+      log(teacherEdit.teacherMobileNum, name: 'Mobile');
+
+      log('Adding the editted values to database');
+      editTeacherProfile(widget.index, teacherEdit);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: jSecondaryColor,

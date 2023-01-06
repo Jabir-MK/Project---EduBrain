@@ -1,6 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/database/functions/assignment_section.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
 import 'package:edubrain/student/contents_screens/assignments/assignment_data/student_assignment_data.dart';
 import 'package:edubrain/student/contents_screens/assignments/assignment_data/student_assignment_detail_card.dart';
@@ -41,10 +41,20 @@ class _StudentAssignmentsScreenState extends State<StudentAssignmentsScreen> {
             physics: const BouncingScrollPhysics(),
             itemCount: listAssignment.length,
             itemBuilder: (context, index) {
-              // final assignmentData = listAssignment[index];
+              final assignmentData = listAssignment[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, StudentViewAssignment.routeName);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => StudentViewAssignment(
+                          subject: assignmentData.subjectName,
+                          topic: assignmentData.topicName,
+                          assignDate: assignmentData.assignDate,
+                          lastDate: assignmentData.dueDate,
+                          contents: assignmentData.assignmentContent,
+                          index: index),
+                    ),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(jDefaultPadding / 2),

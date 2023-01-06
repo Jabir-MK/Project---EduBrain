@@ -9,7 +9,7 @@ class StudentNameInfo extends StatelessWidget {
     return Row(
       children: [
         const Text(
-          "Hi ",
+          "Hi , ",
           style: TextStyle(
             fontFamily: 'Satisfy',
             fontSize: 30,

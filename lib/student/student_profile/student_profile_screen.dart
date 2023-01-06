@@ -38,7 +38,16 @@ class StudentProfileScreen extends StatelessWidget {
             color: jOtherColor,
             child: Column(
               children: [
-                const StudentProfileBasicIDInfo(),
+                const StudentProfileBasicIDInfo(
+                  headDept: '',
+                  // studentLoginList[0].dept,
+                  headRegID: '',
+                  //  studentLoginList[0].regNum,
+                  headFirstName: '',
+                  // studentLoginList[0].fName,
+                  headLastName: '',
+                  //  studentLoginList[0].lName,
+                ),
                 jheightBox,
                 jTwiceThickDivider,
                 const Text(
@@ -51,11 +60,13 @@ class StudentProfileScreen extends StatelessWidget {
                   children: const [
                     StudentProfileBasicDetails(
                       detailTitle: "First Name",
-                      detailValue: "Jabir ",
+                      detailValue: '',
+                      // studentLoginList[0].fName,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: "Last Name",
-                      detailValue: "MK",
+                      detailValue: '',
+                      // studentLoginList[0].lName,
                     ),
                   ],
                 ),
@@ -63,11 +74,13 @@ class StudentProfileScreen extends StatelessWidget {
                   children: const [
                     StudentProfileBasicDetails(
                       detailTitle: "Register Number",
-                      detailValue: "GVATCS024",
+                      detailValue: '',
+                      // studentLoginList[0].regNum,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: "Admission Number",
-                      detailValue: "000011",
+                      detailValue: '',
+                      // studentLoginList[0].admNum,
                     ),
                   ],
                 ),
@@ -75,11 +88,13 @@ class StudentProfileScreen extends StatelessWidget {
                   children: const [
                     StudentProfileBasicDetails(
                       detailTitle: "Date Of Birth",
-                      detailValue: "01 Dec 2000",
+                      detailValue: '',
+                      //  studentLoginList[0].dOBirth,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: "Department",
-                      detailValue: "Computer Science",
+                      detailValue: '',
+                      // studentLoginList[0].dept,
                     ),
                   ],
                 ),
@@ -87,11 +102,13 @@ class StudentProfileScreen extends StatelessWidget {
                   children: const [
                     StudentProfileBasicDetails(
                       detailTitle: 'Nationality',
-                      detailValue: 'Indian',
+                      detailValue: '',
+                      //  studentLoginList[0].nationality,
                     ),
                     StudentProfileBasicDetails(
                       detailTitle: 'Gender',
-                      detailValue: 'Male',
+                      detailValue: '',
+                      //  studentLoginList[0].gender,
                     )
                   ],
                 ),
@@ -105,15 +122,18 @@ class StudentProfileScreen extends StatelessWidget {
                 jheightBox,
                 const StudentProfileAddressDetails(
                   detailsHead: 'House Name',
-                  detailsValue: 'Manakkanakath (H)',
+                  detailsValue: '',
+                  // studentLoginList[0].houseName,
                 ),
                 const StudentProfileAddressDetails(
                   detailsHead: 'Post Office',
-                  detailsValue: 'Punnathala (P/O)',
+                  detailsValue: '',
+                  //  studentLoginList[0].postOffice,
                 ),
                 const StudentProfileAddressDetails(
                   detailsHead: 'Place',
-                  detailsValue: 'Puthanathani',
+                  detailsValue: '',
+                  //  studentLoginList[0].place,
                 ),
                 jheightBox,
                 jTwiceThickDivider,
@@ -125,15 +145,18 @@ class StudentProfileScreen extends StatelessWidget {
                 jheightBox,
                 const StudentProfileContactDetails(
                   detailsTitle: 'E-mail',
-                  detailsValue: 'jabirmanakkanakath@gmail.com',
+                  detailsValue: '',
+                  // studentLoginList[0].eMail,
                 ),
                 const StudentProfileContactDetails(
                   detailsTitle: "Name of Parent/Guardian",
-                  detailsValue: "Zainul Habid",
+                  detailsValue: '',
+                  //  studentLoginList[0].guardianName,
                 ),
                 const StudentProfileContactDetails(
                   detailsTitle: 'Mobile Number',
-                  detailsValue: "+91 8589952276",
+                  detailsValue: '',
+                  //  studentLoginList[0].mobNum,
                 ),
                 jheightBox,
                 jTwiceThickDivider,
@@ -145,7 +168,8 @@ class StudentProfileScreen extends StatelessWidget {
                 jheightBox,
                 const StudentProfileContactDetails(
                   detailsTitle: 'Password',
-                  detailsValue: 'Password',
+                  detailsValue: '',
+                  //  studentLoginList[0].password,
                 )
               ],
             ),

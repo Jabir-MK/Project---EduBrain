@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-const saveKeyName = 'User Login';
-
 const Color jPrimaryColor = Color(0xFF345FB4);
 const Color jSecondaryColor = Color(0xFF6789CA);
 const Color jBlackTextColor = Color(0xFF313131);
@@ -26,7 +24,9 @@ const jWidthBox = SizedBox(
 const jHalfHeightBox = SizedBox(
   height: jDefaultPadding / 2,
 );
-
+const jLargeSizedHeightBox = SizedBox(
+  height: jDefaultPadding * 4,
+);
 const jHalfWidthBox = SizedBox(
   width: jDefaultPadding / 2,
 );

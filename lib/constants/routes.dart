@@ -1,6 +1,5 @@
 import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
 import 'package:edubrain/student/contents_screens/assignments/student_assignment_screen.dart';
-import 'package:edubrain/student/contents_screens/assignments/view/view_assignment.dart';
 import 'package:edubrain/student/contents_screens/attendance/student_attendance_screen.dart';
 import 'package:edubrain/student/contents_screens/fee_payments/student_fee_payments_screen.dart';
 import 'package:edubrain/student/contents_screens/grades/grades_screen.dart';
@@ -18,8 +17,9 @@ import 'package:edubrain/teacher/contents_screens/manage_student/add_student/add
 
 import 'package:edubrain/teacher/contents_screens/manage_student/student_manage.dart';
 import 'package:edubrain/teacher/contents_screens/time_table/teacher_time_table_screen.dart';
+import 'package:edubrain/teacher/home_screen/teacher_home_screen.dart';
 import 'package:edubrain/teacher/login_screen/signup/signup_screen.dart';
-import 'package:edubrain/teacher/login_screen/teacher_login_screen.dart';
+import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +42,7 @@ Map<String, WidgetBuilder> routes = {
   InStudentTeachersInfoScreen.routeName: (context) =>
       const InStudentTeachersInfoScreen(),
   StudentTimeTableScreen.routeName: (context) => const StudentTimeTableScreen(),
-  StudentViewAssignment.routeName: (context) => const StudentViewAssignment(),
+  // StudentViewAssignment.routeName: (context) => const StudentViewAssignment(),
 
   // Teacher routes
   TeacherLoginScreen.routeName: (context) => const TeacherLoginScreen(),
@@ -55,6 +55,7 @@ Map<String, WidgetBuilder> routes = {
   AddAssignmentScreen.routeName: (context) => const AddAssignmentScreen(),
   AddStudentScreen.routeName: (context) => const AddStudentScreen(),
   TeacherSignUpScreen.routeName: (context) => const TeacherSignUpScreen(),
+  TeacherHomeScreen.routeName: (context) => const TeacherHomeScreen(),
   // EditTeacherProfileScreen.routeName: (context) =>
   //     const EditTeacherProfileScreen(),
 // sample

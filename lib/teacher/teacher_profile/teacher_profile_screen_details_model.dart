@@ -1,6 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/db_functions.dart';
+import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:edubrain/teacher/teacher_profile/update_teacher_profile/edit_profile_teacher.dart';
 import 'package:flutter/material.dart';
 
@@ -64,23 +64,24 @@ class TeacherProfileBasicIDInfo extends StatelessWidget {
               ),
               ElevatedButton.icon(
                 style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(jSecondaryColor)),
+                  backgroundColor: MaterialStateProperty.all(jSecondaryColor),
+                ),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => EditTeacherProfileScreen(
-                        teacherName: teacherProfileList.last.teacherName,
-                        teacherGender: teacherProfileList.last.teacherGender,
-                        teacherRegID: teacherProfileList.last.teacherRegID,
-                        teacherSubject: teacherProfileList.last.teacherSubject,
+                        index: currentLoggedTeacher[0].id,
+                        teacherName: currentLoggedTeacher[0].teacherName,
+                        teacherGender: currentLoggedTeacher[0].teacherGender,
+                        teacherRegID: currentLoggedTeacher[0].teacherRegID,
+                        teacherSubject: currentLoggedTeacher[0].teacherSubject,
                         teacherQualification:
-                            teacherProfileList.last.teacherQualification,
-                        teacherEMail: teacherProfileList.last.teacherEMail,
+                            currentLoggedTeacher[0].teacherQualification,
+                        teacherEMail: currentLoggedTeacher[0].teacherEMail,
                         teacherMobileNum:
-                            teacherProfileList.last.teacherMobileNum,
+                            currentLoggedTeacher[0].teacherMobileNum,
                         teacherPassword:
-                            teacherProfileList.last.teacherPassword,
+                            currentLoggedTeacher[0].teacherPassword,
                       ),
                     ),
                   );
@@ -153,7 +154,7 @@ class TeacherProfileBasicDetails extends StatelessWidget {
           top: jDefaultPadding / 2),
       width: MediaQuery.of(context).size.width / 2,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Column(
@@ -175,10 +176,6 @@ class TeacherProfileBasicDetails extends StatelessWidget {
               )
             ],
           ),
-          const Icon(
-            Icons.lock_outline,
-            size: 25,
-          )
         ],
       ),
     );

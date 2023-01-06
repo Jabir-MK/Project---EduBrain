@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/teacher/contents_screens/assignments/view_assignment/view_assignment_text_row.dart';
@@ -45,7 +43,6 @@ class _ViewAssignmentScreenState extends State<ViewAssignmentScreen> {
     assignedDate = TextEditingController(text: widget.assignedDate).text;
     dueDate = TextEditingController(text: widget.dueDate).text;
     contents = TextEditingController(text: widget.contentDetails).text;
-    log(subjectName);
   }
 
   @override

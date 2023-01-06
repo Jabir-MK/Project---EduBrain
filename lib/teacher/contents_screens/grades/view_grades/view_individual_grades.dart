@@ -1,10 +1,24 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/database/functions/student_section.dart';
+import 'package:edubrain/teacher/contents_screens/grades/view_grades/add_grade_screen.dart';
 import 'package:edubrain/teacher/contents_screens/grades/view_grades/view_individual_grades_details.dart';
 import 'package:flutter/material.dart';
 
 class ViewIndividualStudentGradesScreen extends StatefulWidget {
-  const ViewIndividualStudentGradesScreen({super.key, required this.index});
+  const ViewIndividualStudentGradesScreen({
+    super.key,
+    required this.index,
+    required this.name,
+    required this.regID,
+    required this.admNo,
+    required this.dept,
+  });
+
+  final String name;
+  final String regID;
+  final String admNo;
+  final String dept;
 
   final int index;
 
@@ -26,157 +40,124 @@ class _ViewIndividualStudentGradesScreenState
       ),
       body: ListView(
         children: [
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              padding: const EdgeInsets.all(jDefaultPadding),
-              margin: const EdgeInsets.all(jDefaultPadding),
-              decoration: BoxDecoration(
-                color: jOtherColor,
-                borderRadius: BorderRadius.circular(jDefaultPadding),
-                boxShadow: const [
-                  BoxShadow(
-                    offset: Offset(10, 10),
-                    blurRadius: 10,
-                    blurStyle: BlurStyle.inner,
-                    color: jSecondaryColor,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text('Name'),
-                      Text('Register No.'),
-                    ],
-                  ),
-                  jheightBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text('Admission No'),
-                      Text('Department'),
-                    ],
-                  ),
-                ],
-              ),
+          Container(
+            padding: const EdgeInsets.all(jDefaultPadding),
+            margin: const EdgeInsets.all(jDefaultPadding),
+            decoration: BoxDecoration(
+              color: jOtherColor,
+              borderRadius: BorderRadius.circular(jDefaultPadding),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(10, 10),
+                  blurRadius: 10,
+                  blurStyle: BlurStyle.inner,
+                  color: jSecondaryColor,
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.name,
+                      style: const TextStyle(
+                        fontFamily: 'Kalam',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      widget.regID,
+                      style: const TextStyle(
+                        fontFamily: 'Kalam',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.admNo,
+                      style: const TextStyle(
+                        fontFamily: 'Kalam',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      widget.dept,
+                      style: const TextStyle(
+                        fontFamily: 'Kalam',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          Column(
-            children: [
-              const IndividualGradesProgressIndicator(
-                subjectMark: 74,
-                subjectName: 'English',
-                progressColor: Colors.blue,
-              ),
-              jheightBox,
-              const IndividualGradesProgressIndicator(
-                subjectMark: 73,
-                subjectName: 'Language',
-                progressColor: Colors.red,
-              ),
-              jheightBox,
-              const IndividualGradesProgressIndicator(
-                subjectMark: 69,
-                subjectName: 'Mathematics',
-                progressColor: Colors.green,
-              ),
-              jheightBox,
-              const IndividualGradesProgressIndicator(
-                subjectMark: 42,
-                subjectName: 'Chemistry',
-                progressColor: Colors.purple,
-              ),
-              jheightBox,
-              const IndividualGradesProgressIndicator(
-                subjectMark: 53,
-                subjectName: 'Physics',
-                progressColor: Colors.yellow,
-              ),
-              jheightBox,
-              const IndividualGradesProgressIndicator(
-                subjectMark: 54,
-                subjectName: 'Computer Science',
-                progressColor: Colors.orange,
-              ),
-              jheightBox,
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Submit'),
-              ),
-            ],
+          ValueListenableBuilder(
+            builder: (context, studentGradesInfo, child) {
+              return Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AddGradesScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text('Add Grades'),
+                  ),
+                  const IndividualGradesProgressIndicator(
+                    subjectMark: 74,
+                    subjectName: 'English',
+                    progressColor: Colors.blue,
+                  ),
+                  jHalfHeightBox,
+                  const IndividualGradesProgressIndicator(
+                    subjectMark: 73,
+                    subjectName: 'Language',
+                    progressColor: Colors.red,
+                  ),
+                  jHalfHeightBox,
+                  const IndividualGradesProgressIndicator(
+                    subjectMark: 69,
+                    subjectName: 'Mathematics',
+                    progressColor: Colors.green,
+                  ),
+                  jHalfHeightBox,
+                  const IndividualGradesProgressIndicator(
+                    subjectMark: 42,
+                    subjectName: 'Chemistry',
+                    progressColor: Colors.purple,
+                  ),
+                  jHalfHeightBox,
+                  const IndividualGradesProgressIndicator(
+                    subjectMark: 53,
+                    subjectName: 'Physics',
+                    progressColor: Colors.yellow,
+                  ),
+                  jHalfHeightBox,
+                  const IndividualGradesProgressIndicator(
+                    subjectMark: 54,
+                    subjectName: 'Computer Science',
+                    progressColor: Colors.orange,
+                  ),
+                ],
+              );
+            },
+            valueListenable: studentListNotifier,
           )
         ],
-        // ---------------------The container for basic details of student which currently speculating ---------------------------------
-        // -----------------------------------------------------------
-        // ValueListenableBuilder(
-        //   valueListenable: studentListNotifier,
-        //   builder: (BuildContext context, List<StudentModel> studentInfo,
-        //       Widget? child) {
-        //     return ListView.builder(
-        //       itemCount: studentInfo.length,
-        //       itemBuilder: (context, index) {
-        //         final studentInfoData = studentInfo[index];
-        //         return GestureDetector(
-        //           onTap: () => ViewStudentProfile(
-        //               studentFirstName: studentInfoData.fName,
-        //               studentLastName: studentInfoData.lName,
-        //               studentRegNo: studentInfoData.regNum,
-        //               studentAdmNo: studentInfoData.admNum,
-        //               studentDOBirth: studentInfoData.dOBirth,
-        //               studentDept: studentInfoData.dept,
-        //               studentNationality: studentInfoData.nationality,
-        //               studentGender: studentInfoData.gender,
-        //               studentHouseName: studentInfoData.houseName,
-        //               studentPostOffice: studentInfoData.postOffice,
-        //               studentPlace: studentInfoData.place,
-        //               studentEMail: studentInfoData.eMail,
-        //               studentParentName: studentInfoData.guardianName,
-        //               studentMobileNum: studentInfoData.mobNum,
-        //               studentPassword: studentInfoData.password),
-        // child: Container(
-        //   padding: const EdgeInsets.all(jDefaultPadding),
-        //   margin: const EdgeInsets.all(jDefaultPadding),
-        //   decoration: BoxDecoration(
-        //     color: jOtherColor,
-        //     borderRadius: BorderRadius.circular(jDefaultPadding),
-        //     boxShadow: const [
-        //       BoxShadow(
-        //         offset: Offset(10, 10),
-        //         blurRadius: 10,
-        //         blurStyle: BlurStyle.inner,
-        //         color: jSecondaryColor,
-        //       ),
-        //     ],
-        //   ),
-        //   child: Column(
-        //     children: [
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           Text('${studentInfoData.fName} '
-        //               '${studentInfoData.lName}'),
-        //           Text(studentInfoData.regNum),
-        //         ],
-        //       ),
-        //       jheightBox,
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           Text(studentInfoData.admNum),
-        //           Text(studentInfoData.dept),
-        //         ],
-        //       ),
-        //     ],
-        //   ),
-        //           ),
-        //         );
-        //       },
-        //     );
-        //   },
-        // )
       ),
     );
   }

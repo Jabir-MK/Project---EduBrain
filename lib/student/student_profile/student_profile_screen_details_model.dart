@@ -3,7 +3,19 @@ import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:flutter/material.dart';
 
 class StudentProfileBasicIDInfo extends StatelessWidget {
-  const StudentProfileBasicIDInfo({super.key});
+  const StudentProfileBasicIDInfo({
+    super.key,
+    required this.headFirstName,
+    required this.headRegID,
+    required this.headDept,
+    required this.headLastName,
+  });
+
+  final String headFirstName;
+  final String headLastName;
+
+  final String headRegID;
+  final String headDept;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +43,16 @@ class StudentProfileBasicIDInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(children: const [
-                Text(
-                  "Jabir MK",
-                  style: jKalamLargeStyle,
-                ),
-              ]),
-              const Text(
-                "Class XII CS | Roll No. 24",
+              Row(
+                children: [
+                  Text(
+                    '$headFirstName $headLastName',
+                    style: jKalamLargeStyle,
+                  ),
+                ],
+              ),
+              Text(
+                "$headRegID | $headDept",
                 style: jAcmeMediumStyle,
               ),
             ],
@@ -73,15 +87,14 @@ class StudentProfileBasicDetails extends StatelessWidget {
                 detailTitle,
                 style: jAlegrayaSansHeadTextStyle,
               ),
-              jHalfHeightBox,
+              // jHalfHeightBox,
               Text(
                 detailValue,
                 style: jAlegrayaSansSubTextStyle,
               ),
-              jHalfHeightBox,
+              jheightBox,
               SizedBox(
                 width: MediaQuery.of(context).size.width / 3,
-                child: jDefaultDivider,
               )
             ],
           ),
@@ -114,15 +127,13 @@ class StudentProfileAddressDetails extends StatelessWidget {
               detailsHead,
               style: jAlegrayaSansHeadTextStyle,
             ),
-            jheightBox,
             Text(
               detailsValue,
               style: jAlegrayaSansSubTextStyle,
             ),
-            jHalfHeightBox,
+            jheightBox,
             SizedBox(
               width: MediaQuery.of(context).size.width / 1.1,
-              child: jDefaultDivider,
             )
           ],
         ),

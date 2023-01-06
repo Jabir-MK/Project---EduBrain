@@ -32,13 +32,14 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
       eMail: fields[12] as String,
       mobNum: fields[14] as String,
       guardianName: fields[13] as String,
+      grades: fields[16] as GradesModel?,
     )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, StudentModel obj) {
     writer
-      ..writeByte(16)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -70,7 +71,9 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
       ..writeByte(14)
       ..write(obj.mobNum)
       ..writeByte(15)
-      ..write(obj.password);
+      ..write(obj.password)
+      ..writeByte(16)
+      ..write(obj.grades);
   }
 
   @override
