@@ -29,6 +29,7 @@ Future<void> editStudent(int id, StudentModel value) async {
   final dataBaseStudent =
       await Hive.openBox<StudentModel>(studentModelDatabaseName);
   dataBaseStudent.putAt(id, value);
+
   getAllStudents();
 }
 

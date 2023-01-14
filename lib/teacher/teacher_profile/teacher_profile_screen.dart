@@ -1,6 +1,7 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
+import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_profile_screen_details_model.dart';
 import 'package:edubrain/teacher/teacher_profile/teacher_signout.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,9 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
       TextEditingController(text: widget.teacherPassword).text;
   @override
   void initState() {
-    super.initState();
+    userTeacher;
     getTeacherProfile();
+    super.initState();
   }
 
   @override

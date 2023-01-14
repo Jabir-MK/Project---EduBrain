@@ -3,13 +3,17 @@ import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/constants/routes.dart';
 import 'package:edubrain/comon_screens/splash_screen/splash_screen.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
+import 'package:edubrain/database/model/grades/grades_model.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-// const saveKeyNameTeacher = 'USER_TEACHER_LOGIN';
-// const saveKeyNameStudent = 'USER_STUDENT_LOGIN';
+bool userTeacherLoginKey = false;
+bool userStudentLoginKey = false;
+
+const teacherSaveKey = 'TEACHER_LOGIN';
+const studentSaveKey = 'STUDENT_LOGIN';
 
 Future main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +27,9 @@ Future main(List<String> args) async {
   if (!Hive.isAdapterRegistered(TeacherModelAdapter().typeId)) {
     Hive.registerAdapter(TeacherModelAdapter());
   }
-
+  if (!Hive.isAdapterRegistered(GradesModelAdapter().typeId)) {
+    Hive.registerAdapter(GradesModelAdapter());
+  }
   runApp(const MyApp());
 }
 

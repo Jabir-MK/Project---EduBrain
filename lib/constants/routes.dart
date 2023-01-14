@@ -51,13 +51,10 @@ Map<String, WidgetBuilder> routes = {
   TeacherGradesScreen.routeName: (context) => const TeacherGradesScreen(),
   TeacherStudentManage.routeName: (context) => const TeacherStudentManage(),
   TeacherTimeTableScreen.routeName: (context) => const TeacherTimeTableScreen(),
-  // TeacherProfileScreen.routeName: (context) => const TeacherProfileScreen(),
   AddAssignmentScreen.routeName: (context) => const AddAssignmentScreen(),
   AddStudentScreen.routeName: (context) => const AddStudentScreen(),
   TeacherSignUpScreen.routeName: (context) => const TeacherSignUpScreen(),
   TeacherHomeScreen.routeName: (context) => const TeacherHomeScreen(),
-  // EditTeacherProfileScreen.routeName: (context) =>
-  //     const EditTeacherProfileScreen(),
 // sample
   ViewTeacherProfile.routeName: (context) => const ViewTeacherProfile(),
 };

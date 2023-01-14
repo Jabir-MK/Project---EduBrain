@@ -4,6 +4,7 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
+import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class EditTeacherProfileScreen extends StatefulWidget {
@@ -54,7 +55,6 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
     super.initState();
     _teacherNameEditController =
         TextEditingController(text: widget.teacherName);
-
     _teacherGenderEditController =
         TextEditingController(text: widget.teacherGender);
     _teacherRegIDEditController =
@@ -424,8 +424,18 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             editTeacherProfileOnTap(context);
-            Navigator.of(context).pop();
-          } else {}
+            setState(() {});
+            Navigator.of(context).pop(userTeacher);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                backgroundColor: jSecondaryColor,
+                behavior: SnackBarBehavior.floating,
+                margin: EdgeInsets.all(jDefaultPadding),
+                content: Text("Field is empty"),
+              ),
+            );
+          }
         },
         backgroundColor: jPrimaryColor,
         child: const Icon(
@@ -437,6 +447,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
   }
 
   Future<void> editTeacherProfileOnTap(context) async {
+    log('Inside the editTeacher Function on the submit button');
     final teacherNameEdit = _teacherNameEditController.text.trim();
     final teacherRegIDEdit = _teacherRegIDEditController.text.trim();
     final teacherGenderEdit = _teacherGenderEditController.text.trim();
@@ -454,16 +465,9 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
         teacherGenderEdit.isEmpty ||
         teacherQualificationEdit.isEmpty ||
         teacherSubjectEdit.isEmpty) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     backgroundColor: jSecondaryColor,
-      //     behavior: SnackBarBehavior.floating,
-      //     margin: EdgeInsets.all(jDefaultPadding),
-      //     content: Text("Field is empty"),
-      //   ),
-      // );
       return;
     } else {
+      log('object of TeacherModel created');
       final teacherEdit = TeacherModel(
         DateTime.now().millisecond,
         teacherRegID: teacherRegIDEdit,
@@ -475,15 +479,11 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
         teacherEMail: teacherEmailEdit,
         teacherPassword: teacherPasswordEdit,
       );
-      log('Checking Teacher Edit object before editing');
-      log(teacherEdit.teacherName, name: 'Name');
+      log('Edit in database function called');
+      editTeacherProfile(widget.index, teacherEdit);
 
-      log(teacherEdit.teacherQualification, name: 'Qual');
-      log(teacherEdit.teacherGender, name: 'Gender');
-      log(teacherEdit.teacherMobileNum, name: 'Mobile');
+      log('after calling db function');
 
-      log('Adding the editted values to database');
-      editTeacherProfile(teacherEdit.id, teacherEdit);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: jSecondaryColor,

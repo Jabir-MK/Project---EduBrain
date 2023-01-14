@@ -1,16 +1,19 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
+import 'package:edubrain/main.dart';
 import 'package:edubrain/teacher/home_screen/teacher_home_screen.dart';
 import 'package:edubrain/teacher/login_screen/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
-List<TeacherModel> currentLoggedTeacher = [];
+TeacherModel? userTeacher;
 
 class TeacherLoginScreen extends StatefulWidget {
   const TeacherLoginScreen({super.key});
@@ -31,7 +34,6 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    currentLoggedTeacher = [];
     super.initState();
   }
 
@@ -115,6 +117,7 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                                   ),
                                   onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
+                                      log('Sign in Button \n going to onTap function');
                                       checkTeacherLogin();
                                     }
                                   },
@@ -142,6 +145,7 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                                       MaterialStateProperty.all(jPrimaryColor),
                                 ),
                                 onPressed: () {
+                                  log('Tapped the Create Account Button\n going to teacher signUp screen');
                                   Navigator.pushReplacementNamed(
                                       context, TeacherSignUpScreen.routeName);
                                 },
@@ -222,6 +226,10 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
     final teacherLoginDataCheck = _teacherLoginDataController.text.trim();
     final teacherLoginPasswordCheck = _teacherLoginPassController.text.trim();
 
+    final shredpref = await SharedPreferences.getInstance();
+    await shredpref.setString('techerName', teacherLoginDataCheck);
+    await shredpref.setString('techerPass', teacherLoginPasswordCheck);
+
     Box<TeacherModel> profileCheckLoginTeacher =
         await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
     profileCheckLoginTeacher.values
@@ -230,60 +238,17 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
             element.teacherPassword == teacherLoginPasswordCheck)
         .forEach(
       (element) {
-        // ---------  Checking if filtering and adding works -------------------
-
-        log('Currently logging Teacher Info Name , Email & Password');
-        log(element.teacherName);
-        log(element.teacherEMail);
-        log(element.teacherPassword);
-        log("Adding to the 'currentLoggedTeacher' list ");
-        currentLoggedTeacher.add(element);
-        // ------------------------- IF the values dont match then show snack ==
-        if (currentLoggedTeacher.isEmpty) {
-          log('The list is Empty');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: jSecondaryColor,
-              behavior: SnackBarBehavior.floating,
-              margin: const EdgeInsets.all(jDefaultPadding),
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Login Failed',
-                    style: jSnackBarTextStyle,
-                  ),
-                  Icon(
-                    Icons.error,
-                    color: jErrorBorderColor,
-                  ),
-                ],
-              ),
-            ),
-          );
-        } else {
-          log('List has values');
-          log(currentLoggedTeacher[0].teacherName);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const TeacherHomeScreen(),
-            ),
-          );
-        }
-        // ---------------------------------------------------------------------
+        userTeacher = element;
+        loginCheckTeacher(context);
       },
     );
   }
 
-  // void loginCheck(BuildContext context) async {
-  //   final sharedPrefTeacher = await SharedPreferences.getInstance();
-  //   await sharedPrefTeacher.setBool(saveKeyName, true);
-  //   log(saveKeyName.toString());
-  //   // ignore: use_build_context_synchronously
-  //   Navigator.of(context).pushReplacement(MaterialPageRoute(
-  //     builder: (context) => const TeacherHomeScreen(),
-  //   ));
-  // }
-
+  void loginCheckTeacher(BuildContext context) async {
+    final sharedPrefTeacher = await SharedPreferences.getInstance();
+    await sharedPrefTeacher.setBool(teacherSaveKey, true);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => const TeacherHomeScreen(),
+    ));
+  }
 }

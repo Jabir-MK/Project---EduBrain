@@ -6,6 +6,7 @@ import 'package:edubrain/student/contents_screens/fee_payments/student_fee_payme
 import 'package:edubrain/student/contents_screens/grades/grades_screen.dart';
 import 'package:edubrain/student/contents_screens/time_table/student_time_table_screen.dart';
 import 'package:edubrain/student/home_screen/cards_home/cards_home_screen.dart';
+import 'package:edubrain/student/home_screen/drawer_home.dart/drawer_home.dart';
 import 'package:edubrain/student/home_screen/student_details/student_data.dart';
 import 'package:edubrain/student/login_screen/student_login_screen.dart';
 import 'package:edubrain/student/student_profile/student_profile_screen.dart';
@@ -24,11 +25,8 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const StudentHomeScreenDrawer(),
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
         title: const Text(
           "EduBrain",
           style: jAkayaTelivigalaAppDefaultStyle,

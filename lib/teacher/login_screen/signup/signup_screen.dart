@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
@@ -227,8 +225,6 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
         teacherEMail: signUpEMailTeacher,
         teacherPassword: signUpPasswordTeacher,
       );
-      log('Checking Teacher ID');
-      log(teacher.id.toString());
       createTeacherProfile(teacher);
 
       // -------------------------------

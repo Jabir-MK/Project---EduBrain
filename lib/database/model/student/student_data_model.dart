@@ -53,7 +53,7 @@ class StudentModel {
   final String password;
 
   @HiveField(16)
-  final GradesModel? grades;
+  GradesModel? grades;
 
   StudentModel({
     required this.nationality,

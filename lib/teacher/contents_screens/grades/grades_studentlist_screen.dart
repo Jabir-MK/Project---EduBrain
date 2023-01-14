@@ -87,7 +87,11 @@ class _TeacherGradesScreenState extends State<TeacherGradesScreen> {
                             children: [
                               Row(
                                 children: [
-                                  const CircleAvatar(),
+                                  const CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('assets/images/student.png'),
+                                    radius: 30,
+                                  ),
                                   jWidthBox,
                                   Column(
                                     crossAxisAlignment:

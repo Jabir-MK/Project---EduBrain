@@ -1,18 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
+import 'package:edubrain/main.dart';
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void signOutTeacher(BuildContext context) async {
-  // final sharedpref = await SharedPreferences.getInstance();
-  // final loggedName = sharedpref.getString('saved_name');
+  final sharedPrefsTeacher = await SharedPreferences.getInstance();
 
-  // await sharedpref.clear();
+  await sharedPrefsTeacher.clear();
 
-  // ignore: use_build_context_synchronously
+  userTeacherLoginKey = false;
   Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => const TeacherLoginScreen()),
+      MaterialPageRoute(builder: (context) => const LoginDirect()),
       (route) => false);
 }
 

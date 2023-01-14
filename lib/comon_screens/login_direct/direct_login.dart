@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/student/login_screen/student_login_screen.dart';
@@ -15,7 +17,7 @@ class LoginDirect extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(jDefaultPadding),
           child: SingleChildScrollView(
-            child: ListView(
+            child: Column(
               children: [
                 const Text(
                   "Who's logging in ?",
@@ -24,6 +26,7 @@ class LoginDirect extends StatelessWidget {
                 jheightBox,
                 GestureDetector(
                   onTap: () {
+                    log('Going to Teacher Login screen');
                     Navigator.pushNamed(context, TeacherLoginScreen.routeName);
                   },
                   child: Container(
@@ -63,6 +66,7 @@ class LoginDirect extends StatelessWidget {
                 jLargeSizedHeightBox,
                 GestureDetector(
                   onTap: () {
+                    log('Going to Student Login Screen');
                     Navigator.pushNamed(context, StudentLoginScreen.routeName);
                   },
                   child: Container(

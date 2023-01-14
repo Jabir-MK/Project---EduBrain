@@ -70,18 +70,15 @@ class TeacherProfileBasicIDInfo extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => EditTeacherProfileScreen(
-                        index: currentLoggedTeacher[0].id,
-                        teacherName: currentLoggedTeacher[0].teacherName,
-                        teacherGender: currentLoggedTeacher[0].teacherGender,
-                        teacherRegID: currentLoggedTeacher[0].teacherRegID,
-                        teacherSubject: currentLoggedTeacher[0].teacherSubject,
-                        teacherQualification:
-                            currentLoggedTeacher[0].teacherQualification,
-                        teacherEMail: currentLoggedTeacher[0].teacherEMail,
-                        teacherMobileNum:
-                            currentLoggedTeacher[0].teacherMobileNum,
-                        teacherPassword:
-                            currentLoggedTeacher[0].teacherPassword,
+                        index: userTeacher!.id,
+                        teacherName: userTeacher!.teacherName,
+                        teacherGender: userTeacher!.teacherGender,
+                        teacherRegID: userTeacher!.teacherRegID,
+                        teacherSubject: userTeacher!.teacherSubject,
+                        teacherQualification: userTeacher!.teacherQualification,
+                        teacherEMail: userTeacher!.teacherEMail,
+                        teacherMobileNum: userTeacher!.teacherMobileNum,
+                        teacherPassword: userTeacher!.teacherPassword,
                       ),
                     ),
                   );

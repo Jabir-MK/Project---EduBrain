@@ -35,6 +35,13 @@ const jDefaultDivider = Divider(
   height: 5,
   thickness: 1,
 );
+const jColoredDivider = Divider(
+  color: jPrimaryColor,
+  height: 5,
+  thickness: 1,
+  indent: 5,
+  endIndent: 5,
+);
 
 const jTwiceThickDivider = Divider(
   color: jPrimaryColor,

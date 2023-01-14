@@ -1,11 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/database/functions/student_section.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
+import 'package:edubrain/main.dart';
 import 'package:edubrain/student/home_screen/student_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 List<StudentModel> studentLoginList = [];
@@ -192,6 +196,11 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
   Future<void> checkLoginStudent() async {
     final userStudentEmail = _studentLoginDataController.text.trim();
     final userStudentPass = _studentLoginPassController.text.trim();
+
+    final sharedpref = await SharedPreferences.getInstance();
+    await sharedpref.setString('StudentEmail', userStudentEmail);
+    await sharedpref.setString('StudentPassword', userStudentPass);
+
     Box<StudentModel> studentLoginCheck =
         await Hive.openBox<StudentModel>(studentModelDatabaseName);
     studentLoginCheck.values
@@ -201,10 +210,6 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
             element.password == userStudentPass)
         .forEach(
       (element) {
-        log('Checking current user Email , Password and Name');
-        log(element.eMail);
-        log(element.password);
-        log(element.fName);
         studentLoginList.add(element);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -213,5 +218,13 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
         );
       },
     );
+  }
+
+  void loginCheckStudent(BuildContext context) async {
+    final sharedPrefStudent = await SharedPreferences.getInstance();
+    await sharedPrefStudent.setBool(studentSaveKey, true);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => const StudentHomeScreen(),
+    ));
   }
 }
