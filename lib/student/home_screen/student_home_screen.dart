@@ -125,8 +125,12 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                         //    Grades section
                         StudentHomeScreenCards(
                           onPress: () {
-                            Navigator.pushNamed(
-                                context, StudentGradesScreen.routeName);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => StudentGradesScreen(
+                                      studentModel: studentLoginList[0]),
+                                ));
                           },
                           iconImage: "assets/images/grades.png",
                           cardTitle: 'Grades',

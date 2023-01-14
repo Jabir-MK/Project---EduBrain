@@ -78,6 +78,7 @@ class _AddGradesScreenState extends State<AddGradesScreen> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         addGradesOnTap();
+                        Navigator.pop(context);
                       }
                     },
                     icon: const Icon(Icons.check),

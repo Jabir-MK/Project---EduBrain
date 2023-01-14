@@ -75,7 +75,7 @@ class StudentImageInfo extends StatelessWidget {
           ],
         ),
         child: CircleAvatar(
-          radius: 40,
+          radius: 35,
           backgroundColor: jWhiteTextColor,
           backgroundImage: AssetImage(studentImageAddress),
         ),

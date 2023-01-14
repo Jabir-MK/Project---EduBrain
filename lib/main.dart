@@ -30,6 +30,7 @@ Future main(List<String> args) async {
   if (!Hive.isAdapterRegistered(GradesModelAdapter().typeId)) {
     Hive.registerAdapter(GradesModelAdapter());
   }
+
   runApp(const MyApp());
 }
 
@@ -82,7 +83,6 @@ class MyApp extends StatelessWidget {
               color: jPrimaryColor,
             ),
           ),
-          // Use validator for the Process
           errorBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: jErrorBorderColor,

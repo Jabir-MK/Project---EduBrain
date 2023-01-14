@@ -2,7 +2,6 @@ import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
 import 'package:edubrain/student/contents_screens/assignments/student_assignment_screen.dart';
 import 'package:edubrain/student/contents_screens/attendance/student_attendance_screen.dart';
 import 'package:edubrain/student/contents_screens/fee_payments/student_fee_payments_screen.dart';
-import 'package:edubrain/student/contents_screens/grades/grades_screen.dart';
 import 'package:edubrain/student/contents_screens/teachers_info/student_teachers_info_screen.dart';
 import 'package:edubrain/student/contents_screens/teachers_info/teacher_profileview/teacher_profile_view.dart';
 import 'package:edubrain/student/contents_screens/time_table/student_time_table_screen.dart';
@@ -38,7 +37,7 @@ Map<String, WidgetBuilder> routes = {
       const StudentAttendanceScreen(),
   StudentFeePaymentScreen.routeName: (context) =>
       const StudentFeePaymentScreen(),
-  StudentGradesScreen.routeName: (context) => const StudentGradesScreen(),
+  // StudentGradesScreen.routeName: (context) => const StudentGradesScreen(),
   InStudentTeachersInfoScreen.routeName: (context) =>
       const InStudentTeachersInfoScreen(),
   StudentTimeTableScreen.routeName: (context) => const StudentTimeTableScreen(),

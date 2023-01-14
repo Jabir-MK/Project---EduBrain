@@ -23,13 +23,10 @@ class TextFormFieldRow extends StatelessWidget {
           style: jAssignmentTextStyle,
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width / 2.3,
+          width: MediaQuery.of(context).size.width / 3,
           child: TextFormField(
             controller: controller,
             keyboardType: TextInputType.number,
-            onChanged: (value) {
-              int iny = int.parse(value);
-            },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return returnValue;

@@ -1,6 +1,7 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/student_section.dart';
+import 'package:edubrain/database/model/grades/grades_model.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/teacher/contents_screens/manage_student/add_student/student_details_formfield/details_formfield.dart';
 import 'package:flutter/material.dart';
@@ -387,6 +388,13 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
         ),
       );
     }
+    final grades = GradesModel(
+        englishMark: '0',
+        mathematicsMark: '0',
+        languageMark: '0',
+        chemistryMark: '0',
+        physicsMark: '0',
+        computerMark: '0');
     final student = StudentModel(
       fName: firstName,
       lName: lastName,
@@ -403,6 +411,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
       nationality: nationalilty,
       place: place,
       postOffice: postOffice,
+      grades: grades,
     );
     addStudent(student);
     Navigator.of(context).pop();

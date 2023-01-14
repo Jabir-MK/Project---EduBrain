@@ -85,7 +85,9 @@ class StudentHomeScreenDrawer extends StatelessWidget {
             listOnTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const StudentGradesScreen(),
+                  builder: (context) => StudentGradesScreen(
+                    studentModel: studentLoginList[0],
+                  ),
                 ),
               );
             },
