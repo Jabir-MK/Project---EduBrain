@@ -38,19 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Future.delayed(
-    //   const Duration(seconds: 3),
-    //   () {
-    //     log('Going to the login direct screen');
-    //     Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (context) => const LoginDirect(),
-    //       ),
-    //     );
-    //   },
-    // );
-
     return Scaffold(
       body: SafeArea(
         child: SizedBox(

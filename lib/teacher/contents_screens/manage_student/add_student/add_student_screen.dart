@@ -207,6 +207,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       jTwiceThickDivider,
                       jheightBox,
                       AddStudentColumnFormField(
+                        visibleText: false,
                         controller: _houseNameController,
                         detailHead: "House Name",
                         validator: (value) {
@@ -221,6 +222,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       ),
                       jheightBox,
                       AddStudentColumnFormField(
+                        visibleText: false,
                         controller: _postOfficeController,
                         detailHead: "Post Office",
                         validator: (value) {
@@ -235,6 +237,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       ),
                       jheightBox,
                       AddStudentColumnFormField(
+                        visibleText: false,
                         controller: _placeController,
                         detailHead: "Place",
                         validator: (value) {
@@ -257,6 +260,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       jTwiceThickDivider,
                       jheightBox,
                       AddStudentColumnFormField(
+                        visibleText: false,
                         controller: _eMailController,
                         detailHead: 'E-Mail',
                         validator: (value) {
@@ -284,6 +288,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                         },
                         labelText: "Enter Parent's / Guardian's Name",
                         inputType: TextInputType.name,
+                        visibleText: false,
                       ),
                       jheightBox,
                       AddStudentColumnFormField(
@@ -298,6 +303,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                         },
                         labelText: 'Enter Mobile Number',
                         inputType: TextInputType.phone,
+                        visibleText: false,
                       ),
                       jheightBox,
                       jTwiceThickDivider,
@@ -319,6 +325,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                         },
                         labelText: "Enter Password",
                         inputType: TextInputType.visiblePassword,
+                        visibleText: true,
                       )
                     ],
                   ),

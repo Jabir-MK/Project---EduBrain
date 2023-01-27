@@ -9,6 +9,7 @@ class AddStudentColumnFormField extends StatelessWidget {
     required this.validator,
     required this.labelText,
     required this.inputType,
+    required this.visibleText,
   });
 
   final TextEditingController controller;
@@ -16,6 +17,7 @@ class AddStudentColumnFormField extends StatelessWidget {
   final FormFieldValidator validator;
   final String labelText;
   final TextInputType inputType;
+  final bool visibleText;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,10 @@ class AddStudentColumnFormField extends StatelessWidget {
         ),
         SizedBox(
           child: TextFormField(
+            obscureText: visibleText,
             validator: validator,
             controller: controller,
-            keyboardType: TextInputType.name,
+            keyboardType: inputType,
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
               label: Text(

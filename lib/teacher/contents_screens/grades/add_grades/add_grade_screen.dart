@@ -117,10 +117,8 @@ class _AddGradesScreenState extends State<AddGradesScreen> {
         physicsMark: physics,
         computerMark: computer,
       );
-      log(grades.chemistryMark);
       widget.studentModel.grades = grades;
       await editStudent(widget.studentModel.id!, widget.studentModel);
-      log(widget.studentModel.grades?.chemistryMark ?? 'null');
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: jSecondaryColor,

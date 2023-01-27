@@ -42,7 +42,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                   ),
                   LinearPercentIndicator(
                       trailing: Text(
-                        widget.studentModel.grades!.englishMark,
+                        widget.studentModel.grades!.englishMark.toString(),
                         style: const TextStyle(
                             fontSize: 20,
                             fontFamily: 'Kalam',
