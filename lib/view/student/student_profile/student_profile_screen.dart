@@ -53,7 +53,6 @@ class StudentProfileScreen extends StatelessWidget {
                 ),
                 jTwiceThickDivider,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     StudentProfileBasicDetails(
                       detailTitle: "First Name",

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';

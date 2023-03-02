@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:edubrain/comon_screens/login_direct/direct_login.dart';
 import 'package:edubrain/constants/constant.dart';
