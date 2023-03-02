@@ -3,7 +3,7 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
-import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
+import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

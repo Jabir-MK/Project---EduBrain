@@ -9,10 +9,10 @@ import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:edubrain/main.dart';
-import 'package:edubrain/student/home_screen/student_home_screen.dart';
-import 'package:edubrain/student/login_screen/student_login_screen.dart';
-import 'package:edubrain/teacher/home_screen/teacher_home_screen.dart';
-import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
+import 'package:edubrain/view/student/home_screen/student_home_screen.dart';
+import 'package:edubrain/view/student/login_screen/student_login_screen.dart';
+import 'package:edubrain/view/teacher/home_screen/teacher_home_screen.dart';
+import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
@@ -29,9 +29,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    log('Splash Screen');
-    log('init state values');
-
     super.initState();
     checkLogin();
   }
@@ -88,7 +85,6 @@ class _SplashScreenState extends State<SplashScreen> {
     final sharedPrefsStudent = await SharedPreferences.getInstance();
 
     final userStudent = sharedPrefsStudent.getBool(studentSaveKey);
-    log(userStudent.toString(), name: 'Student sharedPref value');
 
     final teacher = sharedPrefsStudent.getString('techerName');
     final teacherPass = sharedPrefsStudent.getString('techerPass');
@@ -132,18 +128,15 @@ class _SplashScreenState extends State<SplashScreen> {
     if ((userTeacher == null || userTeacherSplash == false) &&
         (userStudent == null || userStudent == false)) {
       goToLoginDirectPage();
-      log('value check 1');
     } else if (userTeacherSplash == true && userStudent == null ||
         userStudent == false) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => const TeacherHomeScreen(),
       ));
-      log('value check 2');
     } else if (userStudent == true && userTeacherSplash == false) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => const StudentHomeScreen(),
       ));
-      log('value check 3');
     }
   }
 

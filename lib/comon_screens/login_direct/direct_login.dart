@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/student/login_screen/student_login_screen.dart';
-import 'package:edubrain/teacher/login_screen/login_teacher/teacher_login_screen.dart';
+import 'package:edubrain/view/student/login_screen/student_login_screen.dart';
+import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginDirect extends StatelessWidget {
@@ -26,7 +26,6 @@ class LoginDirect extends StatelessWidget {
                 jheightBox,
                 GestureDetector(
                   onTap: () {
-                    log('Going to Teacher Login screen');
                     Navigator.pushNamed(context, TeacherLoginScreen.routeName);
                   },
                   child: Container(
@@ -66,7 +65,6 @@ class LoginDirect extends StatelessWidget {
                 jLargeSizedHeightBox,
                 GestureDetector(
                   onTap: () {
-                    log('Going to Student Login Screen');
                     Navigator.pushNamed(context, StudentLoginScreen.routeName);
                   },
                   child: Container(
