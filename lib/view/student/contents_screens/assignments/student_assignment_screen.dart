@@ -2,8 +2,8 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/assignment_section.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
-import 'package:edubrain/view/student/contents_screens/assignments/assignment_data/student_assignment_detail_card.dart';
-import 'package:edubrain/view/student/contents_screens/assignments/view/view_assignment.dart';
+import 'package:edubrain/view/student/contents_screens/assignments/view_assignment.dart';
+import 'package:edubrain/view/student/contents_screens/assignments/widgets/student_assignment_detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
@@ -26,8 +26,7 @@ class _StudentAssignmentsScreenState extends State<StudentAssignmentsScreen> {
   @override
   Widget build(BuildContext context) {
     double widthForAnimation = MediaQuery.of(context).size.width;
-
-    getAllAssignments();
+    // getAllAssignments();
     return Scaffold(
       appBar: AppBar(
         title: const Text(

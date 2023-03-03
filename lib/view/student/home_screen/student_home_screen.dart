@@ -5,9 +5,9 @@ import 'package:edubrain/view/student/contents_screens/attendance/student_attend
 import 'package:edubrain/view/student/contents_screens/fee_payments/student_fee_payments_screen.dart';
 import 'package:edubrain/view/student/contents_screens/grades/grades_screen.dart';
 import 'package:edubrain/view/student/contents_screens/time_table/student_time_table_screen.dart';
-import 'package:edubrain/view/student/home_screen/cards_home/cards_home_screen.dart';
-import 'package:edubrain/view/student/home_screen/drawer_home.dart/drawer_home.dart';
-import 'package:edubrain/view/student/home_screen/student_details/student_data.dart';
+import 'package:edubrain/view/student/home_screen/widgets/cards_home_screen.dart';
+import 'package:edubrain/view/student/home_screen/widgets/drawer_home.dart';
+import 'package:edubrain/view/student/home_screen/widgets/student_data.dart';
 import 'package:edubrain/view/student/login_screen/student_login_screen.dart';
 import 'package:edubrain/view/student/student_profile/student_profile_screen.dart';
 import 'package:flutter/material.dart';

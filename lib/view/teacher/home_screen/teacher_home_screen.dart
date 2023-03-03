@@ -5,9 +5,9 @@ import 'package:edubrain/view/teacher/contents_screens/assignments/teacher_assig
 import 'package:edubrain/view/teacher/contents_screens/grades/grades_studentlist_screen.dart';
 import 'package:edubrain/view/teacher/contents_screens/manage_student/student_manage.dart';
 import 'package:edubrain/view/teacher/contents_screens/time_table/teacher_time_table_screen.dart';
-import 'package:edubrain/view/teacher/home_screen/drawer/drawer_home.dart';
-import 'package:edubrain/view/teacher/home_screen/cards_home/teachers_cards_home.dart';
-import 'package:edubrain/view/teacher/home_screen/teacher_details/teacher_data.dart';
+import 'package:edubrain/view/teacher/home_screen/widgets/drawer_home.dart';
+import 'package:edubrain/view/teacher/home_screen/widgets/teachers_cards_home.dart';
+import 'package:edubrain/view/teacher/home_screen/widgets/teacher_data.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:edubrain/view/teacher/teacher_profile/teacher_profile_screen.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
-import 'package:edubrain/view/student/contents_screens/assignments/view/view_assignment_row.dart';
+import 'package:edubrain/view/student/contents_screens/assignments/widgets/view_assignment_row.dart';
 import 'package:flutter/material.dart';
 
 class StudentViewAssignment extends StatefulWidget {

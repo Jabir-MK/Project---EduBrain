@@ -2,12 +2,12 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/assignment_section.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
-import 'package:edubrain/view/teacher/contents_screens/assignments/assignment_data/teacher_assignment_details.dart';
-import 'package:edubrain/view/teacher/contents_screens/assignments/new_assignment/new_assignment.dart';
 import 'package:edubrain/view/teacher/contents_screens/assignments/view_assignment/edit_assignment.dart';
 import 'package:edubrain/view/teacher/contents_screens/assignments/view_assignment/view_assignment_screen.dart';
+import 'package:edubrain/view/teacher/contents_screens/assignments/widgets/new_assignment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:edubrain/view/teacher/contents_screens/assignments/widgets/teacher_assignment_details.dart';
 
 class TeacherAssignmentsScreen extends StatefulWidget {
   const TeacherAssignmentsScreen({super.key});
@@ -186,7 +186,8 @@ class _TeacherAssignmentsScreenState extends State<TeacherAssignmentsScreen> {
         onPressed: () {
           Navigator.pushNamed(context, AddAssignmentScreen.routeName);
         },
-        backgroundColor: jPrimaryColor,
+        backgroundColor: jSecondaryColor,
+        elevation: 10,
         child: const Icon(
           Icons.add,
           size: 40,

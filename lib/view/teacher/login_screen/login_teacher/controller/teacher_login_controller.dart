@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../view/teacher/home_screen/teacher_home_screen.dart';
+import '../../../home_screen/teacher_home_screen.dart';
 
 class TeacherLoginProvider with ChangeNotifier {
   /*  Teacher Login Section */

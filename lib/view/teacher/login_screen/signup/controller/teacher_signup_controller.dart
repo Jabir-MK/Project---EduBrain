@@ -2,8 +2,8 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:flutter/material.dart';
 
-import '../../../database/model/teacher_model/teacher_data_model.dart';
-import '../../../view/teacher/login_screen/signup/signup_success.dart';
+import '../../../../../database/model/teacher_model/teacher_data_model.dart';
+import '../signup_success.dart';
 
 class TeacherSignUpProvider with ChangeNotifier {
   /* Signup Section Teacher */

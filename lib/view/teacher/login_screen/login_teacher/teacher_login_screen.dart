@@ -1,8 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/controller/teacher/login_signup/teacher_login_controller.dart';
+import 'package:edubrain/view/teacher/login_screen/login_teacher/controller/teacher_login_controller.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
+import 'package:edubrain/view/teacher/login_screen/login_teacher/widgets/elevated_button.dart';
 import 'package:edubrain/view/teacher/login_screen/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -118,20 +119,13 @@ class TeacherLoginScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w600),
                               ),
                               jHalfHeightBox,
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  elevation: MaterialStateProperty.all(10),
-                                  shadowColor: MaterialStateProperty.all(
-                                      jSecondaryColor),
-                                  backgroundColor:
-                                      MaterialStateProperty.all(jPrimaryColor),
-                                ),
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, TeacherSignUpScreen.routeName);
-                                },
-                                child: const Text('Create Account'),
-                              ),
+                              CustomButtonWidget(
+                                elevation: 10,
+                                onPressAction: () =>
+                                    Navigator.pushReplacementNamed(
+                                        context, TeacherSignUpScreen.routeName),
+                                text: 'Create Account',
+                              )
                             ],
                           )
                         ],

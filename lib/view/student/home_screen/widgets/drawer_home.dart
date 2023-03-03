@@ -2,7 +2,7 @@ import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/view/student/contents_screens/assignments/student_assignment_screen.dart';
 import 'package:edubrain/view/student/contents_screens/grades/grades_screen.dart';
 import 'package:edubrain/view/student/contents_screens/time_table/student_time_table_screen.dart';
-import 'package:edubrain/view/student/home_screen/drawer_home.dart/drawer_contents.dart';
+import 'package:edubrain/view/student/home_screen/widgets/drawer_contents.dart';
 import 'package:edubrain/view/student/login_screen/student_login_screen.dart';
 import 'package:edubrain/view/student/student_profile/student_profile_screen.dart';
 import 'package:edubrain/view/student/student_profile/student_signout.dart';

@@ -1,5 +1,5 @@
 import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/controller/teacher/login_signup/teacher_signup_controller.dart';
+import 'package:edubrain/view/teacher/login_screen/signup/controller/teacher_signup_controller.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
