@@ -7,6 +7,40 @@ import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_s
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+class TeacherDBProvider with ChangeNotifier {
+  static const teacherModelDatabaseName = 'TEACHER_DATABASE';
+
+  ValueNotifier<List<TeacherModel>> teacherModelNotifier = ValueNotifier([]);
+  List<TeacherModel> teacherProfileList = [];
+
+  Future<void> createTeacherProfile(TeacherModel value) async {
+    final teacherDatabase =
+        await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
+    await teacherDatabase.put(value.id, value);
+    teacherModelNotifier.value.add(value);
+    getTeacherProfile();
+    teacherModelNotifier.notifyListeners();
+  }
+
+  Future<void> getTeacherProfile() async {
+    final teacherDatabase =
+        await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
+    teacherModelNotifier.value.clear();
+    teacherModelNotifier.value.addAll(teacherDatabase.values);
+    teacherModelNotifier.notifyListeners();
+  }
+
+  Future<void> editTeacherProfile(int id, TeacherModel value) async {
+    final teacherDatabase =
+        await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
+    await teacherDatabase.put(value.id, value);
+    userTeacher = value;
+    teacherModelNotifier.notifyListeners();
+    getTeacherProfile();
+  }
+}
+
+// Previously Used Method . Need to change
 const teacherModelDatabaseName = 'TEACHER_DATABASE';
 
 ValueNotifier<List<TeacherModel>> teacherModelNotifier = ValueNotifier([]);

@@ -52,7 +52,7 @@ Map<String, WidgetBuilder> routes = {
   TeacherTimeTableScreen.routeName: (context) => const TeacherTimeTableScreen(),
   AddAssignmentScreen.routeName: (context) => const AddAssignmentScreen(),
   AddStudentScreen.routeName: (context) => const AddStudentScreen(),
-  TeacherSignUpScreen.routeName: (context) => const TeacherSignUpScreen(),
+  TeacherSignUpScreen.routeName: (context) => TeacherSignUpScreen(),
   TeacherHomeScreen.routeName: (context) => const TeacherHomeScreen(),
 // sample
   ViewTeacherProfile.routeName: (context) => const ViewTeacherProfile(),

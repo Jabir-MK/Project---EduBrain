@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../view/teacher/home_screen/teacher_home_screen.dart';
+import '../../../view/teacher/home_screen/teacher_home_screen.dart';
 
-class TeacherProvider with ChangeNotifier {
+class TeacherLoginProvider with ChangeNotifier {
   /*  Teacher Login Section */
 
   final TextEditingController teacherLoginDataController =
@@ -24,11 +24,7 @@ class TeacherProvider with ChangeNotifier {
 
   // Check Teacher Login Function
 
-  Future<void> checkTeacherLogin(
-    context,
-    data,
-    password,
-  ) async {
+  Future<void> checkTeacherLogin(context, data, password) async {
     final teacherLoginDataCheck = data.text.trim();
     final teacherLoginPasswordCheck = password.text.trim();
 
@@ -58,7 +54,6 @@ class TeacherProvider with ChangeNotifier {
         builder: (context) => const TeacherHomeScreen(),
       ),
     );
-
     teacherLoginDataController.clear();
     teacherLoginPassController.clear();
   }
@@ -97,8 +92,7 @@ class TeacherProvider with ChangeNotifier {
     return TextFormField(
       controller: controller,
       textAlign: TextAlign.start,
-      obscureText: true,
-      keyboardType: TextInputType.name,
+      keyboardType: TextInputType.emailAddress,
       style: const TextStyle(
         color: jBlackTextColor,
         fontWeight: FontWeight.w600,

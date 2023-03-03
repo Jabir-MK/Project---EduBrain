@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/controller/teacher/teacher_login_controller.dart';
+import 'package:edubrain/controller/teacher/login_signup/teacher_login_controller.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:edubrain/view/teacher/login_screen/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class TeacherLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<TeacherProvider>(context, listen: false);
+    final provider = Provider.of<TeacherLoginProvider>(context, listen: false);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
