@@ -1,7 +1,7 @@
 import 'package:edubrain/constants/constant.dart';
 import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/constants/routes.dart';
-import 'package:edubrain/comon_screens/splash_screen/splash_screen.dart';
+import 'package:edubrain/view/comon_screens/splash_screen/splash_screen.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/controller/teacher_login_controller.dart';
 import 'package:edubrain/view/teacher/login_screen/signup/controller/teacher_signup_controller.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
