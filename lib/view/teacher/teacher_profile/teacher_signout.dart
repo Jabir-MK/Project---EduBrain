@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:edubrain/view/comon_screens/login_direct/direct_login.dart';
-import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/core/constants/constant.dart';
+import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/main.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

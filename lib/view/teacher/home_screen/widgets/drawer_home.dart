@@ -1,4 +1,4 @@
-import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/view/teacher/contents_screens/assignments/teacher_assignment_screen.dart';
 import 'package:edubrain/view/teacher/contents_screens/grades/grades_studentlist_screen.dart';
 import 'package:edubrain/view/teacher/contents_screens/manage_student/student_manage.dart';

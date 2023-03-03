@@ -1,5 +1,5 @@
-import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/core/constants/constant.dart';
+import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:edubrain/view/teacher/teacher_profile/teacher_profile_screen_details_model.dart';

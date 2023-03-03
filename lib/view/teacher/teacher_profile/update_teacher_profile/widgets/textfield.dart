@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../../../../../constants/fontstyle_constants.dart';
+import '../../../../../core/constants/fontstyle_constants.dart';
 
 class EditTextField extends StatelessWidget {
   const EditTextField({

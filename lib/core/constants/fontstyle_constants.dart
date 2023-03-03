@@ -1,4 +1,4 @@
-import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/core/constants/constant.dart';
 import 'package:flutter/material.dart';
 
 const jAlegrayaSansHeadTextStyle = TextStyle(

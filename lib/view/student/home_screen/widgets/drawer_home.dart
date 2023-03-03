@@ -1,4 +1,4 @@
-import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/view/student/contents_screens/assignments/student_assignment_screen.dart';
 import 'package:edubrain/view/student/contents_screens/grades/grades_screen.dart';
 import 'package:edubrain/view/student/contents_screens/time_table/student_time_table_screen.dart';

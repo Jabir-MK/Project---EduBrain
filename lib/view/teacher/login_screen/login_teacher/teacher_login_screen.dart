@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/controller/teacher_login_controller.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/widgets/elevated_button.dart';

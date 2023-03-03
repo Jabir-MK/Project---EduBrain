@@ -1,5 +1,5 @@
-import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/core/constants/constant.dart';
+import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/view/student/contents_screens/fee_payments/fee_data/student_fee_data.dart';
 import 'package:edubrain/view/student/contents_screens/fee_payments/fee_data/student_fee_detail_card.dart';
 import 'package:flutter/material.dart';

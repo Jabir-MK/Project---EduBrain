@@ -1,4 +1,4 @@
-import 'package:edubrain/constants/constant.dart';
+import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:flutter/material.dart';
 

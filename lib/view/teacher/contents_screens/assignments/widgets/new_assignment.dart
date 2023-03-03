@@ -1,5 +1,5 @@
-import 'package:edubrain/constants/constant.dart';
-import 'package:edubrain/constants/fontstyle_constants.dart';
+import 'package:edubrain/core/constants/constant.dart';
+import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/assignment_section.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
 import 'package:flutter/material.dart';
