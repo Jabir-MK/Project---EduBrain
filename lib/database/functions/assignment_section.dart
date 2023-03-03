@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
-// ---------- Database Assignments  ------------
+// ----------------------- Database Assignments  -------------------------------
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
