@@ -3,6 +3,7 @@ import 'package:edubrain/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
+import 'package:edubrain/view/teacher/teacher_profile/update_teacher_profile/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
 class EditTeacherProfileScreen extends StatefulWidget {
@@ -115,7 +116,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             Row(
                               children: [
                                 Text(
-                                  _teacherNameEditController.text.toUpperCase(),
+                                  widget.teacherName,
                                   style: jKalamLargeStyle,
                                 ),
                               ],
@@ -124,13 +125,11 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  _teacherRegIDEditController.text
-                                      .toUpperCase(),
+                                  widget.teacherRegID,
                                   style: jAcmeMediumStyle,
                                 ),
                                 Text(
-                                  _teacherSubjectEditController.text
-                                      .toUpperCase(),
+                                  widget.teacherSubject,
                                   style: jAcmeMediumStyle,
                                 )
                               ],
@@ -158,25 +157,19 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'Full Name',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
+                            EditTextField(
+                              obscure: false,
                               width: 200,
-                              child: TextFormField(
-                                controller: _teacherNameEditController,
-                                keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Enter Full Name',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Full Name not filled';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
+                              controller: _teacherNameEditController,
+                              textInputType: TextInputType.name,
+                              label: 'Enter Full Name',
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Full Name not filled';
+                                } else {
+                                  return null;
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -187,25 +180,19 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'Register ID',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
+                            EditTextField(
+                              obscure: false,
                               width: 200,
-                              child: TextFormField(
-                                controller: _teacherRegIDEditController,
-                                keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Enter Register ID',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Register ID not filled';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
+                              controller: _teacherRegIDEditController,
+                              textInputType: TextInputType.name,
+                              label: 'Enter Register ID',
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Register ID not filled';
+                                } else {
+                                  return null;
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -217,26 +204,20 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'Gender',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
+                            EditTextField(
+                              obscure: false,
                               width: 200,
-                              child: TextFormField(
-                                controller: _teacherGenderEditController,
-                                keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Enter Your Gender',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Gender not filled';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
-                            ),
+                              controller: _teacherGenderEditController,
+                              textInputType: TextInputType.name,
+                              label: 'Enter Your Gender',
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Gender not specified';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            )
                           ],
                         ),
                         jHalfHeightBox,
@@ -247,26 +228,20 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'Qaulification',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
+                            EditTextField(
+                              obscure: false,
                               width: 200,
-                              child: TextFormField(
-                                controller: _teacherQaulEditController,
-                                keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Enter Your Qualification',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Qaulification has not filled';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
-                            ),
+                              controller: _teacherQaulEditController,
+                              textInputType: TextInputType.name,
+                              label: 'Enter your qaulification',
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Qaulification has not filled';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            )
                           ],
                         ),
                         jHalfHeightBox,
@@ -277,26 +252,20 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'Subject',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
+                            EditTextField(
+                              obscure: false,
                               width: 200,
-                              child: TextFormField(
-                                controller: _teacherSubjectEditController,
-                                keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Enter Your Subject',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Subject not filled';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
-                            ),
+                              controller: _teacherSubjectEditController,
+                              textInputType: TextInputType.name,
+                              label: 'Enter your subject',
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Subject not filled';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            )
                           ],
                         ),
                         jheightBox,
@@ -315,27 +284,22 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'E-Mail',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
-                              child: TextFormField(
-                                controller: _teacherEmailEditController,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Enter E-Mail',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  RegExp regExp = RegExp(emailPattern);
-                                  if (value == null || value.isEmpty) {
-                                    return "Please Enter Your E-mail";
-                                  } else if (!regExp.hasMatch(value)) {
-                                    return "Please enter valid details";
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
+                            EditTextField(
+                              obscure: false,
+                              width: double.infinity,
+                              controller: _teacherEmailEditController,
+                              textInputType: TextInputType.emailAddress,
+                              label: 'Enter your E-Mail',
+                              validator: (value) {
+                                RegExp regExp = RegExp(emailPattern);
+                                if (value == null || value.isEmpty) {
+                                  return "Please Enter Your E-mail";
+                                } else if (!regExp.hasMatch(value)) {
+                                  return "Please enter valid details";
+                                }
+                                return null;
+                              },
+                            )
                           ],
                         ),
                         jheightBox,
@@ -347,27 +311,22 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'Mobile Number',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
-                              child: TextFormField(
-                                controller: _teacherMobileEditController,
-                                keyboardType: TextInputType.phone,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Enter Mobile Number',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  if (value == null ||
-                                      value.isEmpty ||
-                                      value.length != 10) {
-                                    return 'Mobile Number not filled';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
-                            ),
+                            EditTextField(
+                              obscure: false,
+                              controller: _teacherMobileEditController,
+                              textInputType: TextInputType.phone,
+                              label: 'Enter your number',
+                              validator: (value) {
+                                if (value == null ||
+                                    value.isEmpty ||
+                                    value.length != 10) {
+                                  return 'Mobile Number not filled';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              width: double.infinity,
+                            )
                           ],
                         ),
                         jheightBox,
@@ -386,27 +345,22 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               'Password',
                               style: jAlegrayaSansSubTextStyle,
                             ),
-                            SizedBox(
-                              child: TextFormField(
-                                controller: _teacherPasswordEditController,
-                                keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text(
-                                      'Edit Password',
-                                      style: jAlegrayaSansHeadTextStyle,
-                                    )),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Password not filled';
-                                  } else if (value.length < 8) {
-                                    return 'Password Must be atleast 8 characters';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
-                            ),
+                            EditTextField(
+                              obscure: true,
+                              controller: _teacherPasswordEditController,
+                              textInputType: TextInputType.name,
+                              label: 'Enter Password',
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Password not filled';
+                                } else if (value.length < 8) {
+                                  return 'Password Must be atleast 8 characters';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              width: double.infinity,
+                            )
                           ],
                         )
                       ],
