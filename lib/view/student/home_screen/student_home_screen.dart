@@ -11,17 +11,11 @@ import 'package:edubrain/view/student/home_screen/widgets/student_data.dart';
 import 'package:edubrain/view/student/login_screen/student_login_screen.dart';
 import 'package:edubrain/view/student/student_profile/student_profile_screen.dart';
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 
-class StudentHomeScreen extends StatefulWidget {
+class StudentHomeScreen extends StatelessWidget {
   const StudentHomeScreen({super.key});
   static String routeName = 'HomeScreen';
 
-  @override
-  State<StudentHomeScreen> createState() => _StudentHomeScreenState();
-}
-
-class _StudentHomeScreenState extends State<StudentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,22 +1,20 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
+import 'package:edubrain/view/student/contents_screens/fee_payments/controller/controller.dart';
 import 'package:edubrain/view/student/contents_screens/fee_payments/fee_data/student_fee_data.dart';
-import 'package:edubrain/view/student/contents_screens/fee_payments/fee_data/student_fee_detail_card.dart';
+import 'package:edubrain/view/student/contents_screens/fee_payments/widgets/student_fee_detail_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class StudentFeePaymentScreen extends StatefulWidget {
+class StudentFeePaymentScreen extends StatelessWidget {
   const StudentFeePaymentScreen({super.key});
 
   static String routeName = "StudentFeePaymentScreen";
 
   @override
-  State<StudentFeePaymentScreen> createState() =>
-      _StudentFeePaymentScreenState();
-}
-
-class _StudentFeePaymentScreenState extends State<StudentFeePaymentScreen> {
-  @override
   Widget build(BuildContext context) {
+    final paymentProvider =
+        Provider.of<PaymentsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -103,9 +101,10 @@ class _StudentFeePaymentScreenState extends State<StudentFeePaymentScreen> {
                               : Icons.arrow_forward,
                           onPress: () {
                             if (feePayment[index].paymentStatus == 'Paid') {
-                              paymentDownloadedSnackbar();
+                              paymentProvider
+                                  .paymentDownloadedSnackbar(context);
                             } else {
-                              confirmPayment();
+                              paymentProvider.confirmPayment(context);
                             }
                           },
                           paymentTitle: feePayment[index].btnStatus)
@@ -116,96 +115,6 @@ class _StudentFeePaymentScreenState extends State<StudentFeePaymentScreen> {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  void confirmPayment() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: jSecondaryColor,
-          title: const Text(
-            'Confirm Payment',
-            style: jAlertDialogTitleStyle,
-          ),
-          content: const Text(
-            'Do you want to pay now ?',
-            style: jAlertDialogContentStyle,
-          ),
-          actions: [
-            MaterialButton(
-              onPressed: () {
-                paymentConfirmedSnackbar();
-              },
-              child: const Text(
-                'Pay Now',
-                style: jAlertDialogConfirmButtonStyle,
-              ),
-            ),
-            MaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text(
-                'Cancel',
-                style: jAlertDialogCancelButtonStyle,
-              ),
-            )
-          ],
-        );
-      },
-    );
-  }
-
-  void paymentConfirmedSnackbar() async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: jSecondaryColor,
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(jDefaultPadding),
-        padding: const EdgeInsets.all(jDefaultPadding / 2),
-        elevation: jDefaultPadding,
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(
-              'Payment Successfull',
-              style: jSnackBarTextStyle,
-            ),
-            Icon(
-              Icons.check_circle_outline_outlined,
-              color: jWhiteTextColor,
-            )
-          ],
-        ),
-      ),
-    );
-    Navigator.pop(context);
-  }
-
-  void paymentDownloadedSnackbar() async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: jSecondaryColor,
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(jDefaultPadding),
-        padding: const EdgeInsets.all(jDefaultPadding / 2),
-        elevation: jDefaultPadding,
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(
-              'Payment details downloaded',
-              style: jSnackBarTextStyle,
-            ),
-            Icon(
-              Icons.check_circle_outline_outlined,
-              color: jWhiteTextColor,
-            )
-          ],
-        ),
       ),
     );
   }

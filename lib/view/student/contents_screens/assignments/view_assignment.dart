@@ -3,7 +3,7 @@ import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/view/student/contents_screens/assignments/widgets/view_assignment_row.dart';
 import 'package:flutter/material.dart';
 
-class StudentViewAssignment extends StatefulWidget {
+class StudentViewAssignment extends StatelessWidget {
   const StudentViewAssignment({
     super.key,
     required this.subject,
@@ -23,26 +23,21 @@ class StudentViewAssignment extends StatefulWidget {
 
   final int index;
 
-  @override
-  State<StudentViewAssignment> createState() => _StudentViewAssignmentState();
-}
+  // late String subjectName;
+  // late String topicName;
+  // late String assignedDate;
+  // late String dueDate;
+  // late String contentDetails;
+  // @override
+  // void initState() {
+  //   subjectName = TextEditingController(text: widget.subject).text;
+  //   topicName = TextEditingController(text: widget.topic).text;
+  //   assignedDate = TextEditingController(text: widget.assignDate).text;
+  //   dueDate = TextEditingController(text: widget.lastDate).text;
+  //   contentDetails = TextEditingController(text: widget.contents).text;
 
-class _StudentViewAssignmentState extends State<StudentViewAssignment> {
-  late String subjectName;
-  late String topicName;
-  late String assignedDate;
-  late String dueDate;
-  late String contentDetails;
-  @override
-  void initState() {
-    subjectName = TextEditingController(text: widget.subject).text;
-    topicName = TextEditingController(text: widget.topic).text;
-    assignedDate = TextEditingController(text: widget.assignDate).text;
-    dueDate = TextEditingController(text: widget.lastDate).text;
-    contentDetails = TextEditingController(text: widget.contents).text;
-
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,26 +65,26 @@ class _StudentViewAssignmentState extends State<StudentViewAssignment> {
               children: [
                 StudentViewAssignmentRow(
                   detailTitle: 'Subject',
-                  detailValue: subjectName,
+                  detailValue: subject,
                 ),
                 StudentViewAssignmentRow(
                   detailTitle: 'Topic',
-                  detailValue: topicName,
+                  detailValue: topic,
                 ),
                 StudentViewAssignmentRow(
                   detailTitle: 'Assigned Date',
-                  detailValue: assignedDate,
+                  detailValue: assignDate,
                 ),
                 StudentViewAssignmentRow(
                   detailTitle: 'Last Date',
-                  detailValue: dueDate,
+                  detailValue: lastDate,
                 ),
                 jDefaultDivider,
                 const Text(
                   'Content Details',
                   style: jTimeTableSubjectTextStyle,
                 ),
-                Text(contentDetails),
+                Text(contents),
               ],
             ),
           ),

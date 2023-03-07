@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/assignment_section.dart';
-import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
+import 'package:edubrain/view/teacher/contents_screens/assignments/controller/assignment_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class EditAssignmentScreen extends StatefulWidget {
+class EditAssignmentScreen extends StatelessWidget {
   const EditAssignmentScreen({
     super.key,
     required this.editSubjectName,
@@ -26,33 +28,22 @@ class EditAssignmentScreen extends StatefulWidget {
   final int index;
 
   @override
-  State<EditAssignmentScreen> createState() => _EditAssignmentScreenState();
-}
-
-class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
-  TextEditingController _editSubjectNameController = TextEditingController();
-  TextEditingController _editTopicNameController = TextEditingController();
-  TextEditingController _editAssignDateController = TextEditingController();
-  TextEditingController _editDueDateController = TextEditingController();
-  TextEditingController _editContentDetailsController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    super.initState();
-    _editSubjectNameController =
-        TextEditingController(text: widget.editSubjectName);
-    _editTopicNameController =
-        TextEditingController(text: widget.editTopicName);
-    _editAssignDateController =
-        TextEditingController(text: widget.editAssignedDate);
-    _editDueDateController = TextEditingController(text: widget.editDueDate);
-    _editContentDetailsController =
-        TextEditingController(text: widget.editContent);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final assignmentProvider =
+        Provider.of<AssignmentProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      // Having Some doubts regarding the value to show on the editing textfields
+      assignmentProvider.editSubjectNameController =
+          TextEditingController(text: editSubjectName);
+      assignmentProvider.editTopicNameController =
+          TextEditingController(text: editTopicName);
+      assignmentProvider.editAssignDateController =
+          TextEditingController(text: editAssignedDate);
+      assignmentProvider.editDueDateController =
+          TextEditingController(text: editDueDate);
+      assignmentProvider.editContentDetailsController =
+          TextEditingController(text: editContent);
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -78,7 +69,7 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
               ],
             ),
             child: Form(
-              key: _formKey,
+              key: assignmentProvider.formKey,
               child: Column(
                 children: [
                   Row(
@@ -91,7 +82,8 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _editSubjectNameController,
+                          controller:
+                              assignmentProvider.editSubjectNameController,
                           keyboardType: TextInputType.name,
                         ),
                       ),
@@ -107,7 +99,8 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _editTopicNameController,
+                          controller:
+                              assignmentProvider.editTopicNameController,
                           keyboardType: TextInputType.name,
                         ),
                       ),
@@ -123,7 +116,8 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _editAssignDateController,
+                          controller:
+                              assignmentProvider.editAssignDateController,
                           keyboardType: TextInputType.datetime,
                         ),
                       ),
@@ -139,7 +133,7 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _editDueDateController,
+                          controller: assignmentProvider.editDueDateController,
                           keyboardType: TextInputType.datetime,
                         ),
                       ),
@@ -152,7 +146,7 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
                     style: jTimeTableSubjectTextStyle,
                   ),
                   TextFormField(
-                    controller: _editContentDetailsController,
+                    controller: assignmentProvider.editContentDetailsController,
                     keyboardType: TextInputType.multiline,
                     maxLines: 15,
                   ),
@@ -166,10 +160,13 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            editAssignmentOnTap(context);
+          if (assignmentProvider.formKey.currentState!.validate()) {
+            assignmentProvider.editAssignmentOnTap(context, index);
+            log('Edit done');
             Navigator.of(context).pop();
-          } else {}
+          } else {
+            log('Edit not done');
+          }
         },
         backgroundColor: jPrimaryColor,
         child: const Icon(
@@ -178,39 +175,5 @@ class _EditAssignmentScreenState extends State<EditAssignmentScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> editAssignmentOnTap(context) async {
-    final edittedSubjectName = _editSubjectNameController.text.trim();
-    final edittedTopicName = _editTopicNameController.text.trim();
-    final edittedAssignDate = _editAssignDateController.text.trim();
-    final edittedDueDate = _editDueDateController.text.trim();
-    final edittedContents = _editContentDetailsController.text.trim();
-
-    final assignmentEdit = AssignmentModel(
-      assignmentContent: edittedContents,
-      subjectName: edittedSubjectName,
-      topicName: edittedTopicName,
-      assignDate: edittedAssignDate,
-      dueDate: edittedDueDate,
-    );
-    if (_editSubjectNameController.text.isEmpty ||
-        _editTopicNameController.text.isEmpty ||
-        _editAssignDateController.text.isEmpty ||
-        _editDueDateController.text.isEmpty ||
-        _editContentDetailsController.text.isEmpty) {
-      return;
-    } else {
-      editAssignment(widget.index, assignmentEdit);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: jSecondaryColor,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(jDefaultPadding),
-          content: Text("Updated Assignment Successfully"),
-        ),
-      );
-    }
   }
 }

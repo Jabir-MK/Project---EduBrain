@@ -1,9 +1,9 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
-import 'package:edubrain/view/teacher/contents_screens/assignments/view_assignment/view_assignment_text_row.dart';
+import 'package:edubrain/view/teacher/contents_screens/assignments/widgets/view_assignment_text_row.dart';
 import 'package:flutter/material.dart';
 
-class ViewAssignmentScreen extends StatefulWidget {
+class ViewAssignmentScreen extends StatelessWidget {
   const ViewAssignmentScreen({
     super.key,
     required this.subjectName,
@@ -25,29 +25,9 @@ class ViewAssignmentScreen extends StatefulWidget {
   final int index;
 
   @override
-  State<ViewAssignmentScreen> createState() => _ViewAssignmentScreenState();
-}
-
-class _ViewAssignmentScreenState extends State<ViewAssignmentScreen> {
-  late String subjectName;
-  late String topicName;
-  late String assignedDate;
-  late String dueDate;
-  late String contents;
-
-  @override
-  void initState() {
-    super.initState();
-    subjectName = TextEditingController(text: widget.subjectName).text;
-    topicName = TextEditingController(text: widget.topicName).text;
-    assignedDate = TextEditingController(text: widget.assignedDate).text;
-    dueDate = TextEditingController(text: widget.dueDate).text;
-    contents = TextEditingController(text: widget.contentDetails).text;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(jDefaultPadding / 2),
@@ -89,7 +69,7 @@ class _ViewAssignmentScreenState extends State<ViewAssignmentScreen> {
                   'Content Details',
                   style: jTimeTableSubjectTextStyle,
                 ),
-                Text(contents),
+                Text(contentDetails),
               ],
             ),
           ),

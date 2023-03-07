@@ -1,5 +1,5 @@
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class ViewAssignmentTextRow extends StatelessWidget {
   const ViewAssignmentTextRow({

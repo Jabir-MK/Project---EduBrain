@@ -4,19 +4,10 @@ import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class StudentGradesScreen extends StatefulWidget {
+class StudentGradesScreen extends StatelessWidget {
   const StudentGradesScreen({super.key, required this.studentModel});
   static String routeName = 'GradesScreen';
   final StudentModel studentModel;
-  @override
-  State<StudentGradesScreen> createState() => _StudentGradesScreenState();
-}
-
-class _StudentGradesScreenState extends State<StudentGradesScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +33,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                   ),
                   LinearPercentIndicator(
                       trailing: Text(
-                        widget.studentModel.grades!.englishMark.toString(),
+                        studentModel.grades!.englishMark.toString(),
                         style: const TextStyle(
                             fontSize: 20,
                             fontFamily: 'Kalam',
@@ -53,7 +44,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                       animationDuration: 1500,
                       lineHeight: 20,
                       percent: double.parse(
-                            widget.studentModel.grades!.englishMark,
+                            studentModel.grades!.englishMark,
                           ) /
                           100,
                       progressColor: const Color.fromRGBO(75, 135, 185, 1),
@@ -69,7 +60,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                   ),
                   LinearPercentIndicator(
                       trailing: Text(
-                        widget.studentModel.grades!.mathematicsMark,
+                        studentModel.grades!.mathematicsMark,
                         style: const TextStyle(
                             fontSize: 20,
                             fontFamily: 'Kalam',
@@ -80,7 +71,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                       animationDuration: 1500,
                       lineHeight: 20,
                       percent: double.parse(
-                            widget.studentModel.grades!.mathematicsMark,
+                            studentModel.grades!.mathematicsMark,
                           ) /
                           100,
                       progressColor: const Color.fromRGBO(192, 108, 132, 1),
@@ -96,7 +87,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                   ),
                   LinearPercentIndicator(
                       trailing: Text(
-                        widget.studentModel.grades!.languageMark,
+                        studentModel.grades!.languageMark,
                         style: const TextStyle(
                             fontSize: 20,
                             fontFamily: 'Kalam',
@@ -107,7 +98,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                       animationDuration: 1500,
                       lineHeight: 20,
                       percent: double.parse(
-                            widget.studentModel.grades!.languageMark,
+                            studentModel.grades!.languageMark,
                           ) /
                           100,
                       progressColor: const Color.fromRGBO(246, 114, 128, 1),
@@ -123,7 +114,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                   ),
                   LinearPercentIndicator(
                       trailing: Text(
-                        widget.studentModel.grades!.chemistryMark,
+                        studentModel.grades!.chemistryMark,
                         style: const TextStyle(
                             fontSize: 20,
                             fontFamily: 'Kalam',
@@ -134,7 +125,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                       animationDuration: 1500,
                       lineHeight: 20,
                       percent: double.parse(
-                            widget.studentModel.grades!.chemistryMark,
+                            studentModel.grades!.chemistryMark,
                           ) /
                           100,
                       progressColor: const Color.fromRGBO(248, 177, 149, 1),
@@ -150,7 +141,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                   ),
                   LinearPercentIndicator(
                       trailing: Text(
-                        widget.studentModel.grades!.computerMark,
+                        studentModel.grades!.computerMark,
                         style: const TextStyle(
                             fontSize: 20,
                             fontFamily: 'Kalam',
@@ -161,7 +152,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                       animationDuration: 1500,
                       lineHeight: 20,
                       percent: double.parse(
-                            widget.studentModel.grades!.computerMark,
+                            studentModel.grades!.computerMark,
                           ) /
                           100,
                       progressColor: const Color.fromRGBO(116, 180, 155, 1),
@@ -177,7 +168,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                   ),
                   LinearPercentIndicator(
                       trailing: Text(
-                        widget.studentModel.grades!.physicsMark,
+                        studentModel.grades!.physicsMark,
                         style: const TextStyle(
                             fontSize: 20,
                             fontFamily: 'Kalam',
@@ -188,7 +179,7 @@ class _StudentGradesScreenState extends State<StudentGradesScreen> {
                       animationDuration: 1500,
                       lineHeight: 20,
                       percent: double.parse(
-                            widget.studentModel.grades!.physicsMark,
+                            studentModel.grades!.physicsMark,
                           ) /
                           100,
                       progressColor: const Color.fromRGBO(0, 168, 181, 1),

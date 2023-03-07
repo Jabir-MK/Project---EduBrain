@@ -1,30 +1,17 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/assignment_section.dart';
-import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
+import 'package:edubrain/view/teacher/contents_screens/assignments/controller/assignment_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class AddAssignmentScreen extends StatefulWidget {
+class AddAssignmentScreen extends StatelessWidget {
   const AddAssignmentScreen({super.key});
 
   static String routeName = 'AddAssignmentScreen';
 
   @override
-  State<AddAssignmentScreen> createState() => _AddAssignmentScreenState();
-}
-
-class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
-  final TextEditingController _subjectNameController = TextEditingController();
-  final TextEditingController _topicNameController = TextEditingController();
-  final TextEditingController _assignedDateController = TextEditingController();
-  final TextEditingController _lastDateController = TextEditingController();
-  final TextEditingController _contentDetailsController =
-      TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-
-  @override
   Widget build(BuildContext context) {
+    final addProvider = Provider.of<AssignmentProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -51,7 +38,7 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
               ],
             ),
             child: Form(
-              key: _formKey,
+              key: addProvider.formKey,
               child: Column(
                 children: [
                   Row(
@@ -64,7 +51,7 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _subjectNameController,
+                          controller: addProvider.subjectNameController,
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -87,7 +74,7 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _topicNameController,
+                          controller: addProvider.topicNameController,
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -110,7 +97,7 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _assignedDateController,
+                          controller: addProvider.assignedDateController,
                           keyboardType: TextInputType.datetime,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -133,7 +120,7 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                       SizedBox(
                         width: 150,
                         child: TextFormField(
-                          controller: _lastDateController,
+                          controller: addProvider.lastDateController,
                           keyboardType: TextInputType.datetime,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -153,7 +140,7 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
                   ),
                   TextFormField(
                     maxLines: 11,
-                    controller: _contentDetailsController,
+                    controller: addProvider.contentDetailsController,
                     keyboardType: TextInputType.multiline,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -172,8 +159,8 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            addAssignmentOnTap();
+          if (addProvider.formKey.currentState!.validate()) {
+            addProvider.addAssignmentOnTap(context);
           } else {
             return;
           }
@@ -185,38 +172,5 @@ class _AddAssignmentScreenState extends State<AddAssignmentScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> addAssignmentOnTap() async {
-    final subjectName = _subjectNameController.text.trim();
-    final topicName = _topicNameController.text.trim();
-    final assignedDate = _assignedDateController.text.trim();
-    final lastDate = _lastDateController.text.trim();
-    final contentDetails = _contentDetailsController.text.trim();
-    if (subjectName.isEmpty ||
-        topicName.isEmpty ||
-        assignedDate.isEmpty ||
-        lastDate.isEmpty ||
-        contentDetails.isEmpty) {
-      return;
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: jSecondaryColor,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(jDefaultPadding),
-          content: Text('Assignment Added Successfully'),
-        ),
-      );
-    }
-    final assignment = AssignmentModel(
-      assignmentContent: contentDetails,
-      subjectName: subjectName,
-      topicName: topicName,
-      assignDate: assignedDate,
-      dueDate: lastDate,
-    );
-    addAssignment(assignment);
-    Navigator.of(context).pop();
   }
 }

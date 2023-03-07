@@ -1,7 +1,11 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/core/routes/routes.dart';
+import 'package:edubrain/database/functions/assignment_section.dart';
+import 'package:edubrain/view/comon_screens/splash_screen/controller/splash_controller.dart';
 import 'package:edubrain/view/comon_screens/splash_screen/splash_screen.dart';
+import 'package:edubrain/view/student/contents_screens/fee_payments/controller/controller.dart';
+import 'package:edubrain/view/teacher/contents_screens/assignments/controller/assignment_controller.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/controller/teacher_login_controller.dart';
 import 'package:edubrain/view/teacher/login_screen/signup/controller/teacher_signup_controller.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
@@ -45,7 +49,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => TeacherLoginProvider()),
-        ChangeNotifierProvider(create: (context) => TeacherSignUpProvider())
+        ChangeNotifierProvider(create: (context) => TeacherSignUpProvider()),
+        ChangeNotifierProvider(create: (context) => SplashProvider()),
+        ChangeNotifierProvider(create: (context) => AssignmentsDBProvider()),
+        ChangeNotifierProvider(create: (context) => AssignmentProvider()),
+        ChangeNotifierProvider(create: (context) => PaymentsProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
