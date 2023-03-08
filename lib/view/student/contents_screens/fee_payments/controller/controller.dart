@@ -3,8 +3,6 @@ import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:flutter/material.dart';
 
 class PaymentsProvider with ChangeNotifier {
-  //
-
   void confirmPayment(context) async {
     showDialog(
       context: context,

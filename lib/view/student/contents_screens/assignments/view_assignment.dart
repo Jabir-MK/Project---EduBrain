@@ -23,22 +23,6 @@ class StudentViewAssignment extends StatelessWidget {
 
   final int index;
 
-  // late String subjectName;
-  // late String topicName;
-  // late String assignedDate;
-  // late String dueDate;
-  // late String contentDetails;
-  // @override
-  // void initState() {
-  //   subjectName = TextEditingController(text: widget.subject).text;
-  //   topicName = TextEditingController(text: widget.topic).text;
-  //   assignedDate = TextEditingController(text: widget.assignDate).text;
-  //   dueDate = TextEditingController(text: widget.lastDate).text;
-  //   contentDetails = TextEditingController(text: widget.contents).text;
-
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

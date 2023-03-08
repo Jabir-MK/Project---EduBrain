@@ -4,15 +4,18 @@ import 'package:edubrain/view/student/contents_screens/grades/grades_screen.dart
 import 'package:edubrain/view/student/contents_screens/time_table/student_time_table_screen.dart';
 import 'package:edubrain/view/student/home_screen/widgets/drawer_contents.dart';
 import 'package:edubrain/view/student/login_screen/student_login_screen.dart';
+import 'package:edubrain/view/student/student_profile/controller/student_profile_controller.dart';
 import 'package:edubrain/view/student/student_profile/student_profile_screen.dart';
-import 'package:edubrain/view/student/student_profile/student_signout.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StudentHomeScreenDrawer extends StatelessWidget {
   const StudentHomeScreenDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider =
+        Provider.of<StudentProfileController>(context, listen: false);
     return Drawer(
       child: ListView(
         physics: const BouncingScrollPhysics(),
@@ -118,7 +121,7 @@ class StudentHomeScreenDrawer extends StatelessWidget {
             listTitle: 'Log out',
             listIcon: Icons.logout_outlined,
             listOnTap: () {
-              confirmSignOutStudent(context);
+              provider.confirmSignOutStudent(context);
             },
           ),
           jColoredDivider,

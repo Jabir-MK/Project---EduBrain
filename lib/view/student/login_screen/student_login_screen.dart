@@ -1,41 +1,25 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:edubrain/core/constants/constant.dart';
-import 'package:edubrain/database/functions/student_section.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
-import 'package:edubrain/main.dart';
-import 'package:edubrain/view/student/home_screen/student_home_screen.dart';
+import 'package:edubrain/view/student/login_screen/controller/login_student_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 List<StudentModel> studentLoginList = [];
 
-class StudentLoginScreen extends StatefulWidget {
+class StudentLoginScreen extends StatelessWidget {
   const StudentLoginScreen({super.key});
 
   static String routeName = 'StudentLoginScreen';
 
   @override
-  State<StudentLoginScreen> createState() => _StudentLoginScreenState();
-}
-
-class _StudentLoginScreenState extends State<StudentLoginScreen> {
-  final TextEditingController _studentLoginDataController =
-      TextEditingController();
-
-  final TextEditingController _studentLoginPassController =
-      TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    studentLoginList = [];
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final loginProvider =
+        Provider.of<StudentLoginProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      studentLoginList = [];
+    });
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -91,34 +75,36 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                 child: Column(
                   children: [
                     Form(
-                      key: _formKey,
+                      key: loginProvider.formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           jheightBox,
-                          buildEmailField(),
+                          loginProvider.buildEmailField(),
                           jheightBox,
-                          buildPasswordField(),
+                          loginProvider.buildPasswordField(),
                           jheightBox,
                           jheightBox,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton.icon(
-                                  style: ButtonStyle(
-                                    elevation: MaterialStateProperty.all(10),
-                                    shadowColor: MaterialStateProperty.all(
-                                        jSecondaryColor),
-                                    backgroundColor: MaterialStateProperty.all(
-                                        jPrimaryColor),
-                                  ),
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      checkLoginStudent();
-                                    }
-                                  },
-                                  icon: const Icon(Icons.check),
-                                  label: const Text("Login")),
+                                style: ButtonStyle(
+                                  elevation: MaterialStateProperty.all(10),
+                                  shadowColor: MaterialStateProperty.all(
+                                      jSecondaryColor),
+                                  backgroundColor:
+                                      MaterialStateProperty.all(jPrimaryColor),
+                                ),
+                                onPressed: () {
+                                  if (loginProvider.formKey.currentState!
+                                      .validate()) {
+                                    loginProvider.checkLoginStudent(context);
+                                  }
+                                },
+                                icon: const Icon(Icons.check),
+                                label: const Text("Login"),
+                              ),
                             ],
                           )
                         ],
@@ -132,96 +118,5 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
         ),
       ),
     );
-  }
-
-  TextFormField buildEmailField() {
-    return TextFormField(
-      controller: _studentLoginDataController,
-      textAlign: TextAlign.start,
-      keyboardType: TextInputType.emailAddress,
-      style: const TextStyle(
-        color: jBlackTextColor,
-        fontWeight: FontWeight.w600,
-        fontSize: 17,
-      ),
-      decoration: const InputDecoration(
-        labelText: "E-mail",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        isDense: true,
-      ),
-      validator: (value) {
-        RegExp regExpEmail = RegExp(emailPattern);
-        if (value == null || value.isEmpty) {
-          return "Please Enter Your E-mail";
-        }
-        if (!regExpEmail.hasMatch(value)) {
-          return 'Please enter a valid Email';
-        }
-        return null;
-      },
-    );
-  }
-
-  TextFormField buildPasswordField() {
-    return TextFormField(
-      controller: _studentLoginPassController,
-      textAlign: TextAlign.start,
-      obscureText: true,
-      keyboardType: TextInputType.name,
-      style: const TextStyle(
-        color: jBlackTextColor,
-        fontWeight: FontWeight.w600,
-        fontSize: 17,
-      ),
-      decoration: const InputDecoration(
-        labelText: "Password",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        isDense: true,
-      ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return "Password not filled";
-        } else if (value.length < 8) {
-          return 'Password must be atleast 8 characters';
-        } else {
-          return null;
-        }
-      },
-    );
-  }
-
-  Future<void> checkLoginStudent() async {
-    final userStudentEmail = _studentLoginDataController.text.trim();
-    final userStudentPass = _studentLoginPassController.text.trim();
-
-    final sharedpref = await SharedPreferences.getInstance();
-    await sharedpref.setString('StudentEmail', userStudentEmail);
-    await sharedpref.setString('StudentPassword', userStudentPass);
-
-    Box<StudentModel> studentLoginCheck =
-        await Hive.openBox<StudentModel>(studentModelDatabaseName);
-    studentLoginCheck.values
-        .toList()
-        .where((element) =>
-            element.eMail == userStudentEmail &&
-            element.password == userStudentPass)
-        .forEach(
-      (element) {
-        studentLoginList.add(element);
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const StudentHomeScreen(),
-          ),
-        );
-      },
-    );
-  }
-
-  void loginCheckStudent(BuildContext context) async {
-    final sharedPrefStudent = await SharedPreferences.getInstance();
-    await sharedPrefStudent.setBool(studentSaveKey, true);
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => const StudentHomeScreen(),
-    ));
   }
 }

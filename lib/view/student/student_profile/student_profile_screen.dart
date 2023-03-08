@@ -1,9 +1,10 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/view/student/login_screen/student_login_screen.dart';
+import 'package:edubrain/view/student/student_profile/controller/student_profile_controller.dart';
 import 'package:edubrain/view/student/student_profile/student_profile_screen_details_model.dart';
-import 'package:edubrain/view/student/student_profile/student_signout.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StudentProfileScreen extends StatelessWidget {
   const StudentProfileScreen({super.key});
@@ -12,6 +13,8 @@ class StudentProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider =
+        Provider.of<StudentProfileController>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -27,7 +30,7 @@ class StudentProfileScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              confirmSignOutStudent(context);
+              provider.confirmSignOutStudent(context);
             },
             icon: const Icon(Icons.logout),
           ),
