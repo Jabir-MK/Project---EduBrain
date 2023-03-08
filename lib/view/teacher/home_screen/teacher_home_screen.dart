@@ -11,7 +11,6 @@ import 'package:edubrain/view/teacher/home_screen/widgets/teacher_data.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:edubrain/view/teacher/teacher_profile/teacher_profile_screen.dart';
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherHomeScreen extends StatefulWidget {
   const TeacherHomeScreen({super.key});

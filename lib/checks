@@ -1,1 +1,5 @@
 == How to manage TickerProviderStateMixin without removing StatefulWidget
+== Problems with TextEditingController in the section of editing the student
+   info
+    = Cant define the the value to edit in the TextEditingController's text
+      (might be the issue with index)

@@ -1,101 +1,55 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/student_section.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
+import 'package:edubrain/view/teacher/contents_screens/manage_student/controller/manage_student_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class EditStudentScreen extends StatefulWidget {
+class EditStudentScreen extends StatelessWidget {
   const EditStudentScreen({
     super.key,
-    required this.editFName,
-    required this.editLName,
-    required this.editRegNo,
-    required this.editAdmNo,
-    required this.editDOBirth,
-    required this.editDept,
-    required this.editEMail,
-    required this.editParentName,
-    required this.editMobileNum,
     required this.index,
-    required this.editPassword,
-    required this.editNationality,
-    required this.editGender,
-    required this.editHouseName,
-    required this.editPost,
-    required this.editPlace,
+    required this.student,
   });
 
-  final String editFName;
-  final String editLName;
-  final String editRegNo;
-  final String editAdmNo;
-  final String editDOBirth;
-  final String editDept;
-  final String editNationality;
-  final String editGender;
-  final String editHouseName;
-  final String editPost;
-  final String editPlace;
-  final String editEMail;
-  final String editParentName;
-  final String editMobileNum;
-  final String editPassword;
-
   final int index;
+  final StudentModel student;
 
   static String routeName = 'EditStudentScreen';
 
   @override
-  State<EditStudentScreen> createState() => _EditStudentScreenState();
-}
-
-class _EditStudentScreenState extends State<EditStudentScreen> {
-  TextEditingController _firstNameEditController = TextEditingController();
-  TextEditingController _lastNameEditController = TextEditingController();
-  TextEditingController _regNoEditController = TextEditingController();
-  TextEditingController _admNoEditController = TextEditingController();
-  TextEditingController _dOBirthEditController = TextEditingController();
-  TextEditingController _deptEditController = TextEditingController();
-  TextEditingController _nationalityEditController = TextEditingController();
-  TextEditingController _postOfficeEditController = TextEditingController();
-  TextEditingController _placeEditController = TextEditingController();
-  TextEditingController _houseNameEditController = TextEditingController();
-  TextEditingController _genderEditController = TextEditingController();
-
-  TextEditingController _eMailEditController = TextEditingController();
-  TextEditingController _parentNameEditController = TextEditingController();
-  TextEditingController _mobileNumEditController = TextEditingController();
-  TextEditingController _passwordEditController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    _firstNameEditController = TextEditingController(text: widget.editFName);
-    _lastNameEditController = TextEditingController(text: widget.editLName);
-    _regNoEditController = TextEditingController(text: widget.editRegNo);
-    _admNoEditController = TextEditingController(text: widget.editAdmNo);
-    _dOBirthEditController = TextEditingController(text: widget.editDOBirth);
-    _deptEditController = TextEditingController(text: widget.editDept);
-    _eMailEditController = TextEditingController(text: widget.editEMail);
-    _parentNameEditController =
-        TextEditingController(text: widget.editParentName);
-    _mobileNumEditController =
-        TextEditingController(text: widget.editMobileNum);
-    _passwordEditController = TextEditingController(text: widget.editPassword);
-    _nationalityEditController = TextEditingController(
-      text: widget.editNationality,
-    );
-    _genderEditController = TextEditingController(text: widget.editGender);
-    _houseNameEditController =
-        TextEditingController(text: widget.editHouseName);
-    _postOfficeEditController = TextEditingController(text: widget.editPost);
-    _placeEditController = TextEditingController(text: widget.editPlace);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final provider =
+        Provider.of<ManageStudentsController>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      provider.editFirstNameController =
+          TextEditingController(text: student.fName);
+      provider.editLastNameController =
+          TextEditingController(text: student.lName);
+      provider.editRegNoController =
+          TextEditingController(text: student.regNum);
+      provider.editAdmNoController =
+          TextEditingController(text: student.admNum);
+      provider.editDOBirthController =
+          TextEditingController(text: student.dOBirth);
+      provider.editDeptController = TextEditingController(text: student.dept);
+      provider.editNationalityController =
+          TextEditingController(text: student.nationality);
+      provider.editGenderController =
+          TextEditingController(text: student.gender);
+      provider.editHouseNameController =
+          TextEditingController(text: student.houseName);
+      provider.editPostOfficeController =
+          TextEditingController(text: student.postOffice);
+      provider.editPlaceController = TextEditingController(text: student.place);
+      provider.editEMailController = TextEditingController(text: student.eMail);
+      provider.editParentNameController =
+          TextEditingController(text: student.guardianName);
+      provider.editMobileNumController =
+          TextEditingController(text: student.mobNum);
+      provider.editPasswordController =
+          TextEditingController(text: student.password);
+    });
     return Scaffold(
       backgroundColor: jOtherColor,
       appBar: AppBar(
@@ -107,7 +61,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
           Container(
             color: jOtherColor,
             child: Form(
-              key: _formKey,
+              key: provider.editFormKey,
               child: Column(
                 children: [
                   Container(
@@ -138,8 +92,8 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             Row(
                               children: [
                                 Text(
-                                  '${_firstNameEditController.text.toUpperCase()} '
-                                  '${_lastNameEditController.text.toUpperCase()}',
+                                  '${student.fName} '
+                                  '${student.lName}',
                                   style: jKalamLargeStyle,
                                 ),
                               ],
@@ -148,11 +102,11 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  _regNoEditController.text.toUpperCase(),
+                                  student.regNum.toUpperCase(),
                                   style: jAcmeMediumStyle,
                                 ),
                                 Text(
-                                  _deptEditController.text.toUpperCase(),
+                                  student.dept.toUpperCase(),
                                   style: jAcmeMediumStyle,
                                 )
                               ],
@@ -183,7 +137,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _firstNameEditController,
+                                controller: provider.editFirstNameController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -213,7 +167,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _lastNameEditController,
+                                controller: provider.editLastNameController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -243,7 +197,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _regNoEditController,
+                                controller: provider.editRegNoController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -273,7 +227,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _admNoEditController,
+                                controller: provider.editAdmNoController,
                                 keyboardType: TextInputType.number,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -303,7 +257,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _dOBirthEditController,
+                                controller: provider.editDOBirthController,
                                 keyboardType: TextInputType.datetime,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -333,7 +287,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _deptEditController,
+                                controller: provider.editDeptController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -363,7 +317,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _nationalityEditController,
+                                controller: provider.editNationalityController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -393,7 +347,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             SizedBox(
                               width: 200,
                               child: TextFormField(
-                                controller: _genderEditController,
+                                controller: provider.editGenderController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -431,7 +385,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             ),
                             SizedBox(
                               child: TextFormField(
-                                controller: _houseNameEditController,
+                                controller: provider.editHouseNameController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -461,7 +415,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             ),
                             SizedBox(
                               child: TextFormField(
-                                controller: _postOfficeEditController,
+                                controller: provider.editPostOfficeController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -491,7 +445,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             ),
                             SizedBox(
                               child: TextFormField(
-                                controller: _placeEditController,
+                                controller: provider.editPlaceController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -529,7 +483,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             ),
                             SizedBox(
                               child: TextFormField(
-                                controller: _eMailEditController,
+                                controller: provider.editEMailController,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -559,7 +513,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             ),
                             SizedBox(
                               child: TextFormField(
-                                controller: _parentNameEditController,
+                                controller: provider.editParentNameController,
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -589,7 +543,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             ),
                             SizedBox(
                               child: TextFormField(
-                                controller: _mobileNumEditController,
+                                controller: provider.editMobileNumController,
                                 keyboardType: TextInputType.phone,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -626,7 +580,7 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                             ),
                             SizedBox(
                               child: TextFormField(
-                                controller: _passwordEditController,
+                                controller: provider.editPasswordController,
                                 keyboardType: TextInputType.phone,
                                 decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -658,8 +612,8 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            editStudentOntap(context);
+          if (provider.editFormKey.currentState!.validate()) {
+            provider.editStudentOntap(context, index);
             Navigator.of(context).pop();
           } else {}
         },
@@ -670,55 +624,5 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> editStudentOntap(context) async {
-    final studentEdit = StudentModel(
-      fName: _firstNameEditController.text,
-      lName: _lastNameEditController.text,
-      regNum: _regNoEditController.text,
-      admNum: _admNoEditController.text,
-      dOBirth: _dOBirthEditController.text,
-      dept: _deptEditController.text,
-      eMail: _eMailEditController.text,
-      guardianName: _parentNameEditController.text,
-      mobNum: _mobileNumEditController.text,
-      password: _passwordEditController.text,
-      gender: _genderEditController.text,
-      houseName: _houseNameEditController.text,
-      nationality: _nationalityEditController.text,
-      place: _placeEditController.text,
-      postOffice: _postOfficeEditController.text,
-    );
-    // --------------------------------------
-    editStudent(widget.index, studentEdit);
-    // --------------------------------------
-
-    if (_firstNameEditController.text.isEmpty ||
-        _lastNameEditController.text.isEmpty ||
-        _regNoEditController.text.isEmpty ||
-        _admNoEditController.text.isEmpty ||
-        _dOBirthEditController.text.isEmpty ||
-        _deptEditController.text.isEmpty ||
-        _eMailEditController.text.isEmpty ||
-        _parentNameEditController.text.isEmpty ||
-        _mobileNumEditController.text.isEmpty ||
-        _genderEditController.text.isEmpty ||
-        _houseNameEditController.text.isEmpty ||
-        _nationalityEditController.text.isEmpty ||
-        _postOfficeEditController.text.isEmpty ||
-        _placeEditController.text.isEmpty ||
-        _passwordEditController.text.isEmpty) {
-      return;
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: jSecondaryColor,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(jDefaultPadding),
-          content: Text("Updated Student Successfully"),
-        ),
-      );
-    }
   }
 }

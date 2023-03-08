@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/constants/constant.dart';
 import '../../home_screen/student_home_screen.dart';
 import '../student_login_screen.dart';
+import 'package:provider/provider.dart';
 
 class StudentLoginProvider with ChangeNotifier {
   //
@@ -89,8 +90,9 @@ class StudentLoginProvider with ChangeNotifier {
     await sharedpref.setString('StudentEmail', userStudentEmail);
     await sharedpref.setString('StudentPassword', userStudentPass);
 
-    Box<StudentModel> studentLoginCheck =
-        await Hive.openBox<StudentModel>(studentModelDatabaseName);
+    Box<StudentModel> studentLoginCheck = await Hive.openBox<StudentModel>(
+        Provider.of<StudentDBProvider>(context, listen: false)
+            .studentModelDatabaseName);
     studentLoginCheck.values
         .toList()
         .where((element) =>

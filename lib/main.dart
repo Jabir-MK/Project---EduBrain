@@ -2,12 +2,15 @@ import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/core/routes/routes.dart';
 import 'package:edubrain/database/functions/assignment_section.dart';
+import 'package:edubrain/database/functions/student_section.dart';
 import 'package:edubrain/view/comon_screens/splash_screen/controller/splash_controller.dart';
 import 'package:edubrain/view/comon_screens/splash_screen/splash_screen.dart';
 import 'package:edubrain/view/student/contents_screens/fee_payments/controller/controller.dart';
 import 'package:edubrain/view/student/login_screen/controller/login_student_controller.dart';
 import 'package:edubrain/view/student/student_profile/controller/student_profile_controller.dart';
 import 'package:edubrain/view/teacher/contents_screens/assignments/controller/assignment_controller.dart';
+import 'package:edubrain/view/teacher/contents_screens/grades/controller/grades_controller.dart';
+import 'package:edubrain/view/teacher/contents_screens/manage_student/controller/manage_student_controller.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/controller/teacher_login_controller.dart';
 import 'package:edubrain/view/teacher/login_screen/signup/controller/teacher_signup_controller.dart';
 import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
@@ -58,6 +61,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => PaymentsProvider()),
         ChangeNotifierProvider(create: (context) => StudentLoginProvider()),
         ChangeNotifierProvider(create: (context) => StudentProfileController()),
+        ChangeNotifierProvider(create: (context) => GradesController()),
+        ChangeNotifierProvider(create: (context) => ManageStudentsController()),
+        ChangeNotifierProvider(create: (context) => StudentDBProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

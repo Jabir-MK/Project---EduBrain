@@ -3,6 +3,7 @@
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../database/functions/student_section.dart';
@@ -47,7 +48,9 @@ class SplashProvider with ChangeNotifier {
 
     if (stytudent != null && studentPass != null) {
       Box<StudentModel> profileCheckLoginStudent =
-          await Hive.openBox<StudentModel>(studentModelDatabaseName);
+          await Hive.openBox<StudentModel>(
+              Provider.of<StudentDBProvider>(context, listen: false)
+                  .studentModelDatabaseName);
       profileCheckLoginStudent.values
           .where(
         (element) =>

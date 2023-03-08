@@ -1,11 +1,13 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/database/functions/student_section.dart';
-import 'package:edubrain/view/teacher/contents_screens/grades/add_grades/add_grade_screen.dart';
 import 'package:edubrain/view/teacher/contents_screens/grades/view_grades/widgets/view_individual_grades_details.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ViewIndividualStudentGradesScreen extends StatefulWidget {
+import '../add_grades/add_grade_screen.dart';
+
+class ViewIndividualStudentGradesScreen extends StatelessWidget {
   const ViewIndividualStudentGradesScreen({
     super.key,
     required this.index,
@@ -22,13 +24,6 @@ class ViewIndividualStudentGradesScreen extends StatefulWidget {
 
   final int index;
 
-  @override
-  State<ViewIndividualStudentGradesScreen> createState() =>
-      _ViewIndividualStudentGradesScreenState();
-}
-
-class _ViewIndividualStudentGradesScreenState
-    extends State<ViewIndividualStudentGradesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +56,7 @@ class _ViewIndividualStudentGradesScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      widget.name,
+                      name,
                       style: const TextStyle(
                         fontFamily: 'Kalam',
                         fontSize: 20,
@@ -69,7 +64,7 @@ class _ViewIndividualStudentGradesScreenState
                       ),
                     ),
                     Text(
-                      widget.regID,
+                      regID,
                       style: const TextStyle(
                         fontFamily: 'Kalam',
                         fontSize: 20,
@@ -82,7 +77,7 @@ class _ViewIndividualStudentGradesScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      widget.admNo,
+                      admNo,
                       style: const TextStyle(
                         fontFamily: 'Kalam',
                         fontSize: 20,
@@ -90,7 +85,7 @@ class _ViewIndividualStudentGradesScreenState
                       ),
                     ),
                     Text(
-                      widget.dept,
+                      dept,
                       style: const TextStyle(
                         fontFamily: 'Kalam',
                         fontSize: 20,
@@ -102,8 +97,8 @@ class _ViewIndividualStudentGradesScreenState
               ],
             ),
           ),
-          ValueListenableBuilder(
-            builder: (context, studentGradesInfo, child) {
+          Consumer<StudentDBProvider>(
+            builder: (context, value, child) {
               return Column(
                 children: [
                   ElevatedButton(
@@ -112,7 +107,7 @@ class _ViewIndividualStudentGradesScreenState
                         context,
                         MaterialPageRoute(
                           builder: (context) => AddGradesScreen(
-                            studentModel: studentGradesInfo[0],
+                            studentModel: value.studentListDB[index],
                           ),
                         ),
                       );
@@ -121,49 +116,54 @@ class _ViewIndividualStudentGradesScreenState
                   ),
                   IndividualGradesProgressIndicator(
                     subjectMark: int.parse(
-                        studentGradesInfo[0].grades?.englishMark ?? 'null'),
+                        value.studentListDB[index].grades?.englishMark ??
+                            'null'),
                     subjectName: 'English',
                     progressColor: Colors.blue,
                   ),
                   jHalfHeightBox,
                   IndividualGradesProgressIndicator(
                     subjectMark: int.parse(
-                        studentGradesInfo[0].grades?.languageMark ?? 'null'),
+                        value.studentListDB[index].grades?.languageMark ??
+                            'null'),
                     subjectName: 'Language',
                     progressColor: Colors.red,
                   ),
                   jHalfHeightBox,
                   IndividualGradesProgressIndicator(
                     subjectMark: int.parse(
-                        studentGradesInfo[0].grades?.mathematicsMark ?? 'null'),
+                        value.studentListDB[index].grades?.mathematicsMark ??
+                            'null'),
                     subjectName: 'Mathematics',
                     progressColor: Colors.green,
                   ),
                   jHalfHeightBox,
                   IndividualGradesProgressIndicator(
                     subjectMark: int.parse(
-                        studentGradesInfo[0].grades?.chemistryMark ?? 'null'),
+                        value.studentListDB[index].grades?.chemistryMark ??
+                            'null'),
                     subjectName: 'Chemistry',
                     progressColor: Colors.purple,
                   ),
                   jHalfHeightBox,
                   IndividualGradesProgressIndicator(
                     subjectMark: int.parse(
-                        studentGradesInfo[0].grades?.physicsMark ?? 'null'),
+                        value.studentListDB[index].grades?.physicsMark ??
+                            'null'),
                     subjectName: 'Physics',
                     progressColor: Colors.yellow,
                   ),
                   jHalfHeightBox,
                   IndividualGradesProgressIndicator(
                     subjectMark: int.parse(
-                        studentGradesInfo[0].grades?.computerMark ?? 'null'),
+                        value.studentListDB[index].grades?.computerMark ??
+                            'null'),
                     subjectName: 'Computer Science',
                     progressColor: Colors.orange,
                   ),
                 ],
               );
             },
-            valueListenable: studentListNotifier,
           )
         ],
       ),
