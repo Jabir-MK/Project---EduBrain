@@ -7,6 +7,7 @@ import 'package:edubrain/main.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../home_screen/teacher_home_screen.dart';
@@ -33,7 +34,9 @@ class TeacherLoginProvider with ChangeNotifier {
     await shredpref.setString('techerPass', teacherLoginPasswordCheck);
 
     Box<TeacherModel> profileCheckLoginTeacher =
-        await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
+        await Hive.openBox<TeacherModel>(
+            Provider.of<TeacherDBProvider>(context, listen: false)
+                .teacherModelDatabaseName);
     profileCheckLoginTeacher.values
         .where((element) =>
             element.teacherEMail == teacherLoginDataCheck &&

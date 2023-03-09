@@ -3,6 +3,7 @@ import 'package:edubrain/core/constants/fontstyle_constants.dart';
 import 'package:edubrain/core/routes/routes.dart';
 import 'package:edubrain/database/functions/assignment_section.dart';
 import 'package:edubrain/database/functions/student_section.dart';
+import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:edubrain/view/comon_screens/splash_screen/controller/splash_controller.dart';
 import 'package:edubrain/view/comon_screens/splash_screen/splash_screen.dart';
 import 'package:edubrain/view/student/contents_screens/fee_payments/controller/controller.dart';
@@ -17,6 +18,7 @@ import 'package:edubrain/database/model/assignment/assignment_data_model.dart';
 import 'package:edubrain/database/model/grades/grades_model.dart';
 import 'package:edubrain/database/model/student/student_data_model.dart';
 import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
+import 'package:edubrain/view/teacher/teacher_profile/controller/teacher_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +65,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => StudentProfileController()),
         ChangeNotifierProvider(create: (context) => GradesController()),
         ChangeNotifierProvider(create: (context) => ManageStudentsController()),
-        ChangeNotifierProvider(create: (context) => StudentDBProvider())
+        ChangeNotifierProvider(create: (context) => StudentDBProvider()),
+        ChangeNotifierProvider(create: (context) => TeacherDBProvider()),
+        ChangeNotifierProvider(create: (context) => TeacherProfileController())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

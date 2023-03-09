@@ -29,7 +29,9 @@ class SplashProvider with ChangeNotifier {
 
     if (teacher != null && teacherPass != null) {
       Box<TeacherModel> profileCheckLoginTeacher =
-          await Hive.openBox<TeacherModel>(teacherModelDatabaseName);
+          await Hive.openBox<TeacherModel>(
+              Provider.of<TeacherDBProvider>(context, listen: false)
+                  .teacherModelDatabaseName);
       profileCheckLoginTeacher.values
           .where((element) =>
               element.teacherEMail == teacher &&

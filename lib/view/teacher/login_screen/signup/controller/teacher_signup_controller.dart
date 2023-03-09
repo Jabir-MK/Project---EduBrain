@@ -1,6 +1,7 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/database/functions/teacher_section.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../database/model/teacher_model/teacher_data_model.dart';
 import '../signup_success.dart';
@@ -38,7 +39,8 @@ class TeacherSignUpProvider with ChangeNotifier {
         teacherEMail: signUpEMailTeacher,
         teacherPassword: signUpPasswordTeacher,
       );
-      createTeacherProfile(teacher);
+      Provider.of<TeacherDBProvider>(context, listen: false)
+          .createTeacherProfile(teacher);
 
       // -------------------------------
 

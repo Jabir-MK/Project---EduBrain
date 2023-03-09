@@ -13,8 +13,6 @@ import '../student_login_screen.dart';
 import 'package:provider/provider.dart';
 
 class StudentLoginProvider with ChangeNotifier {
-  //
-
   final TextEditingController studentLoginDataController =
       TextEditingController();
 

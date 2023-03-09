@@ -1,5 +1,24 @@
 == How to manage TickerProviderStateMixin without removing StatefulWidget
+    = In time_table section
 == Problems with TextEditingController in the section of editing the student
    info
     = Cant define the the value to edit in the TextEditingController's text
-      (might be the issue with index)
+      (might be the issue with index),
+
+============= Future Plans For the app ======================
+
+= Do api 
+= Perfect the State Management for the application
+= Reformat the application properly
+= Include attendance and fee_payments with proper working condition
+= Perfect the grades section properly
+= Include multiple batches (like computer science , biology , commerce etc.)
+= Need perfection on the UI (simple and attractive)
+= need a new module to set the teachers 
+= Timetable should be added not set by default 
+= Students should be able to submit the assignments
+= teacher should be able to check the assignments are submitted or not and 
+  should be able to update the information properly
+= In students side they should be able to see the infos of the teachers and 
+  should get the Contact infos of the teacher
+= 

@@ -1,12 +1,12 @@
 import 'package:edubrain/core/constants/constant.dart';
 import 'package:edubrain/core/constants/fontstyle_constants.dart';
-import 'package:edubrain/database/functions/teacher_section.dart';
-import 'package:edubrain/database/model/teacher_model/teacher_data_model.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
+import 'package:edubrain/view/teacher/teacher_profile/controller/teacher_profile_controller.dart';
 import 'package:edubrain/view/teacher/teacher_profile/update_teacher_profile/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class EditTeacherProfileScreen extends StatefulWidget {
+class EditTeacherProfileScreen extends StatelessWidget {
   const EditTeacherProfileScreen({
     super.key,
     required this.teacherName,
@@ -33,45 +33,19 @@ class EditTeacherProfileScreen extends StatefulWidget {
   final int index;
 
   @override
-  State<EditTeacherProfileScreen> createState() =>
-      _EditTeacherProfileScreenState();
-}
-
-class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
-  TextEditingController _teacherNameEditController = TextEditingController();
-  TextEditingController _teacherRegIDEditController = TextEditingController();
-  TextEditingController _teacherGenderEditController = TextEditingController();
-  TextEditingController _teacherQaulEditController = TextEditingController();
-  TextEditingController _teacherSubjectEditController = TextEditingController();
-  TextEditingController _teacherEmailEditController = TextEditingController();
-  TextEditingController _teacherMobileEditController = TextEditingController();
-  TextEditingController _teacherPasswordEditController =
-      TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    super.initState();
-    _teacherNameEditController =
-        TextEditingController(text: widget.teacherName);
-    _teacherGenderEditController =
-        TextEditingController(text: widget.teacherGender);
-    _teacherRegIDEditController =
-        TextEditingController(text: widget.teacherRegID);
-    _teacherQaulEditController =
-        TextEditingController(text: widget.teacherQualification);
-    _teacherSubjectEditController =
-        TextEditingController(text: widget.teacherSubject);
-    _teacherEmailEditController =
-        TextEditingController(text: widget.teacherEMail);
-    _teacherMobileEditController =
-        TextEditingController(text: widget.teacherMobileNum);
-    _teacherPasswordEditController =
-        TextEditingController(text: widget.teacherPassword);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final provider =
+        Provider.of<TeacherProfileController>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      provider.teacherEmailEditController.text = teacherEMail;
+      provider.teacherGenderEditController.text = teacherGender;
+      provider.teacherMobileEditController.text = teacherMobileNum;
+      provider.teacherNameEditController.text = teacherName;
+      provider.teacherPasswordEditController.text = teacherPassword;
+      provider.teacherQaulEditController.text = teacherQualification;
+      provider.teacherRegIDEditController.text = teacherRegID;
+      provider.teacherSubjectEditController.text = teacherSubject;
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -85,7 +59,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
           Container(
             color: jOtherColor,
             child: Form(
-              key: _formKey,
+              key: provider.formKey,
               child: Column(
                 children: [
                   Container(
@@ -116,7 +90,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             Row(
                               children: [
                                 Text(
-                                  widget.teacherName,
+                                  teacherName,
                                   style: jKalamLargeStyle,
                                 ),
                               ],
@@ -125,11 +99,11 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.teacherRegID,
+                                  teacherRegID,
                                   style: jAcmeMediumStyle,
                                 ),
                                 Text(
-                                  widget.teacherSubject,
+                                  teacherSubject,
                                   style: jAcmeMediumStyle,
                                 )
                               ],
@@ -160,7 +134,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             EditTextField(
                               obscure: false,
                               width: 200,
-                              controller: _teacherNameEditController,
+                              controller: provider.teacherNameEditController,
                               textInputType: TextInputType.name,
                               label: 'Enter Full Name',
                               validator: (value) {
@@ -183,7 +157,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             EditTextField(
                               obscure: false,
                               width: 200,
-                              controller: _teacherRegIDEditController,
+                              controller: provider.teacherRegIDEditController,
                               textInputType: TextInputType.name,
                               label: 'Enter Register ID',
                               validator: (value) {
@@ -207,7 +181,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             EditTextField(
                               obscure: false,
                               width: 200,
-                              controller: _teacherGenderEditController,
+                              controller: provider.teacherGenderEditController,
                               textInputType: TextInputType.name,
                               label: 'Enter Your Gender',
                               validator: (value) {
@@ -231,7 +205,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             EditTextField(
                               obscure: false,
                               width: 200,
-                              controller: _teacherQaulEditController,
+                              controller: provider.teacherQaulEditController,
                               textInputType: TextInputType.name,
                               label: 'Enter your qaulification',
                               validator: (value) {
@@ -255,7 +229,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             EditTextField(
                               obscure: false,
                               width: 200,
-                              controller: _teacherSubjectEditController,
+                              controller: provider.teacherSubjectEditController,
                               textInputType: TextInputType.name,
                               label: 'Enter your subject',
                               validator: (value) {
@@ -287,7 +261,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             EditTextField(
                               obscure: false,
                               width: double.infinity,
-                              controller: _teacherEmailEditController,
+                              controller: provider.teacherEmailEditController,
                               textInputType: TextInputType.emailAddress,
                               label: 'Enter your E-Mail',
                               validator: (value) {
@@ -313,7 +287,7 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             ),
                             EditTextField(
                               obscure: false,
-                              controller: _teacherMobileEditController,
+                              controller: provider.teacherMobileEditController,
                               textInputType: TextInputType.phone,
                               label: 'Enter your number',
                               validator: (value) {
@@ -347,7 +321,8 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
                             ),
                             EditTextField(
                               obscure: true,
-                              controller: _teacherPasswordEditController,
+                              controller:
+                                  provider.teacherPasswordEditController,
                               textInputType: TextInputType.name,
                               label: 'Enter Password',
                               validator: (value) {
@@ -374,9 +349,8 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            editTeacherProfileOnTap(context);
-            setState(() {});
+          if (provider.formKey.currentState!.validate()) {
+            provider.editTeacherProfileOnTap(context, index);
             Navigator.of(context).pop(userTeacher);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -396,49 +370,5 @@ class _EditTeacherProfileScreenState extends State<EditTeacherProfileScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> editTeacherProfileOnTap(context) async {
-    final teacherNameEdit = _teacherNameEditController.text.trim();
-    final teacherRegIDEdit = _teacherRegIDEditController.text.trim();
-    final teacherGenderEdit = _teacherGenderEditController.text.trim();
-    final teacherQualificationEdit = _teacherQaulEditController.text.trim();
-    final teacherSubjectEdit = _teacherSubjectEditController.text.trim();
-    final teacherEmailEdit = _teacherEmailEditController.text.trim();
-    final teacherMobileNumEdit = _teacherMobileEditController.text.trim();
-    final teacherPasswordEdit = _teacherPasswordEditController.text.trim();
-
-    if (teacherMobileNumEdit.isEmpty ||
-        teacherPasswordEdit.isEmpty ||
-        teacherEmailEdit.isEmpty ||
-        teacherNameEdit.isEmpty ||
-        teacherRegIDEdit.isEmpty ||
-        teacherGenderEdit.isEmpty ||
-        teacherQualificationEdit.isEmpty ||
-        teacherSubjectEdit.isEmpty) {
-      return;
-    } else {
-      final teacherEdit = TeacherModel(
-        DateTime.now().millisecond,
-        teacherRegID: teacherRegIDEdit,
-        teacherSubject: teacherSubjectEdit,
-        teacherQualification: teacherQualificationEdit,
-        teacherGender: teacherGenderEdit,
-        teacherMobileNum: teacherMobileNumEdit,
-        teacherName: teacherNameEdit,
-        teacherEMail: teacherEmailEdit,
-        teacherPassword: teacherPasswordEdit,
-      );
-      editTeacherProfile(widget.index, teacherEdit);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: jSecondaryColor,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(jDefaultPadding),
-          content: Text("Updated Profile Successfully"),
-        ),
-      );
-    }
   }
 }

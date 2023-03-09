@@ -11,25 +11,20 @@ import 'package:edubrain/view/teacher/home_screen/widgets/teacher_data.dart';
 import 'package:edubrain/view/teacher/login_screen/login_teacher/teacher_login_screen.dart';
 import 'package:edubrain/view/teacher/teacher_profile/teacher_profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class TeacherHomeScreen extends StatefulWidget {
+class TeacherHomeScreen extends StatelessWidget {
   const TeacherHomeScreen({super.key});
   static String routeName = 'TeacherHomeScreen';
 
   @override
-  State<TeacherHomeScreen> createState() => _TeacherHomeScreenState();
-}
-
-class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
-  @override
-  void initState() {
-    userTeacher;
-    getTeacherProfile();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final teacherProvider =
+        Provider.of<TeacherDBProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      userTeacher;
+      teacherProvider.getTeacherProfile();
+    });
     return Scaffold(
       drawer: const HomeScreenDrawer(),
       appBar: AppBar(
@@ -55,6 +50,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
                         teacherEMail: userTeacher!.teacherEMail,
                         teacherMobileNum: userTeacher!.teacherMobileNum,
                         teacherPassword: userTeacher!.teacherPassword,
+                        currentIndex: userTeacher!.id,
                       );
                     },
                   ),

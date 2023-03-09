@@ -81,7 +81,7 @@ class HomeScreenDrawer extends StatelessWidget {
                     //  currentLoggedTeacher[0].teacherEMail,
                     teacherMobileNum: '',
                     // currentLoggedTeacher[0].teacherMobileNum,
-                    teacherPassword: '',
+                    teacherPassword: '', currentIndex: 0,
                     //  currentLoggedTeacher[0].teacherPassword,
                   ),
                 ),
